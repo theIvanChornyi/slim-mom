@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 import { refreshUserThunk } from 'redux/auth/thunk.auth';
 import Header from 'components/Header';
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Home = lazy(() => import('pages/Home'));
 const Diary = lazy(() => import('pages/Diary'));
