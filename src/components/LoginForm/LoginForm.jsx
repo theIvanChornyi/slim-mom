@@ -1,26 +1,61 @@
 import LoginBtn from 'components/LoginBtn';
-import RegistrationBtn from 'components/RegistrationBtn';
 import { ContainerBtn } from 'components/RegistrationForm/RegistrationForm.styled';
-import { AuthForm, AuthInput, AuthLabel, AuthTitle } from './LoginForm.styled';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { logInThunk } from 'redux/auth/thunk.auth';
+import {
+  AuthForm,
+  AuthInput,
+  AuthLabel,
+  AuthTitle,
+  RegisterLink,
+} from './LoginForm.styled';
+import { loginSchema } from 'services/validation/loginSchema';
 export default function LoginForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+  const dispatch = useDispatch();
+  const onSubmit = data => {
+    dispatch(logInThunk(data));
+    reset();
+  };
+  console.log('errors :>> ', errors);
   return (
     <>
-      <AuthForm>
+      <AuthForm onSubmit={handleSubmit(onSubmit)}>
         <AuthTitle>Sign In</AuthTitle>
-
         <AuthLabel htmlFor="email">
           Email *
-          <AuthInput id="email" required name="email" type="email" />
+          <AuthInput
+            {...register('email')}
+            id="email"
+            required
+            name="email"
+            type="email"
+          />
         </AuthLabel>
         <AuthLabel htmlFor="password">
           Password *
-          <AuthInput id="password" required name="password" type="password" />
+          <AuthInput
+            {...register('password')}
+            id="password"
+            required
+            name="password"
+            type="password"
+          />
         </AuthLabel>
+        <ContainerBtn>
+          <LoginBtn />
+          <RegisterLink to="/registration">Register</RegisterLink>
+        </ContainerBtn>
       </AuthForm>
-      <ContainerBtn>
-        <LoginBtn />
-        <RegistrationBtn />
-      </ContainerBtn>
     </>
   );
 }
