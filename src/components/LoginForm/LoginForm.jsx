@@ -37,8 +37,7 @@ export default function LoginForm() {
 
   useEffect(() => {
     toast.error(errorMessage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors]);
+  }, [errorMessage]);
 
   return (
     <>

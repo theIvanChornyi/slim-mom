@@ -36,7 +36,7 @@ export default function RegistrationForm() {
   const errorMessage = username?.message || email?.message || password?.message;
   useEffect(() => {
     toast.error(errorMessage);
-  }, [errors]);
+  }, [errorMessage]);
 
   return (
     <>
