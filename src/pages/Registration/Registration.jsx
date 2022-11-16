@@ -6,7 +6,7 @@ export default function Registration() {
   return (
     <Background>
       <Container>
-        <RegistrationForm />;
+        <RegistrationForm />
       </Container>
     </Background>
   );
