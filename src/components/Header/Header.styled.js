@@ -2,11 +2,13 @@ import { breakpoints } from 'helpers/breakpoints';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const HeaderWrapper = styled.div``;
+
 export const PageHeader = styled.header`
   position: relative;
   ::after {
     content: '';
-    bottom: 0;
+    top: 80px;
     position: absolute;
     height: 2px;
     min-width: 320px;

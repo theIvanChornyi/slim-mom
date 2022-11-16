@@ -28,7 +28,7 @@ export default function Logo() {
             media="min-width: 481px"
           />
 
-          <LogoImage src={LogoDeskImage} alt="Company logo" />
+          <LogoImage src={LogoMobImage} alt="Company logo" />
         </picture>
       </ImageThumb>
       <LogoName>

@@ -25,6 +25,7 @@ export const authSlice = createSlice({
       state.token = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.sid = action.payload.sid;
+      state.user = { ...action.payload.user };
       state.isAuth = true;
     });
     builder.addCase(logInThunk.rejected, (state, action) => {
