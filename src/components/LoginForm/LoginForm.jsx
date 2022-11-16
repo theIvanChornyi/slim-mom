@@ -12,6 +12,9 @@ import {
   RegisterLink,
 } from './LoginForm.styled';
 import { loginSchema } from 'services/validation/loginSchema';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+
 export default function LoginForm() {
   const {
     register,
@@ -21,12 +24,22 @@ export default function LoginForm() {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+
   const dispatch = useDispatch();
   const onSubmit = data => {
     dispatch(logInThunk(data));
     reset();
+    toast.dismiss();
   };
-  console.log('errors :>> ', errors);
+
+  const { email, password } = errors;
+  const errorMessage = email?.message || password?.message;
+
+  useEffect(() => {
+    toast.error(errorMessage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errors]);
+
   return (
     <>
       <AuthForm onSubmit={handleSubmit(onSubmit)}>
