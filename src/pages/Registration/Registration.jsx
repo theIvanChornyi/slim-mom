@@ -1,1 +1,5 @@
-export default function Registration() {}
+import RegistrationForm from 'components/RegistrationForm';
+
+export default function Registration() {
+  return <RegistrationForm />;
+}
