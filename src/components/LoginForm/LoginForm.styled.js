@@ -53,6 +53,7 @@ export const ContainerBtn = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 100px;
+  margin-top: 20px;
   @media screen and (min-width: 768px) {
     flex-direction: row;
     padding-bottom: 495px;

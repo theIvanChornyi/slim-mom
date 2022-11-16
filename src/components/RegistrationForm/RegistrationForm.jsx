@@ -12,6 +12,8 @@ import {
   RegisterLabel,
   RegisterTitle,
 } from './RegistrationForm.styled';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 export default function RegistrationForm() {
   const {
@@ -22,13 +24,20 @@ export default function RegistrationForm() {
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
+
   const dispatch = useDispatch();
   const onSubmit = data => {
-    console.log(data);
     dispatch(signUpThunk(data));
     reset();
+    toast.dismiss();
   };
-  console.log('errors :>> ', errors);
+
+  const { username, email, password } = errors;
+  const errorMessage = username?.message || email?.message || password?.message;
+  useEffect(() => {
+    toast.error(errorMessage);
+  }, [errors]);
+
   return (
     <>
       <RegisterForm onSubmit={handleSubmit(onSubmit)}>

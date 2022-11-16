@@ -1,11 +1,13 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Loader from 'components/Loader';
 import PrivateRout from 'components/PrivateRout';
 import { Test } from 'pages/Test/Test';
 import { useDispatch } from 'react-redux';
 import { refreshUserThunk } from 'redux/auth/thunk.auth';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = lazy(() => import('pages/Home'));
 const Diary = lazy(() => import('pages/Diary'));
@@ -34,6 +36,7 @@ export const App = () => {
           <Route path="*" element={<Home />} />
         </Routes>
       </Suspense>
+      <ToastContainer autoClose={5000} limit={1} />
     </>
   );
 };
