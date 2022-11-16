@@ -6,6 +6,7 @@ import PrivateRout from 'components/PrivateRout';
 import { Test } from 'pages/Test/Test';
 import { useDispatch } from 'react-redux';
 import { refreshUserThunk } from 'redux/auth/thunk.auth';
+import Header from 'components/Header';
 
 const Home = lazy(() => import('pages/Home'));
 const Diary = lazy(() => import('pages/Diary'));
@@ -21,6 +22,8 @@ export const App = () => {
   }, [dispatch]);
   return (
     <>
+      <Header />
+
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/test" element={<Test />} />
