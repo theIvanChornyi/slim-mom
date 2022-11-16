@@ -23,7 +23,7 @@ export const App = () => {
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<Test />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
