@@ -12,7 +12,7 @@ import {
   LogoNameText,
 } from './Logo.styled';
 
-export default function Logo({ onClick }) {
+export default function Logo({ onClick, isAuth, isOnHome }) {
   return (
     <LogoLink onClick={onClick} to="/home">
       <ImageThumb>
@@ -30,7 +30,7 @@ export default function Logo({ onClick }) {
           <LogoImage src={LogoDeskImage} alt="Company logo" />
         </picture>
       </ImageThumb>
-      <LogoName>
+      <LogoName isAuth={isAuth} isOnHome={isOnHome}>
         <LogoNameText>Slim</LogoNameText>
         <LogoNameAcent>Mom</LogoNameAcent>
       </LogoName>

@@ -33,7 +33,7 @@ export default function RegistrationForm() {
       await dispatch(signUpThunk(data)).unwrap();
       reset();
       toast.dismiss();
-      navigate('/home');
+      navigate('/calculator');
     } catch (error) {}
   };
 

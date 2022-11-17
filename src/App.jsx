@@ -11,6 +11,7 @@ import { refreshUserThunk } from 'redux/auth/thunk.auth';
 import Header from 'components/Header';
 import 'react-toastify/dist/ReactToastify.css';
 import { selectIsAuth } from 'redux/auth/selectors.auth';
+import PublicRoute from 'components/PublicRoute/PublicRoute';
 
 const Home = lazy(() => import('pages/Home'));
 const Diary = lazy(() => import('pages/Diary'));
@@ -30,14 +31,17 @@ export const App = () => {
         <Header />
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/home" element={<Home />} end />
+            <Route index element={<Navigate to="/home" />} />
             <Route path="/" element={<PrivateRout />}>
               <Route path="diary" element={<Diary />} />
               <Route path="calculator" element={<Calculator />} />
             </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/" element={<PublicRoute />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/registration" element={<Registration />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/home" />} />
           </Routes>
         </Suspense>
         <ToastContainer autoClose={5000} limit={1} />
