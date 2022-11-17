@@ -28,6 +28,7 @@ export const App = () => {
     <>
       <Background isAuth={isAuth}>
         <Header />
+
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/home" element={<Home />} end />
