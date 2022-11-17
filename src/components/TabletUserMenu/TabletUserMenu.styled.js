@@ -1,22 +1,20 @@
 import { breakpoints } from 'helpers/breakpoints';
 import styled from 'styled-components';
-export const UserMenuHeader = styled.div`
+export const TabletUserMenuHeader = styled.div`
   min-width: 320px;
-
-  background: #eff1f3;
-  @media ${breakpoints.minTablet} {
-    display: none;
+  display: none;
+  @media ${breakpoints.tablet} {
+    display: block;
   }
 `;
 
-export const UserSideBar = styled.div`
+export const TabletUserSideBar = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
-export const UserMenuWrapper = styled.div`
+export const TabletUserMenuWrapper = styled.div`
   height: 40px;
-  padding: 4px 20px;
 
   display: flex;
   justify-content: end;
@@ -24,7 +22,7 @@ export const UserMenuWrapper = styled.div`
   gap: 32px;
 `;
 
-export const UserName = styled.div`
+export const TabletUserName = styled.div`
   position: relative;
   font-family: 'Raleway', sans-serif;
   font-style: normal;
@@ -45,7 +43,7 @@ export const UserName = styled.div`
   }
 `;
 
-export const UserMenuButton = styled.button`
+export const TabletUserMenuButton = styled.button`
   font-family: 'Raleway', sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -54,6 +52,7 @@ export const UserMenuButton = styled.button`
   letter-spacing: 0.04em;
   color: #9b9faa;
   border: none;
+  background-color: transparent;
 
   cursor: pointer;
 `;

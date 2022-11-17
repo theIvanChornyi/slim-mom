@@ -5,5 +5,7 @@ export const MobileMenuBtn = styled.button`
   height: 40px;
   padding: 0;
   border: none;
+
+  background: transparent;
   cursor: pointer;
 `;

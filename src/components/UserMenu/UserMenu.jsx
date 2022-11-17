@@ -9,7 +9,6 @@ import {
   UserName,
   UserSideBar,
 } from './UserMenu.styled';
-// import BackImg from 'helpers/images/back.svg';
 
 export default function UserMenu({ handleLogout }) {
   const name = useSelector(selectUserName);
