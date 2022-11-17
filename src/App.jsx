@@ -38,9 +38,9 @@ export const App = () => {
               <Route path="calculator" element={<Calculator />} />
             </Route>
             <Route path="/" element={<PublicRoute />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/registration" element={<Registration />} />
+              <Route path="home" element={<Home />} />
+              <Route path="login" element={<Login />} />
+              <Route path="registration" element={<Registration />} />
             </Route>
             <Route path="*" element={<Navigate to="/home" />} />
           </Routes>

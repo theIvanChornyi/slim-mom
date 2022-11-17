@@ -14,7 +14,7 @@ import {
 
 export default function Logo({ onClick, isAuth, isOnHome }) {
   return (
-    <LogoLink onClick={onClick} to="/home">
+    <LogoLink onClick={onClick} to={isAuth ? '/diary' : '/home'}>
       <ImageThumb>
         <picture>
           <source
