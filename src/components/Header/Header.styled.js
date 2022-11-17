@@ -36,9 +36,27 @@ export const HeaderNavigation = styled.nav`
 export const HeaderList = styled.ul`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 16px;
+  @media ${breakpoints.minTablet} {
+    gap: 30px;
+  }
+  @media ${breakpoints.desktop} {
+    gap: ${p => {
+      return p.isAuth ? '520px' : '16px';
+    }};
+    align-items: flex-end;
+  }
 `;
-export const HeaderListItem = styled.li``;
+
+export const HeaderListItem = styled.li`
+  padding-left: 20px;
+  display: none;
+  @media ${breakpoints.desktop} {
+    display: flex;
+    gap: 16px;
+  }
+`;
 
 export const HeaderNavLink = styled(NavLink)`
   :not(.active) {

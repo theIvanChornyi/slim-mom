@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TabletUserMenuHeader = styled.div`
   min-width: 320px;
   display: none;
-  @media ${breakpoints.tablet} {
+  @media ${breakpoints.minTablet} {
     display: block;
   }
 `;

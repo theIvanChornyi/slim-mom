@@ -6,7 +6,7 @@ import Loader from 'components/Loader';
 import PrivateRout from 'components/PrivateRout';
 import { Background } from 'components/Background';
 
-import { Test } from 'pages/Test/Test';
+// import { Test } from 'pages/Test/Test';
 import { useDispatch } from 'react-redux';
 import { refreshUserThunk } from 'redux/auth/thunk.auth';
 import Header from 'components/Header';
@@ -27,10 +27,9 @@ export const App = () => {
     <>
       <Background>
         <Header />
-
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/test" element={<Test />} />
+            {/* <Route path="/test" element={<Test />} /> */}
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />

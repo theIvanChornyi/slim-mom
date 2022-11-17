@@ -1,9 +1,10 @@
-import { breakpoints } from 'helpers/breakpoints';
+// import { breakpoints } from 'helpers/breakpoints';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const BurgerOverlay = styled.div`
   position: absolute;
+  z-index: 1000;
   min-width: 320px;
   width: 100%;
   min-height: 100vh;

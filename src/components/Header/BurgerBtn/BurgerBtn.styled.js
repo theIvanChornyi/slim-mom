@@ -1,3 +1,4 @@
+import { breakpoints } from 'helpers/breakpoints';
 import styled from 'styled-components';
 
 export const MobileMenuBtn = styled.button`
@@ -8,4 +9,7 @@ export const MobileMenuBtn = styled.button`
 
   background: transparent;
   cursor: pointer;
+  @media ${breakpoints.desktop} {
+    display: none;
+  }
 `;

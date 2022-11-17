@@ -14,7 +14,7 @@ import {
 
 export default function Logo({ onClick }) {
   return (
-    <LogoLink onClick={onClick} to="/">
+    <LogoLink onClick={onClick} to="/home">
       <ImageThumb>
         <picture>
           <source
@@ -27,7 +27,7 @@ export default function Logo({ onClick }) {
             type="image/png"
             media="min-width: 481px"
           />
-          <LogoImage src={LogoMobImage} alt="Company logo" />
+          <LogoImage src={LogoDeskImage} alt="Company logo" />
         </picture>
       </ImageThumb>
       <LogoName>

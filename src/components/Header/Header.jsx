@@ -45,20 +45,28 @@ export default function Header() {
         <HeaderWrapper>
           <HeaderNavigation>
             <Logo onClick={handleCloseBurger} />
-            <HeaderList>
+            <HeaderList isAuth={isAuth}>
               {!isAuth ? (
                 <>
-                  <HeaderListItem>
+                  <div>
                     <HeaderNavLink to="/login">Sign in</HeaderNavLink>
-                  </HeaderListItem>
-                  <HeaderListItem>
+                  </div>
+                  <div>
                     <HeaderNavLink to="/registration">
                       Registration
                     </HeaderNavLink>
-                  </HeaderListItem>
+                  </div>
                 </>
               ) : (
                 <>
+                  <HeaderListItem>
+                    <div>
+                      <HeaderNavLink to="/diary">Diary</HeaderNavLink>
+                    </div>
+                    <div>
+                      <HeaderNavLink to="/calculator">Calculator</HeaderNavLink>
+                    </div>
+                  </HeaderListItem>
                   <TabletUserMenu handleLogout={memoizedLogout} />
                   <BurgerBtn onClick={handTogleBurger} isOpen={burgerMenu} />
                 </>
