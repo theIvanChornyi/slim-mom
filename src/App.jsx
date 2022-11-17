@@ -7,11 +7,11 @@ import PrivateRout from 'components/PrivateRout';
 import { Background } from 'components/Background';
 
 // import { Test } from 'pages/Test/Test';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUserThunk } from 'redux/auth/thunk.auth';
-import Modal from 'components/Modal';
 import Header from 'components/Header';
 import 'react-toastify/dist/ReactToastify.css';
+import { selectIsAuth } from 'redux/auth/selectors.auth';
 
 const Home = lazy(() => import('pages/Home'));
 const Diary = lazy(() => import('pages/Diary'));
@@ -20,15 +20,15 @@ const Calculator = lazy(() => import('pages/Calculator'));
 const Registration = lazy(() => import('pages/Registration'));
 
 export const App = () => {
+  const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUserThunk());
   }, [dispatch]);
   return (
     <>
-      <Background>
+      <Background isAuth={isAuth}>
         <Header />
-        <Modal />
         <Suspense fallback={<Loader />}>
           <Routes>
             {/* <Route path="/test" element={<Test />} /> */}

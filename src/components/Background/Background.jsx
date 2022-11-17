@@ -1,5 +1,5 @@
-import { BackgroundStyled } from "./Background.styled";
+import { BackgroundStyled } from './Background.styled';
 
-export const Background = ({ children }) => {
-    return <BackgroundStyled>{children}</BackgroundStyled>;
+export const Background = ({ children, isAuth }) => {
+  return <BackgroundStyled isAuth={isAuth}>{children}</BackgroundStyled>;
 };
