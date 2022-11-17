@@ -14,8 +14,10 @@ import {
 import { loginSchema } from 'services/validation/loginSchema';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,10 +28,13 @@ export default function LoginForm() {
   });
 
   const dispatch = useDispatch();
-  const onSubmit = data => {
-    dispatch(logInThunk(data));
-    reset();
-    toast.dismiss();
+  const onSubmit = async data => {
+    try {
+      await dispatch(logInThunk(data)).unwrap();
+      reset();
+      toast.dismiss();
+      navigate('/diary');
+    } catch (error) {}
   };
 
   const { email, password } = errors;

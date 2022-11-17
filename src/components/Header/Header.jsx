@@ -5,6 +5,7 @@ import UserMenu from 'components/UserMenu';
 import { useState } from 'react';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { selectIsAuth } from 'redux/auth/selectors.auth';
 import { logOutThunk } from 'redux/auth/thunk.auth';
 import BurgerBtn from './BurgerBtn';
@@ -20,13 +21,11 @@ import {
 
 export default function Header() {
   const isAuth = useSelector(selectIsAuth);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [burgerMenu, setBurgerMenu] = useState(false);
 
-  // const handleOpenBurger = () => {
-  //   setBurgerMenu(true);
-  // };
   const handleCloseBurger = () => {
     setBurgerMenu(false);
   };
@@ -35,9 +34,12 @@ export default function Header() {
     setBurgerMenu(!burgerMenu);
   };
 
-  const memoizedLogout = useCallback(() => {
-    dispatch(logOutThunk());
-  }, [dispatch]);
+  const memoizedLogout = useCallback(async () => {
+    try {
+      await dispatch(logOutThunk()).unwrap();
+      navigate('/login');
+    } catch (error) {}
+  }, [dispatch, navigate]);
 
   return (
     <PageHeader>
