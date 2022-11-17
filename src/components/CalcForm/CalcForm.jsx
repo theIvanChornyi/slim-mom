@@ -24,7 +24,7 @@ export default function CalcForm({ onFormSubmit }) {
     return (
             <Thumb>
                 <Title>Calculate your daily calorie intake right now</Title>
-                <FormStyled>
+                <FormStyled initialValue={initialValue} onSubmit={handleSubmit(onFormSubmit)}>
                     <LabelFirst>
                         <FormLabel htmlFor="height">
                             Height*
@@ -66,7 +66,8 @@ export default function CalcForm({ onFormSubmit }) {
                                     type="radio"
                                     name="bloodType"
                                     id="blood-inp-2"
-                                     value={2}                                         checked={selectedBloodType === '2'}
+                                    value={2}
+                                    checked={selectedBloodType === '2'}
                                         onClick={onBldSelect} />
                                     <label htmlFor="blood-inp-2">2</label>
                                 </li>
