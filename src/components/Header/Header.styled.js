@@ -45,6 +45,9 @@ export const HeaderList = styled.ul`
     gap: ${p => {
       return p.isAuth ? '520px' : '16px';
     }};
+    display: ${p => {
+      return !p.isAuth && p.isOnHome !== '/home' && 'none';
+    }};
     align-items: flex-end;
   }
 `;
@@ -62,6 +65,7 @@ export const HeaderNavLink = styled(NavLink)`
   :not(.active) {
     color: #9b9faa;
   }
+
   text-decoration: none;
   font-family: 'Raleway';
   font-style: normal;
@@ -73,4 +77,10 @@ export const HeaderNavLink = styled(NavLink)`
   text-transform: uppercase;
 
   color: #212121;
+  transition: color linear 250ms;
+
+  :hover,
+  :focus {
+    color: #212121;
+  }
 `;

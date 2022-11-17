@@ -23,9 +23,7 @@ export default function CalcForm() {
 
     const [selectedBloodType, setSelectedBloodType] = useState();
 
-    const onBldSelect = e => {
-        setSelectedBloodType(e.target.value)
-    }
+  const [selectedBloodType, setSelectedBloodType] = useState();
 
 
     const onSubmit = (data, e) => {
@@ -45,6 +43,13 @@ export default function CalcForm() {
         navigate('/diary');
     }
 
+  const initialValue = {
+    height: '',
+    age: '',
+    currentWeight: '',
+    desiredWeight: '',
+    bloodType: '1',
+  };
 
 
     return (
