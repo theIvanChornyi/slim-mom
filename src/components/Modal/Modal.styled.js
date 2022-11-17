@@ -37,11 +37,16 @@ export const ModalWindow = styled.div`
 `;
 
 export const ModulCloseBtn = styled.button`
+    display: none;
+
+ @media (min-width: 768px) {
+    display: inline-flex;
     position: absolute;
     top: 20px;
     right: 20px;
     background-color: transparent;
     border: none;
+ }
 `;
 
 export const ModalTitle = styled.h2`
@@ -89,7 +94,7 @@ export const CalloriesText = styled(Callories)`
 `;
 
 export const ModulLine = styled.div`
-    width: 330px;
+    width: 280px;
     /* height: 2px; */
     color: #E0E0E0;
 
@@ -97,6 +102,10 @@ export const ModulLine = styled.div`
 
     border: 1px solid #E0E0E0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+     @media (min-width: 768px) {
+        width: 330px;
+    }
 `;
 
 export const FoodTitle = styled.p`
@@ -118,7 +127,12 @@ export const FoodTitle = styled.p`
 `;
 
 export const FoodText = styled.ol`
-    width: 222px;  
+    width: 280px;  
+    max-height: 112px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
 
     font-family: 'Jost', sans-serif;
     font-style: normal;
@@ -131,4 +145,50 @@ export const FoodText = styled.ol`
     list-style: number;
 
     margin-bottom: 40px;
+
+    &::-webkit-scrollbar {
+    width: 6px; /* ширина всей полосы прокрутки */
+    }
+
+    &::-webkit-scrollbar-track {
+    background: #f0f1f3; /* цвет зоны отслеживания */
+    }
+
+    &::-webkit-scrollbar-thumb {
+    background-color: #264061; /* цвет бегунка */
+    /* border-radius: 20px; округлось бегунка */
+    /* border: 3px solid orange; отступ вокруг бегунка */
+  }
+
+    @media (min-width: 768px) {
+        width: 330px;
+    }
+`;
+
+export const RegisterBtn = styled.button`
+  margin-left: auto;
+  margin-right: auto;
+  width: 210px;
+  height: 44px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background-color: #fc842d;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #fc842d;
+    background-color: #fff;
+  }
+  /* @media screen and (min-width: 768px) { */
+    /* margin: 0; */
+    /* margin-left: 32px; */
+  /* } */
 `;

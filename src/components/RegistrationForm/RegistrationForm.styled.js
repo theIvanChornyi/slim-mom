@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 export const RegisterForm = styled.form`
   display: flex;
   flex-direction: column;
-  padding-top: 44px;
   margin-bottom: 20px;
 `;
 export const RegisterTitle = styled.h2`

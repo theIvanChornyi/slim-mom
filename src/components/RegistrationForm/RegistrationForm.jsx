@@ -14,8 +14,10 @@ import {
 } from './RegistrationForm.styled';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegistrationForm() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,10 +28,13 @@ export default function RegistrationForm() {
   });
 
   const dispatch = useDispatch();
-  const onSubmit = data => {
-    dispatch(signUpThunk(data));
-    reset();
-    toast.dismiss();
+  const onSubmit = async data => {
+    try {
+      await dispatch(signUpThunk(data)).unwrap();
+      reset();
+      toast.dismiss();
+      navigate('/home');
+    } catch (error) {}
   };
 
   const { username, email, password } = errors;

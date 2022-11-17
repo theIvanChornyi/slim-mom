@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // import PropTypes from 'prop-types';
 
 import {
-    Overlay, ModalWindow, ModalTitle, Callories,
-    CalloriesText, FoodTitle, FoodText, ModulCloseBtn, ModulLine
+    Overlay, ModalWindow, ModalTitle, Callories, CalloriesText,
+    FoodTitle, FoodText, ModulCloseBtn, ModulLine, RegisterBtn
 } from './Modal.styled';
 import { fetchCalorie } from 'redux/calorie/calorie.operations';
 import { selectDailyRate, selectNotAllowedProducts } from 'redux/calorie/calorie.selectors';
@@ -33,9 +33,11 @@ export default function Modal() {
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'hidden';
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = 'unset';
         }
     }, []);
 
@@ -47,7 +49,8 @@ export default function Modal() {
   };
 
     const handleBackdropClick = event => {
-    if (event.currentTarget === event.target) toggleModal(); 
+        if (event.currentTarget === event.target) toggleModal(); 
+        
     };
 
     const handleKeyDown = event => {  
@@ -72,16 +75,16 @@ export default function Modal() {
                 <ModulLine />
                 <FoodTitle>Foods you should not eat</FoodTitle>
                 <FoodText>
-                    
-                 {notAllowedProducts.map(product => (
+                         {notAllowedProducts.map(product => (
                         <li
                             key = {product}>
                             {product}
                         </li>
-                 ))
-                 }  
+                         ))
+                    };
+                    
                 </FoodText>
-                <button type='button'>Start losing weight</button>
+                <RegisterBtn type='button'>Start losing weight</RegisterBtn>
             </ModalWindow>
         </Overlay>,
         modalRoot
