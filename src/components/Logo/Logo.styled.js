@@ -52,6 +52,11 @@ export const LogoName = styled.div`
       width: 2px;
       background-color: #e0e0e0;
       right: -20px;
+      visibility: ${p => {
+        const rule = !p.isAuth && p.isOnHome !== '/home';
+
+        return !rule ? 'visible' : 'hidden';
+      }};
     }
   }
 `;
