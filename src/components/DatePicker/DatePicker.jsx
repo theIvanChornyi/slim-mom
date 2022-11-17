@@ -1,11 +1,26 @@
 import CalendarButton from './CalendarButton/CalendarButton';
-import { DateContainer, DateString } from './DatePicker.styled';
+import { DateContainer, DateString, MyCalendar } from './DatePicker.styled';
+import 'react-calendar/dist/Calendar.css';
+import { useState } from 'react';
 
-export default function DatePicker() {
+export default function DatePicker({ date, setDate }) {
+  const [showCalendar, setShowCalendar] = useState(false);
+  const normalizedDate = date.toLocaleDateString('en-GB').split('/').join('.');
+
+  const handleOpenCalendar = () => {
+    setShowCalendar(true);
+  };
+
+  const handleCalendar = newDate => {
+    setDate(new Date(newDate));
+    setShowCalendar(false);
+  };
+
   return (
     <DateContainer>
-      <DateString>20.06.2020</DateString>
-      <CalendarButton />
+      <DateString>{normalizedDate}</DateString>
+      <CalendarButton onClick={handleOpenCalendar} />
+      {showCalendar && <MyCalendar onClickDay={handleCalendar} value={date} />}
     </DateContainer>
   );
 }

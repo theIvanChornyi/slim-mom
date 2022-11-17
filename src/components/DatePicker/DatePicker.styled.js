@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Calendar from 'react-calendar';
 
 export const DateContainer = styled.div`
   display: flex;
@@ -16,4 +17,10 @@ export const DateString = styled.p`
   align-items: center;
 
   color: #212121;
+`;
+
+export const MyCalendar = styled(Calendar)`
+  position: absolute;
+  left: 0;
+  right: 0;
 `;

@@ -1,8 +1,8 @@
 import { CalendarStyledBtn } from './CalendarButton.styled';
 
-export default function CalendarButton() {
+export default function CalendarButton({ onClick }) {
   return (
-    <CalendarStyledBtn type="button">
+    <CalendarStyledBtn onClick={onClick} type="button">
       <svg
         width="20"
         height="20"

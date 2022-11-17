@@ -7,9 +7,9 @@ import DiaryProductsList from 'components/DiaryProductsList';
 import SideBar from 'components/SideBar';
 import { useState } from 'react';
 import { DiaryBox, Gradient } from './Diary.styled';
-
 export default function Diary() {
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   const [left, setLeft] = useState('0');
   const [consumed, setConsumed] = useState('0');
@@ -29,7 +29,8 @@ export default function Diary() {
       {!addModalOpen && (
         <Container>
           <DiaryBox>
-            <DatePicker />
+            <DatePicker date={date} setDate={setDate} />
+
             <DiaryProductsList />
             <DiaryAddBtn onClick={handleAddProductOpen} />
             <Gradient />
