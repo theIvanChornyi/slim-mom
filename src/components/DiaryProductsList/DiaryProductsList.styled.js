@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const ListProducts = styled.ul`
-  margin: 60px auto 32px auto;
-  height: 200px;
-  max-width: 310px;
+  margin: 22px 0 60px;
 
   display: flex;
   flex-direction: column;
