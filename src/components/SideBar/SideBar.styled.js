@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-// import leafs from '../../img/leafs.png';
-// import leafsBig from '../../img/leafs-big.png';
+import leaves from '../../helpers/images/leaves-aside-tablet.png';
+import leavesBig from '../../helpers/images/leaves-desktop@2.png';
 
 export const AsideBox = styled.aside`
+  margin: 0 -20px;
   background: #f0f1f3;
   padding: 40px 20px;
   min-width: 280px;
@@ -21,9 +22,8 @@ export const AsideBox = styled.aside`
     align-items: flex-start;
     gap: 80px;
     padding: 80px 32px;
-    /* background-image: url();
+    background-image: url(${leaves});
     background-repeat: no-repeat;
-    background-position: right 0; */
   }
   @media (min-width: 1280px) {
     gap: 60px;
@@ -32,9 +32,9 @@ export const AsideBox = styled.aside`
     height: 100vh;
     flex-direction: column;
     align-items: center;
-    /* background-image: url();
+    background-image: url(${leavesBig});
     background-repeat: no-repeat;
-    background-position: right 0; */
+    background-position: right 0;
   }
 `;
 
