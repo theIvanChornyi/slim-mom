@@ -29,6 +29,7 @@ export const App = () => {
     <>
       <Background isAuth={isAuth}>
         <Header />
+        <Loader />
         <Suspense fallback={<Loader />}>
           <Routes>
             {/* <Route path="/test" element={<Test />} /> */}
