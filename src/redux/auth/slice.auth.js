@@ -13,7 +13,11 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(signUpThunk.pending, state => {});
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
-      state.auth.token = action.payload;
+      state.token = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.sid = action.payload.sid;
+      state.user = { ...action.payload.user };
+      state.isAuth = true;
     });
     builder.addCase(signUpThunk.rejected, (state, action) => {
       state.error = action.payload;
