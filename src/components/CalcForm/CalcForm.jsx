@@ -1,30 +1,56 @@
 import { useForm } from 'react-hook-form';
 import { useState } from "react";
 import { Button, ButtonCon, FormLabel, FormStyled, LabelFirst, List, RadioInp, TextInp, Thumb, Title } from "./CalcForm.styled";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { fetchCalorie } from 'redux/calorie/calorie.operations';
 
-export default function CalcForm({ onFormSubmit }) {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    
+export default function CalcForm() {
+    const { register, handleSubmit, reset } = useForm({
+        defaultValues: {
+            weight: '',
+            height: '',
+            age: '',
+            desiredWeight: '',
+            bloodType: '',
+        }
+    });
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+
+
     const [selectedBloodType, setSelectedBloodType] = useState();
 
     const onBldSelect = e => {
         setSelectedBloodType(e.target.value)
     }
 
-    const initialValue = {
-        height: '',
-        age: '',
-        currentWeight: '',
-        desiredWeight: '',
-        bloodType: '1',
-    };
+
+    const onSubmit = (data, e) => {
+        const totalData = {
+            weight: Number(data.weight),
+            height: Number(data.height),
+            age: Number(data.age),
+            desiredWeight: Number(data.desiredWeight),
+            bloodType: Number(data.bloodType),
+
+        };
+
+        e.preventDefault();
+        dispatch(fetchCalorie({ ...totalData }));
+        reset()
+
+        navigate('/diary');
+    }
 
 
 
     return (
             <Thumb>
                 <Title>Calculate your daily calorie intake right now</Title>
-                <FormStyled initialValue={initialValue} onSubmit={handleSubmit(onFormSubmit)}>
+                <FormStyled onSubmit={handleSubmit(onSubmit)}>
                     <LabelFirst>
                         <FormLabel htmlFor="height">
                             Height*
