@@ -8,7 +8,17 @@ import {
   Title,
 } from './SideBar.styled';
 
-export default function SideBar() {
+export default function SideBar({
+  left,
+  consumed,
+  dailyRate,
+  percent,
+  notAllowedProducts,
+}) {
+  const getPercentsKcal = percent => {
+    return (percent / 100) * dailyRate;
+  };
+
   return (
     <AsideBox>
       <Div>
@@ -16,29 +26,37 @@ export default function SideBar() {
         <KcalList>
           <KcalItem>
             <Text>Left</Text>
-            <Span>000 kcal</Span>
+            <Span>{left} kcal</Span>
           </KcalItem>
           <KcalItem>
             <Text>Consumed</Text>
-            <Span>000 kcal</Span>
+            <Span>{consumed} kcal</Span>
           </KcalItem>
           <KcalItem>
             <Text>Daily rate</Text>
-            <Span>000 kcal</Span>
+            <Span>{dailyRate} kcal</Span>
           </KcalItem>
           <KcalItem>
             <Text>n% of normal</Text>
-            <Span>000 kcal</Span>
+            <Span>{getPercentsKcal(percent)} kcal</Span>
           </KcalItem>
         </KcalList>
       </Div>
       <Div>
         <Title>Food not recommended</Title>
-        <ul>
-          <li>
-            <Text>Your diet will be displayed here</Text>
-          </li>
-        </ul>
+        <KcalList>
+          {notAllowedProducts?.lendth > 0 ? (
+            notAllowedProducts?.map(product => (
+              <li key={product}>
+                <p>{product}</p>
+              </li>
+            ))
+          ) : (
+            <li>
+              <Text>Your diet will be displayed here</Text>
+            </li>
+          )}
+        </KcalList>
       </Div>
     </AsideBox>
   );
