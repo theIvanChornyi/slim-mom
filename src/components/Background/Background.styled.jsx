@@ -8,20 +8,27 @@ import frame from '../../helpers/images/desktop.png';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const BackgroundStyled = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-    flex-grow: 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-grow: 2;
 
-    @media ${breakpoints.minTablet} {
-        background-image: url(${banana}), url(${leaves}), url(${straw}), url(${vector});
-        background-repeat: no-repeat;
-        background-position: right 0px bottom 0px, right -50px bottom 279px, right 12px bottom 279px;
-    }
+  @media ${breakpoints.minTablet} {
+    background-image: ${p =>
+      !p.isAuth
+        ? ` url(${banana}), url(${leaves}),
+      url(${straw}), url(${vector})`
+        : 'none'};
+    background-repeat: no-repeat;
+    background-position: right 0px bottom 0px, right -50px bottom 279px,
+      right 12px bottom 279px;
+  }
 
-    @media ${breakpoints.desktop} {
-        background-image: url(${frame}), url(${vector_d});
-        background-position: bottom right, bottom right;
-        background-position: no-repeat;
-    }
+  @media ${breakpoints.desktop} {
+    background-image: ${p =>
+      !p.isAuth ? `url(${frame}), url(${vector_d})` : 'none'};
+
+    background-position: bottom right, bottom right;
+    background-position: no-repeat;
+  }
 `;

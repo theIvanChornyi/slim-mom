@@ -12,7 +12,15 @@ export const LogoLink = styled(Link)`
     position: relative;
   }
 `;
-export const ImageThumb = styled.div``;
+export const ImageThumb = styled.div`
+  width: 47px;
+  height: 44px;
+
+  @media ${breakpoints.desktop} {
+    width: 71px;
+    height: 66px;
+  }
+`;
 export const LogoImage = styled.img`
   display: block;
   width: 100%;

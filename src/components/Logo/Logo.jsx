@@ -12,9 +12,9 @@ import {
   LogoNameText,
 } from './Logo.styled';
 
-export default function Logo() {
+export default function Logo({ onClick }) {
   return (
-    <LogoLink to="/">
+    <LogoLink onClick={onClick} to="/home">
       <ImageThumb>
         <picture>
           <source
@@ -27,7 +27,6 @@ export default function Logo() {
             type="image/png"
             media="min-width: 481px"
           />
-
           <LogoImage src={LogoDeskImage} alt="Company logo" />
         </picture>
       </ImageThumb>
