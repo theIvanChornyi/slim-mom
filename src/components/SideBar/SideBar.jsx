@@ -9,6 +9,7 @@ import {
 } from './SideBar.styled';
 
 export default function SideBar({
+  date,
   left,
   consumed,
   dailyRate,
@@ -22,7 +23,7 @@ export default function SideBar({
   return (
     <AsideBox>
       <Div>
-        <Title>Summary for 06/20/2020</Title>
+        <Title>Summary for {date}</Title>
         <KcalList>
           <KcalItem>
             <Text>Left</Text>
