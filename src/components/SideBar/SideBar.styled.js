@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import leaves from '../../helpers/images/leaves-tablet@2.png';
+import leaves from '../../helpers/images/leaves-aside-tablet.png';
 import leavesBig from '../../helpers/images/leaves-desktop@2.png';
 
 export const AsideBox = styled.aside`
+  margin: 0 -20px;
   background: #f0f1f3;
   padding: 40px 20px;
   min-width: 280px;
@@ -23,7 +24,6 @@ export const AsideBox = styled.aside`
     padding: 80px 32px;
     background-image: url(${leaves});
     background-repeat: no-repeat;
-    background-position: right 0;
   }
   @media (min-width: 1280px) {
     gap: 60px;

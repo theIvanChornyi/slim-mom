@@ -3,6 +3,7 @@ import { breakpoints } from 'helpers/breakpoints';
 
 export const ItemProducts = styled.li`
   display: flex;
+  margin-right: 20px;
 
   @media ${breakpoints.minTablet} {
     padding-bottom: 20px;
