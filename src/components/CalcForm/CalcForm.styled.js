@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Field, Form } from 'formik';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const Thumb = styled.div`
@@ -32,7 +31,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const FormStyled = styled(Form)`
+export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
 
@@ -85,7 +84,7 @@ export const FormLabel = styled.label`
   }
 `;
 
-export const TextInp = styled(Field)`
+export const TextInp = styled.input`
   display: block;
   border: none;
   width: 100%;
@@ -117,7 +116,7 @@ export const List = styled.ul`
   flex-flow: row no-wrap;
 `;
 
-export const RadioInp = styled(Field)`
+export const RadioInp = styled.input`
   position: absolute;
   z-index: -1;
   opacity: 0;
