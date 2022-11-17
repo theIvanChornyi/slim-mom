@@ -10,7 +10,7 @@ import { breakpoints } from 'helpers/breakpoints';
 export const BackgroundStyled = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 850px;
   flex-grow: 2;
 
   @media ${breakpoints.minTablet} {

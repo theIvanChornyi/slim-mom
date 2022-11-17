@@ -24,8 +24,8 @@ export default function Logo({ onClick }) {
           />
           <source
             srcSet={`${LogoDeskImage} 1x, ${LogoDeskImageX} 2x`}
-            type="image/png"
             media="min-width: 481px"
+            type="image/png"
           />
           <LogoImage src={LogoDeskImage} alt="Company logo" />
         </picture>
