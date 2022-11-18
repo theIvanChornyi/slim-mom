@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { breakpoints } from 'helpers/breakpoints';
 import leaves from '../../helpers/images/leaves-aside-tablet.png';
-import leavesBig from '../../helpers/images/leaves-desktop@2.png';
+import leavesBig from '../../helpers/images/leaves-desktop-aside.png';
 
 export const AsideBox = styled.aside`
   margin: 0 -20px;
@@ -15,17 +16,20 @@ export const AsideBox = styled.aside`
   align-items: center;
   gap: 40px;
 
-  @media (min-width: 768px) {
-    width: 100%-64px;
+  @media ${breakpoints.minTablet} {
+    margin: 0 -32px;
+    width: 100%;
     min-height: 166px;
     flex-direction: row;
     align-items: flex-start;
-    gap: 80px;
-    padding: 80px 32px;
+    justify-content: space-between;
+    padding: 80px 88px;
     background-image: url(${leaves});
     background-repeat: no-repeat;
+    background-position: top -180;
   }
-  @media (min-width: 1280px) {
+
+  @media ${breakpoints.desktop} {
     gap: 60px;
     padding: 0;
     width: 497px;
@@ -34,7 +38,7 @@ export const AsideBox = styled.aside`
     align-items: center;
     background-image: url(${leavesBig});
     background-repeat: no-repeat;
-    background-position: right 0;
+    background-position: right -180;
   }
 `;
 
