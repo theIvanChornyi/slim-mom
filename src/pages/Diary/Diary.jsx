@@ -44,21 +44,23 @@ export default function Diary() {
       {!addModalOpen && (
         <Container>
           <DiaryBox>
-            <DatePicker date={date} setDate={setDate} />
+            <div>
+              <DatePicker date={date} setDate={setDate} />
 
-            <DairyAddProduct>
-              <DairyProductForm {...{ register, handleSubmit, reset }} />
-            </DairyAddProduct>
+              <DairyAddProduct>
+                <DairyProductForm {...{ register, handleSubmit, reset }} />
+              </DairyAddProduct>
 
-            <DiaryProductsList />
-            <DairyAddModalWrap>
-              <DiaryAddModalBtn
-                type={'button'}
-                onClick={handleAddProductOpen}
-              />
-            </DairyAddModalWrap>
+              <DiaryProductsList />
+              <DairyAddModalWrap>
+                <DiaryAddModalBtn
+                  type={'button'}
+                  onClick={handleAddProductOpen}
+                />
+              </DairyAddModalWrap>
 
-            <Gradient />
+              <Gradient />
+            </div>
             <SideBar
               left={left}
               consumed={consumed}

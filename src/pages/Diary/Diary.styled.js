@@ -7,6 +7,7 @@ export const DiaryBox = styled.div`
 
   @media ${breakpoints.desktop} {
     flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
