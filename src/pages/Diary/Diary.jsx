@@ -46,45 +46,44 @@ export default function Diary() {
   const [consumed, setConsumed] = useState('0');
   const [dailyRate, setDailyRate] = useState(daily);
   const [percent, setpPercent] = useState('0');
-  const [notAllowedProducts, setNotAllowedProducts] = useState([]);
+  const [notAllowedProducts, setNotAllowedProducts] = useState(notAllowed);
+  const [products, setProducts] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
-  const [products, setProducts] = useState(null);
-  const [productId, setProductId] = useState(null);
-  const [value, setValue] = useState('');
 
-  const getSearchedProducts = useMemo(
-    () =>
-      debounce(search => {
-        if (search.length < 1) {
-          return;
-        }
+  // const getSearchedProducts = useMemo(
+  //   () =>
+  //     debounce(search => {
+  //       if (search.length < 1) {
+  //         return;
+  //       }
 
-        setIsLoading(true);
-        privateApi
-          .get('/product', { params: { search } })
-          .then(({ data }) => setProducts(data))
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }, 500),
-    []
-  );
+  //       setIsLoading(true);
+  //       privateApi
+  //         .get('/product', { params: { search } })
+  //         .then(({ data }) => setProducts(data))
+  //         .finally(() => {
+  //           setIsLoading(false);
+  //         });
+  //     }, 500),
+  //   []
+  // );
 
-  const handleChange = event => {
-    const { value } = event.target;
-    setValue(value);
-    getSearchedProducts(value.trim());
+  // const handleChange = event => {
+  //   const { value } = event.target;
+  //   setValue(value);
+  //   getSearchedProducts(value.trim());
 
-    if (value.trim().length < 1) {
-      setProducts(null);
-    }
-  };
+  //   if (value.trim().length < 1) {
+  //     setProducts(null);
+  //   }
+  // };
 
-  const handleSelectProduct = product => {
-    setValue(product.title.ua);
-    setProducts(null);
-    setProductId(product._id);
-  };
+  // const handleSelectProduct = product => {
+  //   setValue(product.title.ua);
+  //   setProducts(null);
+  //   setProductId(product._id);
+  // };
 
   const handleAddProductOpen = () => {
     setAddModalOpen(true);
@@ -105,15 +104,13 @@ export default function Diary() {
                 <DairyProductForm {...{ register, handleSubmit, reset }} />
               </DairyAddProduct>
 
-              <DiaryProductsList />
+              <DiaryProductsList products={products} />
               <DairyAddModalWrap>
                 <DiaryAddModalBtn
                   type={'button'}
                   onClick={handleAddProductOpen}
                 />
               </DairyAddModalWrap>
-
-              <Gradient />
             </div>
             <SideBar
               left={left}

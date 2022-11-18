@@ -7,12 +7,12 @@ import {
   Weight,
 } from './DiaryProductsItem.styled';
 
-export default function DiaryProductsItem() {
+export default function DiaryProductsItem({ name, weight, kcal }) {
   return (
     <ItemProducts>
-      <ProductName>Product</ProductName>
-      <Weight>000 g</Weight>
-      <Kcal>000 kcal</Kcal>
+      <ProductName>{name ? name : '000'}</ProductName>
+      <Weight>{weight ? weight : '000'} g</Weight>
+      <Kcal>{kcal ? kcal : '000'}kcal</Kcal>
       <ButtonDelete type="button">
         <svg
           width="14"
