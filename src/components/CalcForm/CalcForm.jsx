@@ -1,12 +1,17 @@
 import { useForm } from 'react-hook-form';
 import { useState } from "react";
 import { Button, ButtonCon, FormLabel, FormStyled, LabelFirst, List, RadioInp, TextInp, Thumb, Title } from "./CalcForm.styled";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchCalorie } from 'redux/calorie/calorie.operations';
+import { selectDailyRate } from 'redux/calorie/calorie.selectors';
+import Modal from 'components/Modal';
+
 
 export default function CalcForm() {
-    const { register, handleSubmit, reset } = useForm({
+
+    const [isOpen, setIsOpen] = useState(false);
+    const dailyRate = useSelector(selectDailyRate);
+    const { register, handleSubmit, reset, control } = useForm({
         defaultValues: {
             weight: '',
             height: '',
@@ -19,11 +24,7 @@ export default function CalcForm() {
     const navigate = useNavigate();
 
 
-
-
-    const [selectedBloodType, setSelectedBloodType] = useState();
-
-  const [selectedBloodType, setSelectedBloodType] = useState();
+  const [selectedBloodType, setSelectedBloodType] = useState('');
 
 
     const onSubmit = (data, e) => {
@@ -37,18 +38,15 @@ export default function CalcForm() {
         };
 
         e.preventDefault();
-        dispatch(fetchCalorie({ ...totalData }));
-        reset()
+        dispatch(selectDailyRate(totalData));
+        setIsOpen(true);
+        reset();
 
         navigate('/diary');
     }
 
-  const initialValue = {
-    height: '',
-    age: '',
-    currentWeight: '',
-    desiredWeight: '',
-    bloodType: '1',
+      const onBldSelect = e => {
+    setSelectedBloodType(e.target.value);
   };
 
 
@@ -57,29 +55,29 @@ export default function CalcForm() {
                 <Title>Calculate your daily calorie intake right now</Title>
                 <FormStyled onSubmit={handleSubmit(onSubmit)}>
                     <LabelFirst>
-                        <FormLabel htmlFor="height">
-                            Height*
-                             <TextInp type="number" {...register("Height*", {required: true, max: 250, min: 100, pattern: /[0-9]{3}/i})} />
+                        <FormLabel type="height" htmlFor="height" control={control}>
+                            Height (100-250)*
+                             <TextInp name={"height"} type="text" control={control} {...register("Height*", {required: true, max: 250, min: 100, pattern: /[0-9]{3}/i})} />
                             <span className="tooltiptext">min. 100, max. 250</span>
                         </FormLabel>
-                        <FormLabel htmlFor="age">
-                            Age*
-                            <TextInp type="number" {...register("Age*", {required: true, max: 100, min: 18, pattern: /[0-9]{2}/i})} />
+                        <FormLabel type="age" htmlFor="age">
+                            Age (18-100)*
+                        <TextInp type="text" name={"age"} control={control} {...register("Age*", {required: true, max: 100, min: 18, pattern: /[0-9]{2}/i})} />
                             <span className="tooltiptext">min. 18, max. 100</span>
                         </FormLabel>
-                        <FormLabel htmlFor="currentWeight">
-                            Current weight*
-                            <TextInp type="number" {...register("Current weight*", {required: true, max: 500, min: 20, pattern: /[0-9]{2,3}/i})} />
+                        <FormLabel type="currentWeight" htmlFor="currentWeight">
+                            Current weight (20-500)*
+                            <TextInp type="text" name={"currentWeight"} control={control} {...register("Current weight*", {required: true, max: 500, min: 20, pattern: /[0-9]{2,3}/i})} />
                             <span className="tooltiptext">min. 20, max. 500</span>
                         </FormLabel>
                     </LabelFirst>
                     <LabelFirst>
-                        <FormLabel htmlFor="desiredWeight">
-                            Desired weight*
-                            <TextInp type="number" {...register("Desired weight*", {required: true, max: 500, min: 20, pattern: /[0-9]{2,3}/i})} />
+                        <FormLabel type="desiredWeight" htmlFor="desiredWeight">
+                            Desired weight (20-500)*
+                        <TextInp type="text" name={"desiredWeight"} control={control} {...register("Desired weight*", {required: true, max: 500, min: 20, pattern: /[0-9]{2,3}/i})} />
                             <span className="tooltiptext">min. 20, max. 500</span>
                         </FormLabel>
-                        <FormLabel htmlFor="bloodType" required>
+                        <FormLabel type="bloodType" htmlFor="bloodType" required>
                             <p style={{ marginBottom: '20px' }}>Blood type*</p>
                             <List>
                                 <li>
@@ -126,8 +124,10 @@ export default function CalcForm() {
                     <ButtonCon>
                         <Button type="submit">Start losing weight</Button>
                     </ButtonCon>
-                </FormStyled>
+            </FormStyled>
+            {isOpen && dailyRate && (
+                <Modal setIsOpen={setIsOpen} />
+            )}
             </Thumb>
-
     );
 }

@@ -120,6 +120,7 @@ export const RadioInp = styled.input`
   position: absolute;
   z-index: -1;
   opacity: 0;
+  cursor: pointer;
 
   &:checked + label {
     color: rgba(252, 132, 45, 1);
@@ -185,6 +186,13 @@ export const Button = styled.button`
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
   border: 2px solid #fc842d;
+    font-family: 'Jost', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+
 
   &:hover,
   &:focus {
