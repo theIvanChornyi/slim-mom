@@ -12,16 +12,16 @@ import {
   Thumb,
   Title,
 } from './CalcForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { selectDailyRate } from 'redux/calorie/calorie.selectors';
+
 import Modal from 'components/Modal';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { calcSchema } from 'services/validation/calcSchema';
 
+import APIs from 'services/API/API';
+
 export default function CalcForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const dailyRate = useSelector(selectDailyRate);
+  const [dailyRateCalc, setDailyRateCalc] = useState(null);
   const {
     register,
     handleSubmit,
@@ -30,12 +30,10 @@ export default function CalcForm() {
   } = useForm({
     resolver: yupResolver(calcSchema),
   });
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
-  const onSubmit = data => {
-    console.log('data :>> ', data);
-    // dispatch(selectDailyRate(data));
+  const onSubmit = async params => {
+    const { data } = await APIs.calculateDaylyRequest(params);
+    setDailyRateCalc(data);
     setIsOpen(true);
     reset();
   };
@@ -121,7 +119,9 @@ export default function CalcForm() {
           <Button type="submit">Start losing weight</Button>
         </ButtonCon>
       </FormStyled>
-      {isOpen && dailyRate && <Modal setIsOpen={setIsOpen} />}
+      {isOpen && dailyRateCalc && (
+        <Modal {...{ setIsOpen, dailyRateCalc, isOpen }} />
+      )}
     </Thumb>
   );
 }

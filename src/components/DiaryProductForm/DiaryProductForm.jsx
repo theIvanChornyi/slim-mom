@@ -20,7 +20,6 @@ export default function DiaryProductForm({
   const onSubmit = data => {
     handleClose && handleClose();
     reset();
-    console.log({ ...data, date });
     setNewProduct({ ...data, date });
   };
 

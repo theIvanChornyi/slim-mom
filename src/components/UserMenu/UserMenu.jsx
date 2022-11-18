@@ -10,14 +10,14 @@ import {
   UserSideBar,
 } from './UserMenu.styled';
 
-export default function UserMenu({ handleLogout }) {
+export default function UserMenu({ handleLogout, handleCloseClick }) {
   const name = useSelector(selectUserName);
   return (
     <UserMenuHeader>
       <Container>
         <UserSideBar>
-          <GoBackBtn />
-          <UserMenuWrapper>
+          <GoBackBtn handleCloseClick={handleCloseClick} />
+          <UserMenuWrapper {...name}>
             <UserName>{name}</UserName>
             <UserMenuButton onClick={handleLogout}>Exit</UserMenuButton>
           </UserMenuWrapper>
