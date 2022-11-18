@@ -10,7 +10,9 @@ export const DiaryBox = styled.div`
     justify-content: space-between;
   }
 `;
-
+export const ProductContainer = styled.div`
+  position: relative;
+`;
 export const Gradient = styled.div`
   display: none;
   position: absolute;
@@ -42,3 +44,21 @@ export const DairyAddModalWrap = styled.div`
     display: none;
   }
 `;
+
+// @media ${breakpoints.desktop} {
+//     ::after {
+//       content: '';
+//       position: absolute;
+
+//       left: 0px;
+//       right: 0;
+//       height: 50px;
+//       bottom: 400px;
+//       /* background: linear-gradient(
+//         180deg,
+//         rgba(255, 255, 255, 0.5) 0%,
+//         #ffffff 42.19%
+//       ); */
+//       background-color: red;
+//     }
+//   }

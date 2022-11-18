@@ -21,6 +21,7 @@ import {
   DairyAddProduct,
   DiaryBox,
   Gradient,
+  ProductContainer,
 } from './Diary.styled';
 
 export default function Diary() {
@@ -98,11 +99,13 @@ export default function Diary() {
       {!addModalOpen && (
         <Container>
           <DiaryBox>
-            <div>
+            <ProductContainer>
               <DatePicker date={date} setDate={setDate} />
 
               <DairyAddProduct>
-                <DairyProductForm {...{ register, handleSubmit, reset }} />
+                <DairyProductForm
+                  {...{ register, handleSubmit, reset, date }}
+                />
               </DairyAddProduct>
 
               <DiaryProductsList />
@@ -114,7 +117,7 @@ export default function Diary() {
               </DairyAddModalWrap>
 
               <Gradient />
-            </div>
+            </ProductContainer>
             <SideBar
               left={left}
               consumed={consumed}
@@ -128,7 +131,7 @@ export default function Diary() {
       {addModalOpen && (
         <DiaryAddModal
           handleClose={handleAddProductClose}
-          {...{ register, handleSubmit, reset }}
+          {...{ register, handleSubmit, reset, date }}
         />
       )}
     </>
