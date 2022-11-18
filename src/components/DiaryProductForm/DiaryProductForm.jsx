@@ -13,11 +13,12 @@ export default function DiaryProductForm({
   register,
   handleSubmit,
   reset,
+  date,
 }) {
   const onSubmit = data => {
     handleClose && handleClose();
     reset();
-    console.log(data);
+    console.log({ ...data, date });
   };
   return (
     <ProductForm onSubmit={handleSubmit(onSubmit)}>
