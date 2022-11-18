@@ -6,11 +6,14 @@ export default function DiaryAddModal({
   register,
   handleSubmit,
   reset,
+  date,
 }) {
   return (
     <AddModal>
       <Container>
-        <DairyProductForm {...{ handleClose, register, handleSubmit, reset }} />
+        <DairyProductForm
+          {...{ handleClose, register, handleSubmit, reset, date }}
+        />
       </Container>
     </AddModal>
   );
