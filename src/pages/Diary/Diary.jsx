@@ -6,21 +6,23 @@ import DiaryAddModal from 'components/DiaryAddModal';
 import DiaryProductsList from 'components/DiaryProductsList';
 import SideBar from 'components/SideBar';
 
-import debounce from 'lodash.debounce';
+// import debounce from 'lodash.debounce';
 import { useForm } from 'react-hook-form';
 import DairyProductForm from 'components/DiaryProductForm';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectDailyRate,
+  selectKcalConsumed,
+  selectKcalLeft,
   selectNotAllowedProducts,
+  selectPercentsOfDailyRate,
 } from 'redux/calorie/calorie.selectors';
-import { privateApi } from 'services/API/http';
+// import { privateApi } from 'services/API/http';
 import {
   DairyAddModalWrap,
   DairyAddProduct,
   DiaryBox,
-  Gradient,
   ProductContainer,
 } from './Diary.styled';
 
@@ -32,6 +34,7 @@ export default function Diary() {
   const [addModalOpen, setAddModalOpen] = useState(false);
   // State for Date from Calendar
   const [date, setDate] = useState(new Date());
+  const normalizedDate = date.toLocaleDateString('en-GB').replaceAll('/', '.');
 
   /*<-----------------------------> */
   // ! 1. для он чейнч в інпуті пошуку продукту додавати дебаунс, якщо так, на ск чекунд? - вже додала.
@@ -42,11 +45,14 @@ export default function Diary() {
 
   const daily = useSelector(selectDailyRate);
   const notAllowed = useSelector(selectNotAllowedProducts);
+  const kcalLeft = useSelector(selectKcalLeft);
+  const kcalConsumed = useSelector(selectKcalConsumed);
+  const percentsKcal = useSelector(selectPercentsOfDailyRate);
 
-  const [left, setLeft] = useState('0');
-  const [consumed, setConsumed] = useState('0');
+  const [left, setLeft] = useState(kcalLeft);
+  const [consumed, setConsumed] = useState(kcalConsumed);
   const [dailyRate, setDailyRate] = useState(daily);
-  const [percent, setpPercent] = useState('0');
+  const [percent, setpPercent] = useState(percentsKcal);
   const [notAllowedProducts, setNotAllowedProducts] = useState(notAllowed);
   const [products, setProducts] = useState([]);
 
@@ -116,6 +122,7 @@ export default function Diary() {
               </DairyAddModalWrap>
             </ProductContainer>
             <SideBar
+              date={normalizedDate}
               left={left}
               consumed={consumed}
               dailyRate={dailyRate}

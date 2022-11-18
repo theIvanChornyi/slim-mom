@@ -10,9 +10,9 @@ import {
 export default function DiaryProductsItem({ name, weight, kcal }) {
   return (
     <ItemProducts>
-      <ProductName>{name ? name : '000'}</ProductName>
-      <Weight>{weight ? weight : '000'} g</Weight>
-      <Kcal>{kcal ? kcal : '000'}kcal</Kcal>
+      <ProductName>{name}</ProductName>
+      <Weight>{weight} g</Weight>
+      <Kcal>{kcal}kcal</Kcal>
       <ButtonDelete type="button">
         <svg
           width="14"
