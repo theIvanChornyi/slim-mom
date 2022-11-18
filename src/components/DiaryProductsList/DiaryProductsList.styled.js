@@ -7,6 +7,7 @@ export const ListProducts = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 200px;
 
   overflow-y: auto;
 
@@ -34,5 +35,32 @@ export const ListProducts = styled.ul`
   @media ${breakpoints.desktop} {
     height: 280px;
     margin: 60px auto 32px 0;
+  }
+`;
+
+export const Text = styled.p`
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+
+  margin: 40px 0;
+
+  color: #212121;
+
+  @media ${breakpoints.minTablet} {
+    width: 240px;
+    height: 36px;
+    margin-right: 22px;
+
+    line-height: 20px;
+
+    color: #212121;
+  }
+  @media ${breakpoints.desktop} {
+    width: 240px;
+    height: 40px;
+    margin-right: 48px;
   }
 `;

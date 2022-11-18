@@ -27,19 +27,19 @@ export default function SideBar({
         <KcalList>
           <KcalItem>
             <Text>Left</Text>
-            <Span>{left} kcal</Span>
+            <Span>{left ? left : '000'} kcal</Span>
           </KcalItem>
           <KcalItem>
             <Text>Consumed</Text>
-            <Span>{consumed} kcal</Span>
+            <Span>{consumed ? consumed : '000'} kcal</Span>
           </KcalItem>
           <KcalItem>
             <Text>Daily rate</Text>
-            <Span>{dailyRate} kcal</Span>
+            <Span>{dailyRate ? dailyRate : '000'} kcal</Span>
           </KcalItem>
           <KcalItem>
             <Text>n% of normal</Text>
-            <Span>{getPercentsKcal(percent)} kcal</Span>
+            <Span>{percent ? getPercentsKcal(percent) : '000'} kcal</Span>
           </KcalItem>
         </KcalList>
       </Div>

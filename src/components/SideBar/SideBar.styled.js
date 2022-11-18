@@ -35,6 +35,7 @@ export const AsideBox = styled.aside`
     width: 497px;
     height: 100vh;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-image: url(${leavesBig});
     background-repeat: no-repeat;
