@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const UserMenuHeader = styled.div`
   min-width: 320px;
 
+  position: ${p => (!p.isOpen ? 'absolute' : 'static')};
+  top: 81px;
+  left: 0;
+  right: 0;
+
   background: #eff1f3;
   @media ${breakpoints.minTablet} {
     display: none;
@@ -17,8 +22,7 @@ export const UserSideBar = styled.div`
 export const UserMenuWrapper = styled.div`
   height: 40px;
   padding: 4px 20px;
-
-  display: flex;
+  display: ${p => (p.name ? 'flex' : 'none')};
   justify-content: end;
   align-items: center;
   gap: 32px;

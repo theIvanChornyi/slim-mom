@@ -1,8 +1,8 @@
 import { SideBarBtn } from './GoBackBtn.styled';
 
-export default function GoBackBtn() {
+export default function GoBackBtn({ handleCloseClick }) {
   return (
-    <SideBarBtn type="button">
+    <SideBarBtn type="button" onClick={handleCloseClick}>
       <svg
         width="16"
         height="10"
