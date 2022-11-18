@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const ListProducts = styled.ul`
-  margin: 60px auto 32px auto;
-  height: 200px;
-  max-width: 310px;
+  margin: 22px 0 60px;
 
   display: flex;
   flex-direction: column;
@@ -27,9 +25,11 @@ export const ListProducts = styled.ul`
   }
 
   @media ${breakpoints.minTablet} {
-    gap: 16px;
-    height: 250px;
+    gap: 22px;
     max-width: 610px;
+    height: 286px;
+    margin: 0 0 55px;
+    padding-right: 30px;
   }
   @media ${breakpoints.desktop} {
     height: 280px;
