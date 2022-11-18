@@ -29,10 +29,12 @@ export const App = () => {
     <>
       <Background isAuth={isAuth}>
         <Header />
-
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route index element={<Navigate to="/home" />} />
+            <Route
+              index
+              element={<Navigate to={isAuth ? '/diary' : '/home'} />}
+            />
             <Route path="/" element={<PrivateRout />}>
               <Route path="diary" element={<Diary />} />
               <Route path="calculator" element={<Calculator />} />

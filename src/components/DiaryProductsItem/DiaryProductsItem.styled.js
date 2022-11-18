@@ -3,19 +3,21 @@ import { breakpoints } from 'helpers/breakpoints';
 
 export const ItemProducts = styled.li`
   display: flex;
-  margin-right: 20px;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
 
   @media ${breakpoints.minTablet} {
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
   }
 `;
 
 export const ProductName = styled.p`
   width: 130px;
   height: 24px;
-  margin-right: 8px;
   border-bottom: 1px solid #e0e0e0;
 
+  font-family: 'Jost';
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -27,6 +29,10 @@ export const ProductName = styled.p`
     width: 240px;
     height: 36px;
     margin-right: 22px;
+
+    line-height: 20px;
+
+    color: #212121;
   }
   @media ${breakpoints.desktop} {
     width: 240px;
@@ -38,7 +44,8 @@ export const ProductName = styled.p`
 export const Weight = styled.span`
   width: 50px;
   height: 24px;
-  margin-right: 8px;
+
+  padding: 0 1px;
   border-bottom: 1px solid #e0e0e0;
 
   font-weight: 400;
@@ -62,9 +69,11 @@ export const Weight = styled.span`
 `;
 
 export const Kcal = styled.span`
-  width: 62px;
+  width: 64px;
   height: 24px;
-  margin-right: 17px;
+
+  padding: 0 1px;
+
   border-bottom: 1px solid #e0e0e0;
 
   font-weight: 400;
@@ -87,8 +96,8 @@ export const Kcal = styled.span`
 `;
 
 export const ButtonDelete = styled.button`
-  padding: 0;
-  margin: 0;
+  padding: 10px;
+  margin: 0 0 0 7px;
   background: transparent;
   border: 0;
 `;

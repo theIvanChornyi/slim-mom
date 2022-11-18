@@ -1,8 +1,14 @@
 import { Container } from 'components/Container';
+import DatePicker from 'components/DatePicker';
+import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
+import DiaryAddModal from 'components/DiaryAddModal';
 
 import DiaryProductsList from 'components/DiaryProductsList';
 import SideBar from 'components/SideBar';
+
 import debounce from 'lodash.debounce';
+import { useForm } from 'react-hook-form';
+import DairyProductForm from 'components/DiaryProductForm';
 import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -10,9 +16,23 @@ import {
   selectNotAllowedProducts,
 } from 'redux/calorie/calorie.selectors';
 import { privateApi } from 'services/API/http';
-import { DiaryBox, Gradient } from './Diary.styled';
+import {
+  DairyAddModalWrap,
+  DairyAddProduct,
+  DiaryBox,
+  Gradient,
+} from './Diary.styled';
 
 export default function Diary() {
+  /*<-----------------------------> */
+  // For Form
+  const { register, handleSubmit, reset } = useForm();
+  // Modal in mobile version
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  // State for Date from Calendar
+  const [date, setDate] = useState(new Date());
+
+  /*<-----------------------------> */
   // ! 1. для он чейнч в інпуті пошуку продукту додавати дебаунс, якщо так, на ск чекунд? - вже додала.
 
   // ! 2. нижче логіка для пошуку продукту по імені (там де випадає дроп даун). Потім по кнопці потрібно зробити логіку для додавання продукту
@@ -66,19 +86,51 @@ export default function Diary() {
     setProductId(product._id);
   };
 
+  const handleAddProductOpen = () => {
+    setAddModalOpen(true);
+  };
+  const handleAddProductClose = () => {
+    setAddModalOpen(false);
+  };
+
   return (
-    <Container>
-      <DiaryBox>
-        <DiaryProductsList />
-        <Gradient />
-        <SideBar
-          left={left}
-          consumed={consumed}
-          dailyRate={dailyRate}
-          percent={percent}
-          notAllowedProducts={notAllowed}
+    <>
+      {!addModalOpen && (
+        <Container>
+          <DiaryBox>
+            <div>
+              <DatePicker date={date} setDate={setDate} />
+
+              <DairyAddProduct>
+                <DairyProductForm {...{ register, handleSubmit, reset }} />
+              </DairyAddProduct>
+
+              <DiaryProductsList />
+              <DairyAddModalWrap>
+                <DiaryAddModalBtn
+                  type={'button'}
+                  onClick={handleAddProductOpen}
+                />
+              </DairyAddModalWrap>
+
+              <Gradient />
+            </div>
+            <SideBar
+              left={left}
+              consumed={consumed}
+              dailyRate={dailyRate}
+              percent={percent}
+              notAllowedProducts={notAllowedProducts}
+            />
+          </DiaryBox>
+        </Container>
+      )}
+      {addModalOpen && (
+        <DiaryAddModal
+          handleClose={handleAddProductClose}
+          {...{ register, handleSubmit, reset }}
         />
-      </DiaryBox>
-    </Container>
+      )}
+    </>
   );
 }
