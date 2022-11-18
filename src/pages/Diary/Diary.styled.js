@@ -27,3 +27,17 @@ export const Gradient = styled.div`
     display: block;
   }
 `;
+
+export const DairyAddProduct = styled.div`
+  display: none;
+  @media ${breakpoints.minTablet} {
+    display: block;
+  }
+`;
+
+export const DairyAddModalWrap = styled.div`
+  display: block;
+  @media ${breakpoints.minTablet} {
+    display: none;
+  }
+`;

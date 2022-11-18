@@ -1,15 +1,30 @@
 import { Container } from 'components/Container';
 import DatePicker from 'components/DatePicker';
-import DiaryAddBtn from 'components/DiaryAddBtn';
+import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
 import DiaryAddModal from 'components/DiaryAddModal';
 
 import DiaryProductsList from 'components/DiaryProductsList';
 import SideBar from 'components/SideBar';
 import { useState } from 'react';
-import { DiaryBox, Gradient } from './Diary.styled';
+import {
+  DairyAddModalWrap,
+  DairyAddProduct,
+  DiaryBox,
+  Gradient,
+} from './Diary.styled';
+import { useForm } from 'react-hook-form';
+import DairyProductForm from 'components/DiaryProductForm';
+
 export default function Diary() {
+  /*<-----------------------------> */
+  // For Form
+  const { register, handleSubmit, reset } = useForm();
+  // Modal in mobile version
   const [addModalOpen, setAddModalOpen] = useState(false);
+  // State for Date from Calendar
   const [date, setDate] = useState(new Date());
+
+  /*<-----------------------------> */
 
   const [left, setLeft] = useState('0');
   const [consumed, setConsumed] = useState('0');
@@ -31,8 +46,18 @@ export default function Diary() {
           <DiaryBox>
             <DatePicker date={date} setDate={setDate} />
 
+            <DairyAddProduct>
+              <DairyProductForm {...{ register, handleSubmit, reset }} />
+            </DairyAddProduct>
+
             <DiaryProductsList />
-            <DiaryAddBtn onClick={handleAddProductOpen} />
+            <DairyAddModalWrap>
+              <DiaryAddModalBtn
+                type={'button'}
+                onClick={handleAddProductOpen}
+              />
+            </DairyAddModalWrap>
+
             <Gradient />
             <SideBar
               left={left}
@@ -44,7 +69,12 @@ export default function Diary() {
           </DiaryBox>
         </Container>
       )}
-      {addModalOpen && <DiaryAddModal handleClose={handleAddProductClose} />}
+      {addModalOpen && (
+        <DiaryAddModal
+          handleClose={handleAddProductClose}
+          {...{ register, handleSubmit, reset }}
+        />
+      )}
     </>
   );
 }

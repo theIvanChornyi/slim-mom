@@ -5,9 +5,10 @@ export const ItemProducts = styled.li`
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: space-between;
 
   @media ${breakpoints.minTablet} {
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
   }
 `;
 
@@ -16,6 +17,7 @@ export const ProductName = styled.p`
   height: 24px;
   border-bottom: 1px solid #e0e0e0;
 
+  font-family: 'Jost';
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -27,6 +29,10 @@ export const ProductName = styled.p`
     width: 240px;
     height: 36px;
     margin-right: 22px;
+
+    line-height: 20px;
+
+    color: #212121;
   }
   @media ${breakpoints.desktop} {
     width: 240px;
@@ -90,7 +96,7 @@ export const Kcal = styled.span`
 `;
 
 export const ButtonDelete = styled.button`
-  padding: 10px 0 10px 5px;
+  padding: 10px;
   margin: 0 0 0 7px;
   background: transparent;
   border: 0;

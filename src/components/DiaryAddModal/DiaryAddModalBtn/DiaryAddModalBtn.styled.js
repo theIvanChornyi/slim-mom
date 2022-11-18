@@ -1,14 +1,14 @@
+import { breakpoints } from 'helpers/breakpoints';
 import styled from 'styled-components';
 
 export const AddBtn = styled.button`
   display: flex;
-  align-self: center;
   justify-content: center;
   align-items: center;
   width: 48px;
   height: 48px;
 
-  margin-bottom: 60px;
+  margin: 0 auto 60px;
 
   background: #fc842d;
 
@@ -26,5 +26,8 @@ export const AddBtn = styled.button`
     stroke: #fc842d;
     border: 1px solid #fc842d;
     box-shadow: none;
+  }
+  @media ${breakpoints.minTablet} {
+    margin: 0 0 0 90px;
   }
 `;

@@ -25,9 +25,11 @@ export const ListProducts = styled.ul`
   }
 
   @media ${breakpoints.minTablet} {
-    gap: 16px;
-    height: 250px;
+    gap: 22px;
     max-width: 610px;
+    height: 286px;
+    margin: 0 0 55px;
+    padding-right: 30px;
   }
   @media ${breakpoints.desktop} {
     height: 280px;

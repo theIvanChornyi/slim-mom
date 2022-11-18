@@ -7,8 +7,8 @@ export default function DatePicker({ date, setDate }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const normalizedDate = date.toLocaleDateString('en-GB').split('/').join('.');
 
-  const handleOpenCalendar = () => {
-    setShowCalendar(true);
+  const handleToogleCalendar = () => {
+    setShowCalendar(!showCalendar);
   };
 
   const handleCalendar = newDate => {
@@ -19,7 +19,7 @@ export default function DatePicker({ date, setDate }) {
   return (
     <DateContainer>
       <DateString>{normalizedDate}</DateString>
-      <CalendarButton onClick={handleOpenCalendar} />
+      <CalendarButton onClick={handleToogleCalendar} />
       {showCalendar && <MyCalendar onClickDay={handleCalendar} value={date} />}
     </DateContainer>
   );
