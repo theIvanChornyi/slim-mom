@@ -7,12 +7,24 @@ export default function DiaryAddModal({
   handleSubmit,
   reset,
   date,
+  newProduct,
+  setNewProduct,
+  watch,
 }) {
   return (
     <AddModal>
       <Container>
         <DairyProductForm
-          {...{ handleClose, register, handleSubmit, reset, date }}
+          {...{
+            handleClose,
+            register,
+            handleSubmit,
+            reset,
+            date,
+            newProduct,
+            setNewProduct,
+            watch,
+          }}
         />
       </Container>
     </AddModal>

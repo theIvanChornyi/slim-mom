@@ -29,13 +29,13 @@ import {
 export default function Diary() {
   /*<-----------------------------> */
   // For Form
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm();
   // Modal in mobile version
   const [addModalOpen, setAddModalOpen] = useState(false);
   // State for Date from Calendar
   const [date, setDate] = useState(new Date());
+  const [newProduct, setNewProduct] = useState(null);
   const normalizedDate = date.toLocaleDateString('en-GB').replaceAll('/', '.');
-
   /*<-----------------------------> */
   // ! 1. для он чейнч в інпуті пошуку продукту додавати дебаунс, якщо так, на ск чекунд? - вже додала.
 
@@ -57,6 +57,9 @@ export default function Diary() {
   const [products, setProducts] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [productId, setProductId] = useState(null);
+  const [value, setValue] = useState('');
 
   // const getSearchedProducts = useMemo(
   //   () =>
@@ -109,7 +112,15 @@ export default function Diary() {
 
               <DairyAddProduct>
                 <DairyProductForm
-                  {...{ register, handleSubmit, reset, date }}
+                  {...{
+                    register,
+                    handleSubmit,
+                    reset,
+                    date,
+                    newProduct,
+                    setNewProduct,
+                    watch,
+                  }}
                 />
               </DairyAddProduct>
 
@@ -135,7 +146,15 @@ export default function Diary() {
       {addModalOpen && (
         <DiaryAddModal
           handleClose={handleAddProductClose}
-          {...{ register, handleSubmit, reset, date }}
+          {...{
+            register,
+            handleSubmit,
+            reset,
+            date,
+            newProduct,
+            setNewProduct,
+            watch,
+          }}
         />
       )}
     </>

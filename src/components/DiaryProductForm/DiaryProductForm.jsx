@@ -14,12 +14,17 @@ export default function DiaryProductForm({
   handleSubmit,
   reset,
   date,
+  setNewProduct,
+  watch,
 }) {
   const onSubmit = data => {
     handleClose && handleClose();
     reset();
     console.log({ ...data, date });
+    setNewProduct({ ...data, date });
   };
+
+  const isDisabledWeight = watch('productId');
   return (
     <ProductForm onSubmit={handleSubmit(onSubmit)}>
       <ProductNameInp
@@ -28,6 +33,7 @@ export default function DiaryProductForm({
         placeholder="Enter product name"
       />
       <ProductWeightInp
+        disabled={!isDisabledWeight}
         type="number"
         {...register('weight')}
         placeholder="Grams"
