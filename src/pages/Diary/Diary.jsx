@@ -105,43 +105,33 @@ export default function Diary() {
   return (
     <>
       {!addModalOpen && (
-        <Container>
-          <DiaryBox>
-            <ProductContainer>
-              <DatePicker date={date} setDate={setDate} />
+        <DiaryBox>
+          <ProductContainer>
+            <DatePicker date={date} setDate={setDate} />
 
-              <DairyAddProduct>
-                <DairyProductForm
-                  {...{
-                    register,
-                    handleSubmit,
-                    reset,
-                    date,
-                    newProduct,
-                    setNewProduct,
-                    watch,
-                  }}
-                />
-              </DairyAddProduct>
+            <DairyAddProduct>
+              <DairyProductForm
+                {...{
+                  register,
+                  handleSubmit,
+                  reset,
+                  date,
+                  newProduct,
+                  setNewProduct,
+                  watch,
+                }}
+              />
+            </DairyAddProduct>
 
-              <DiaryProductsList products={products} />
-              <DairyAddModalWrap>
-                <DiaryAddModalBtn
-                  type={'button'}
-                  onClick={handleAddProductOpen}
-                />
-              </DairyAddModalWrap>
-            </ProductContainer>
-            <SideBar
-              date={normalizedDate}
-              left={left}
-              consumed={consumed}
-              dailyRate={dailyRate}
-              percent={percent}
-              notAllowedProducts={notAllowedProducts}
-            />
-          </DiaryBox>
-        </Container>
+            <DiaryProductsList products={products} />
+            <DairyAddModalWrap>
+              <DiaryAddModalBtn
+                type={'button'}
+                onClick={handleAddProductOpen}
+              />
+            </DairyAddModalWrap>
+          </ProductContainer>
+        </DiaryBox>
       )}
       {addModalOpen && (
         <DiaryAddModal

@@ -13,8 +13,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { combineReducers } from "@reduxjs/toolkit";
-import { dailyCalorieReducer } from "./calorie/calorie.slice";
+import { dailyCalorieReducer } from './calorie/calorie.slice';
 
 import { authReduser } from './auth/slice.auth';
 
@@ -24,12 +23,21 @@ const persistConfigAuth = {
   whitelist: ['refreshToken', 'isAuth', 'user', 'sid'],
 };
 
+const persistDailyRate = {
+  key: 'dailyRate',
+  storage,
+};
+
 const persistedAuth = persistReducer(persistConfigAuth, authReduser);
+const persistedDailyRate = persistReducer(
+  persistDailyRate,
+  dailyCalorieReducer
+);
 
 const store = configureStore({
   reducer: {
     auth: persistedAuth,
-    dailyRate: dailyCalorieReducer,
+    dailyRate: persistedDailyRate,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -42,7 +50,6 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-
 export default function ReduxProvider({ children }) {
   return (
     <Provider store={store}>
@@ -52,4 +59,3 @@ export default function ReduxProvider({ children }) {
     </Provider>
   );
 }
-

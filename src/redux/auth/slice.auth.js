@@ -42,6 +42,8 @@ export const authSlice = createSlice({
       state.token = action.payload.newAccessToken;
       state.refreshToken = action.payload.newRefreshToken;
       state.sid = action.payload.sid;
+      state.user.user.id = action.payload.sid;
+
       state.isAuth = true;
     });
     builder.addCase(refreshUserThunk.rejected, (state, action) => {
@@ -55,6 +57,7 @@ export const authSlice = createSlice({
       state.refreshToken = '';
       state.sid = '';
       state.isAuth = false;
+      state.user = {};
     });
     builder.addCase(logOutThunk.rejected, (state, action) => {
       state.error = action.payload;

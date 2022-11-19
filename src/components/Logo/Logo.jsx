@@ -12,9 +12,9 @@ import {
   LogoNameText,
 } from './Logo.styled';
 
-export default function Logo({ onClick, isAuth, isOnHome }) {
+export default function Logo({ onClick, isAuth, isOnHome, UserId }) {
   return (
-    <LogoLink onClick={onClick} to={isAuth ? '/diary' : '/home'}>
+    <LogoLink onClick={onClick} to={isAuth ? `/${UserId}/diary` : '/home'}>
       <ImageThumb>
         <picture>
           <source

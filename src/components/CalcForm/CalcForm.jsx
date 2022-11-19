@@ -22,16 +22,27 @@ import APIs from 'services/API/API';
 export default function CalcForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [dailyRateCalc, setDailyRateCalc] = useState(null);
+  const usersParams = JSON.parse(window.localStorage.getItem('userParams'));
+
   const {
     register,
     handleSubmit,
     reset,
+
     formState: { errors },
   } = useForm({
     resolver: yupResolver(calcSchema),
+    defaultValues: usersParams ?? {
+      height: null,
+      age: null,
+      weight: null,
+      desiredWeight: null,
+      bloodType: null,
+    },
   });
 
   const onSubmit = async params => {
+    window.localStorage.setItem('userParams', JSON.stringify(params));
     const { data } = await APIs.calculateDaylyRequest(params);
     setDailyRateCalc(data);
     setIsOpen(true);
