@@ -22,7 +22,7 @@ const Registration = lazy(() => import('pages/Registration'));
 
 export const App = () => {
   const isAuth = useSelector(selectIsAuth);
-  const UserId = useSelector(selectUserId);
+  const userId = useSelector(selectUserId);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,10 +36,10 @@ export const App = () => {
           <Routes>
             <Route
               index
-              element={<Navigate to={isAuth ? `/${UserId}/diary` : '/home'} />}
+              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
             />
             <Route path="/" element={<PrivateRout />}>
-              <Route path=":Userid" element={<User />}>
+              <Route path=":userId" element={<User />}>
                 <Route path="diary" element={<Diary />} />
                 <Route path="calculator" element={<Calculator />} />
               </Route>
@@ -51,7 +51,7 @@ export const App = () => {
             </Route>
             <Route
               path="*"
-              element={<Navigate to={isAuth ? `/${UserId}/diary` : '/home'} />}
+              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
             />
           </Routes>
         </Suspense>

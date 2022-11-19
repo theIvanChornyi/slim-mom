@@ -40,7 +40,7 @@ const calculateDaylyAuthRequest = async (id, params) => {
 
 // Search and get a list of products by query
 const searchingProductRequest = async search => {
-  return await axios.get(`/daily-rate/?=${search}`);
+  return await axios.get(`/product/?search=${search}`);
 };
 
 // Post an eaten product
@@ -61,8 +61,8 @@ const getInfoForDayRequest = async date => {
 };
 
 // Get user info
-const getUserInfoRequest = async date => {
-  return await axios.post('/user', date);
+const getUserInfoRequest = async () => {
+  return await axios.get('/user');
 };
 
 /*<----------------------------------------------->*/

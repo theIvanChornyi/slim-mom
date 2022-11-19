@@ -27,6 +27,7 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -5,17 +5,17 @@ import {
   BurgerOverlay,
 } from './BurgerMenu.styled';
 
-export default function BurgerMenu({ onClick, UserId }) {
+export default function BurgerMenu({ onClick, userId }) {
   return (
     <BurgerOverlay>
       <BurgerList>
         <BurgerItem>
-          <BurgerLink onClick={onClick} to={`/${UserId}/diary`}>
+          <BurgerLink onClick={onClick} to={`/${userId}/diary`}>
             Diary
           </BurgerLink>
         </BurgerItem>
         <BurgerItem>
-          <BurgerLink onClick={onClick} to={`/${UserId}/calculator`}>
+          <BurgerLink onClick={onClick} to={`/${userId}/calculator`}>
             Calculator
           </BurgerLink>
         </BurgerItem>

@@ -18,9 +18,9 @@ import { useNavigate } from 'react-router-dom';
 import { selectUserId } from 'redux/auth/selectors.auth';
 
 export default function RegistrationForm() {
-  const UserId = useSelector(selectUserId);
-
+  const userId = useSelector(selectUserId);
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -37,7 +37,7 @@ export default function RegistrationForm() {
       reset();
       toast.dismiss();
 
-      await navigate(`/${UserId}/calculator`);
+      await navigate(`/${userId}/calculator`);
     } catch (error) {}
   };
 

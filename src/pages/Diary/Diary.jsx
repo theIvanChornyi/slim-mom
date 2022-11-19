@@ -1,99 +1,32 @@
-import { Container } from 'components/Container';
 import DatePicker from 'components/DatePicker';
 import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
 import DiaryAddModal from 'components/DiaryAddModal';
 
 import DiaryProductsList from 'components/DiaryProductsList';
-import SideBar from 'components/SideBar';
 
-// import debounce from 'lodash.debounce';
 import { useForm } from 'react-hook-form';
 import DairyProductForm from 'components/DiaryProductForm';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import {
-  selectDailyRate,
-  selectKcalConsumed,
-  selectKcalLeft,
-  selectNotAllowedProducts,
-  selectPercentsOfDailyRate,
-} from 'redux/calorie/calorie.selectors';
-// import { privateApi } from 'services/API/http';
+
 import {
   DairyAddModalWrap,
   DairyAddProduct,
   DiaryBox,
   ProductContainer,
 } from './Diary.styled';
+import { useOutletContext, useSearchParams } from 'react-router-dom';
 
 export default function Diary() {
-  /*<-----------------------------> */
-  // For Form
   const { register, handleSubmit, reset, watch } = useForm();
-  // Modal in mobile version
+  const [searchParams] = useSearchParams();
+  const choosenDate = searchParams.get('date') || new Date();
+
   const [addModalOpen, setAddModalOpen] = useState(false);
-  // State for Date from Calendar
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(choosenDate));
   const [newProduct, setNewProduct] = useState(null);
-  const normalizedDate = date.toLocaleDateString('en-GB').replaceAll('/', '.');
-  /*<-----------------------------> */
-  // ! 1. для он чейнч в інпуті пошуку продукту додавати дебаунс, якщо так, на ск чекунд? - вже додала.
+  const [userData, setNotAllowedProducts, dailyRate] = useOutletContext();
 
-  // ! 2. нижче логіка для пошуку продукту по імені (там де випадає дроп даун). Потім по кнопці потрібно зробити логіку для додавання продукту
-
-  // ! 3. локальний стейт підправити
-
-  const daily = useSelector(selectDailyRate);
-  const notAllowed = useSelector(selectNotAllowedProducts);
-  const kcalLeft = useSelector(selectKcalLeft);
-  const kcalConsumed = useSelector(selectKcalConsumed);
-  const percentsKcal = useSelector(selectPercentsOfDailyRate);
-
-  const [left, setLeft] = useState(kcalLeft);
-  const [consumed, setConsumed] = useState(kcalConsumed);
-  const [dailyRate, setDailyRate] = useState(daily);
-  const [percent, setpPercent] = useState(percentsKcal);
-  const [notAllowedProducts, setNotAllowedProducts] = useState(notAllowed);
-  const [products, setProducts] = useState([]);
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [productId, setProductId] = useState(null);
-  const [value, setValue] = useState('');
-
-  // const getSearchedProducts = useMemo(
-  //   () =>
-  //     debounce(search => {
-  //       if (search.length < 1) {
-  //         return;
-  //       }
-
-  //       setIsLoading(true);
-  //       privateApi
-  //         .get('/product', { params: { search } })
-  //         .then(({ data }) => setProducts(data))
-  //         .finally(() => {
-  //           setIsLoading(false);
-  //         });
-  //     }, 500),
-  //   []
-  // );
-
-  // const handleChange = event => {
-  //   const { value } = event.target;
-  //   setValue(value);
-  //   getSearchedProducts(value.trim());
-
-  //   if (value.trim().length < 1) {
-  //     setProducts(null);
-  //   }
-  // };
-
-  // const handleSelectProduct = product => {
-  //   setValue(product.title.ua);
-  //   setProducts(null);
-  //   setProductId(product._id);
-  // };
+  const normalizedDate = date.toLocaleDateString('en-CA').replaceAll('/', '-');
 
   const handleAddProductOpen = () => {
     setAddModalOpen(true);
@@ -115,7 +48,7 @@ export default function Diary() {
                   register,
                   handleSubmit,
                   reset,
-                  date,
+                  normalizedDate,
                   newProduct,
                   setNewProduct,
                   watch,
@@ -123,7 +56,7 @@ export default function Diary() {
               />
             </DairyAddProduct>
 
-            <DiaryProductsList products={products} />
+            <DiaryProductsList products={dailyRate?.eatenProducts} />
             <DairyAddModalWrap>
               <DiaryAddModalBtn
                 type={'button'}

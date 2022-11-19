@@ -8,16 +8,14 @@ import {
   Title,
 } from './SideBar.styled';
 
-export default function SideBar({
-  date,
-  left,
-  consumed,
-  dailyRate,
-  percent,
-  notAllowedProducts,
-}) {
+export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
+  const { dailyRate, kcalConsumed, kcalLeft, percentsOfDailyRate, daySummary } =
+    dailyInfo;
+
   const getPercentsKcal = percent => {
-    return (percent / 100) * dailyRate;
+    const total = dailyRate || daySummary.dailyRate;
+
+    return (percent / 100) * total;
   };
 
   return (
@@ -27,26 +25,45 @@ export default function SideBar({
         <KcalList>
           <KcalItem>
             <Text>Left</Text>
-            <Span>{left ? left : '000'} kcal</Span>
+            <Span>
+              {kcalLeft || daySummary ? kcalLeft || daySummary.kcalLeft : '000'}
+              kcal
+            </Span>
           </KcalItem>
           <KcalItem>
             <Text>Consumed</Text>
-            <Span>{consumed ? consumed : '000'} kcal</Span>
+            <Span>
+              {kcalConsumed || daySummary
+                ? kcalConsumed || daySummary.kcalConsumed
+                : '000'}
+              kcal
+            </Span>
           </KcalItem>
           <KcalItem>
             <Text>Daily rate</Text>
-            <Span>{dailyRate ? dailyRate : '000'} kcal</Span>
+            <Span>
+              {dailyRate || daySummary
+                ? dailyRate || daySummary.dailyRate
+                : '000'}
+              kcal
+            </Span>
           </KcalItem>
           <KcalItem>
             <Text>n% of normal</Text>
-            <Span>{percent ? getPercentsKcal(percent) : '000'} kcal</Span>
+            <Span>
+              {percentsOfDailyRate || daySummary
+                ? getPercentsKcal(percentsOfDailyRate) ||
+                  getPercentsKcal(daySummary.percentsOfDailyRate)
+                : '000'}
+              kcal
+            </Span>
           </KcalItem>
         </KcalList>
       </Div>
       <Div>
         <Title>Food not recommended</Title>
         <KcalList>
-          {notAllowedProducts?.lendth > 0 ? (
+          {notAllowedProducts ? (
             notAllowedProducts?.map(product => (
               <li key={product}>
                 <p>{product}</p>

@@ -12,7 +12,7 @@ export default function DiaryProductsItem({ name, weight, kcal }) {
     <ItemProducts>
       <ProductName>{name}</ProductName>
       <Weight>{weight} g</Weight>
-      <Kcal>{kcal}kcal</Kcal>
+      <Kcal>{Math.round(kcal)}kcal</Kcal>
       <ButtonDelete type="button">
         <svg
           width="14"

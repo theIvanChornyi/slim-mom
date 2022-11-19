@@ -21,7 +21,7 @@ import {
 
 export default function Header() {
   const isAuth = useSelector(selectIsAuth);
-  const UserId = useSelector(selectUserId);
+  const userId = useSelector(selectUserId);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ export default function Header() {
             <Logo
               onClick={handleCloseBurger}
               isAuth={isAuth}
-              UserId={UserId}
+              userId={userId}
               isOnHome={location.pathname}
             />
             <HeaderList isAuth={isAuth} isOnHome={location.pathname}>
@@ -71,12 +71,12 @@ export default function Header() {
                 <>
                   <HeaderListItem>
                     <div>
-                      <HeaderNavLink to={`/${UserId}/diary`}>
+                      <HeaderNavLink to={`/${userId}/diary`}>
                         Diary
                       </HeaderNavLink>
                     </div>
                     <div>
-                      <HeaderNavLink to={`/${UserId}/calculator`}>
+                      <HeaderNavLink to={`/${userId}/calculator`}>
                         Calculator
                       </HeaderNavLink>
                     </div>
@@ -91,7 +91,7 @@ export default function Header() {
       </Container>
       {isAuth && !burgerMenu && <UserMenu handleLogout={memoizedLogout} />}
       {isAuth && burgerMenu && (
-        <BurgerMenu UserId={UserId} onClick={handleCloseBurger} />
+        <BurgerMenu userId={userId} onClick={handleCloseBurger} />
       )}
     </PageHeader>
   );

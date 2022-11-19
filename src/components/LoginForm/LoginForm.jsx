@@ -19,7 +19,7 @@ import { selectUserId } from 'redux/auth/selectors.auth';
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const UserId = useSelector(selectUserId);
+  const userId = useSelector(selectUserId);
   const {
     register,
     handleSubmit,
@@ -35,7 +35,7 @@ export default function LoginForm() {
       await dispatch(logInThunk(data)).unwrap();
       reset();
       toast.dismiss();
-      await navigate(`/${UserId}/diary`);
+      await navigate(`/${userId}/diary`);
     } catch (error) {}
   };
 

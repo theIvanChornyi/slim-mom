@@ -52,6 +52,10 @@ export const LabelFirst = styled.div`
   }
 `;
 
+export const CurrenValue = styled.p`
+  color: black;
+`;
+
 export const FormLabel = styled.label`
   position: relative;
   color: rgba(155, 159, 170, 1);
