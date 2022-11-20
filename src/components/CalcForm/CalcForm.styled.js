@@ -16,7 +16,7 @@ export const Thumb = styled.div`
   }
 
   @media ${breakpoints.desktop} {
-    padding-top: 140px;
+    padding-top: 220px;
     margin-left: 0;
   }
 `;

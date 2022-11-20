@@ -43,7 +43,8 @@ export const AsideBox = styled.aside`
     align-items: center;
     background-image: url(${leavesBig});
     background-repeat: no-repeat;
-    background-position: right -180;
+    background-position: 0 -80%;
+    overflow: auto;
   }
 `;
 

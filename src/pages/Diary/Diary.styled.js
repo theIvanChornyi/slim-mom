@@ -34,8 +34,8 @@ export const Gradient = styled.div`
   }
 
   @media ${breakpoints.desktop} {
-    bottom: 235px;
-    width: 653px;
+    bottom: 120px;
+    width: 520px;
     height: 50px;
   }
 `;
