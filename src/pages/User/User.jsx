@@ -17,12 +17,6 @@ export default function User() {
   const normalizedDate = new Date(date)
     .toLocaleDateString('en-GB')
     .replaceAll('/', '.');
-
-  // const id = useSelector(selectUserId);
-  //  useEffect(() => {
-  //    const usersParams = JSON.parse(window.localStorage.getItem('userParams'));
-  //  }, []);
-
   useEffect(() => {
     async function getAllowedProducts() {
       try {

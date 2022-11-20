@@ -37,16 +37,20 @@ export const authSlice = createSlice({
     });
     /*<----------------------------------------------->*/
 
-    builder.addCase(refreshUserThunk.pending, state => {});
+    builder.addCase(refreshUserThunk.pending, state => {
+      state.isFetched = false;
+    });
     builder.addCase(refreshUserThunk.fulfilled, (state, action) => {
       state.token = action.payload.newAccessToken;
       state.refreshToken = action.payload.newRefreshToken;
       state.sid = action.payload.sid;
 
       state.isAuth = true;
+      state.isFetched = true;
     });
     builder.addCase(refreshUserThunk.rejected, (state, action) => {
       state.error = action.payload;
+      state.isFetched = false;
     });
     /*<----------------------------------------------->*/
 

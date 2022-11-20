@@ -10,7 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { refreshUserThunk } from 'redux/auth/thunk.auth';
 import Header from 'components/Header';
 import 'react-toastify/dist/ReactToastify.css';
-import { selectIsAuth, selectUserId } from 'redux/auth/selectors.auth';
+import {
+  selectIsAuth,
+  selectIsFetched,
+  selectUserId,
+} from 'redux/auth/selectors.auth';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
 import User from 'pages/User';
 
@@ -23,6 +27,7 @@ const Registration = lazy(() => import('pages/Registration'));
 export const App = () => {
   const isAuth = useSelector(selectIsAuth);
   const userId = useSelector(selectUserId);
+  const isFetched = useSelector(selectIsFetched);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,33 +35,39 @@ export const App = () => {
   }, [dispatch]);
   return (
     <>
-      <Background isAuth={isAuth}>
-        <Header />
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route
-              index
-              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
-            />
-            <Route path="/" element={<PrivateRout />}>
-              <Route path=":userId" element={<User />}>
-                <Route path="diary" element={<Diary />} />
-                <Route path="calculator" element={<Calculator />} />
+      {isFetched && (
+        <Background isAuth={isAuth}>
+          <Header />
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route
+                index
+                element={
+                  <Navigate to={isAuth ? `/${userId}/diary` : '/home'} />
+                }
+              />
+              <Route path="/" element={<PrivateRout />}>
+                <Route path=":userId" element={<User />}>
+                  <Route path="diary" element={<Diary />} />
+                  <Route path="calculator" element={<Calculator />} />
+                </Route>
               </Route>
-            </Route>
-            <Route path="/" element={<PublicRoute />}>
-              <Route path="home" element={<Home />} />
-              <Route path="login" element={<Login />} />
-              <Route path="registration" element={<Registration />} />
-            </Route>
-            <Route
-              path="*"
-              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
-            />
-          </Routes>
-        </Suspense>
-        <ToastContainer autoClose={5000} limit={1} />
-      </Background>
+              <Route path="/" element={<PublicRoute />}>
+                <Route path="home" element={<Home />} />
+                <Route path="login" element={<Login />} />
+                <Route path="registration" element={<Registration />} />
+              </Route>
+              <Route
+                path="*"
+                element={
+                  <Navigate to={isAuth ? `/${userId}/diary` : '/home'} />
+                }
+              />
+            </Routes>
+          </Suspense>
+          <ToastContainer autoClose={5000} limit={1} />
+        </Background>
+      )}
     </>
   );
 };
