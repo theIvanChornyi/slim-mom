@@ -3,6 +3,7 @@ import {
   Div,
   KcalItem,
   KcalList,
+  ProductList,
   Span,
   Text,
   Title,
@@ -18,6 +19,16 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
     return (percent / 100) * total;
   };
 
+  const normalLeft = Math.round(kcalLeft) || Math.round(daySummary.kcalLeft);
+  const normalConsumed =
+    Math.round(kcalConsumed) || Math.round(daySummary.kcalConsumed);
+  const normalPercent =
+    Math.round(percentsOfDailyRate) ||
+    Math.round(daySummary.percentsOfDailyRate);
+  const normalPercentsKcal =
+    getPercentsKcal(Math.round(percentsOfDailyRate)) ||
+    getPercentsKcal(Math.round(daySummary.percentsOfDailyRate));
+
   return (
     <AsideBox>
       <Div>
@@ -26,16 +37,14 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
           <KcalItem>
             <Text>Left</Text>
             <Span>
-              {kcalLeft || daySummary ? kcalLeft || daySummary.kcalLeft : '000'}
+              {kcalLeft || daySummary ? normalLeft : '000'}
               kcal
             </Span>
           </KcalItem>
           <KcalItem>
             <Text>Consumed</Text>
             <Span>
-              {kcalConsumed || daySummary
-                ? kcalConsumed || daySummary.kcalConsumed
-                : '000'}
+              {kcalConsumed || daySummary ? normalConsumed : '000'}
               kcal
             </Span>
           </KcalItem>
@@ -49,12 +58,12 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
             </Span>
           </KcalItem>
           <KcalItem>
-            <Text>n% of normal</Text>
+            <Text>
+              {percentsOfDailyRate || daySummary ? normalPercent : 'n'}% of
+              normal
+            </Text>
             <Span>
-              {percentsOfDailyRate || daySummary
-                ? getPercentsKcal(percentsOfDailyRate) ||
-                  getPercentsKcal(daySummary.percentsOfDailyRate)
-                : '000'}
+              {percentsOfDailyRate || daySummary ? normalPercentsKcal : '000'}
               kcal
             </Span>
           </KcalItem>
@@ -62,19 +71,19 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
       </Div>
       <Div>
         <Title>Food not recommended</Title>
-        <KcalList>
+        <ProductList>
           {notAllowedProducts ? (
             notAllowedProducts?.map(product => (
-              <li key={product}>
-                <p>{product}</p>
-              </li>
+              <KcalItem key={product}>
+                <Text>{product}</Text>
+              </KcalItem>
             ))
           ) : (
-            <li>
+            <KcalItem>
               <Text>Your diet will be displayed here</Text>
-            </li>
+            </KcalItem>
           )}
-        </KcalList>
+        </ProductList>
       </Div>
     </AsideBox>
   );

@@ -7,7 +7,7 @@ export const ListProducts = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 200px;
+  height: 240px;
 
   overflow-y: auto;
 
