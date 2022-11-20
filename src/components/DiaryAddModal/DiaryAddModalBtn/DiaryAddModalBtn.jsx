@@ -1,8 +1,13 @@
 import { AddBtn } from './DiaryAddModalBtn.styled';
 
-export default function DiaryAddModalBtn({ onClick, type = 'submit' }) {
+export default function DiaryAddModalBtn({
+  onClick,
+  type = 'submit',
+  errorState,
+  state,
+}) {
   return (
-    <AddBtn type={type} onClick={onClick}>
+    <AddBtn type={type} disabled={errorState} onClick={onClick} state={state}>
       <svg
         width="14"
         height="14"
