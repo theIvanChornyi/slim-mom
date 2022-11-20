@@ -19,10 +19,10 @@ export const ModalArrowBtn = styled.div`
   justify-content: center;
   align-items: center;
   width: 40px;
-  height: 36px;
+  height: 34px;
   padding: 0;
   background-color: transparent;
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 
   border: none;
   cursor: pointer;
