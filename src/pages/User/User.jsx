@@ -33,6 +33,7 @@ export default function User() {
     }
     getAllowedProducts();
   }, []);
+
   useEffect(() => {
     async function getInfoSideBar() {
       try {
@@ -47,7 +48,7 @@ export default function User() {
     <UserPage>
       <Container>
         <UserWrapper>
-          <Outlet context={[userData, setNotAllowedProducts, dailyRate]} />
+          <Outlet context={{ userData, setNotAllowedProducts, dailyRate }} />
           {dailyRate && (
             <SideBar
               date={normalizedDate}

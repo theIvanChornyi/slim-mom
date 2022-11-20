@@ -49,8 +49,10 @@ const addEatenProductRequest = async params => {
 };
 
 // Delete eaten product
-const deleteEatenProductRequest = async params => {
-  return await axios.delete('/day', params);
+const deleteEatenProductRequest = async (dayId, eatenProductId) => {
+  return await axios.delete('/day', {
+    data: { dayId, eatenProductId },
+  });
 };
 
 /*<----------------------------------------------->*/

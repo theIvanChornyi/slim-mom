@@ -6,7 +6,7 @@ import DiaryProductsList from 'components/DiaryProductsList';
 
 import { useForm } from 'react-hook-form';
 import DairyProductForm from 'components/DiaryProductForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   DairyAddModalWrap,
@@ -15,24 +15,39 @@ import {
   ProductContainer,
 } from './Diary.styled';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
+import APIs from 'services/API/API';
 
 export default function Diary() {
   const { register, handleSubmit, reset, watch } = useForm();
   const [searchParams] = useSearchParams();
   const choosenDate = searchParams.get('date') || new Date();
+  const { dailyRate } = useOutletContext();
+  const userEatenProducts = dailyRate?.eatenProducts;
 
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [date, setDate] = useState(new Date(choosenDate));
-  const [newProduct, setNewProduct] = useState(null);
-  const [userData, setNotAllowedProducts, dailyRate] = useOutletContext();
+  const [eatenProducts, setEatenProducts] = useState([]);
 
   const normalizedDate = date.toLocaleDateString('en-CA').replaceAll('/', '-');
+  useEffect(() => {
+    setEatenProducts(userEatenProducts);
+  }, [userEatenProducts]);
 
   const handleAddProductOpen = () => {
     setAddModalOpen(true);
   };
   const handleAddProductClose = () => {
     setAddModalOpen(false);
+  };
+
+  const handleDeleteProduct = async deleteId => {
+    const dayId = dailyRate.id;
+    try {
+      const { data } = await APIs.deleteEatenProductRequest(dayId, deleteId);
+      console.log('data', data);
+    } catch (error) {}
+
+    setEatenProducts(prev => prev.filter(product => product.id !== deleteId));
   };
 
   return (
@@ -49,14 +64,16 @@ export default function Diary() {
                   handleSubmit,
                   reset,
                   normalizedDate,
-                  newProduct,
-                  setNewProduct,
                   watch,
+                  setEatenProducts,
                 }}
               />
             </DairyAddProduct>
 
-            <DiaryProductsList products={dailyRate?.eatenProducts} />
+            <DiaryProductsList
+              products={eatenProducts}
+              handleDeleteProduct={handleDeleteProduct}
+            />
             <DairyAddModalWrap>
               <DiaryAddModalBtn
                 type={'button'}
@@ -74,9 +91,8 @@ export default function Diary() {
             handleSubmit,
             reset,
             date,
-            newProduct,
-            setNewProduct,
             watch,
+            setEatenProducts,
           }}
         />
       )}

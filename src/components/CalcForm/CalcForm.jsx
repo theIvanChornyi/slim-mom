@@ -28,7 +28,7 @@ export default function CalcForm() {
   const [dailyRateCalc, setDailyRateCalc] = useState(null);
   const usersParams = JSON.parse(window.localStorage.getItem('userParams'));
   const { userId } = useParams();
-  const [userData, setNotAllowedProducts] = useOutletContext();
+  const { userData, setNotAllowedProducts } = useOutletContext();
 
   const {
     register,

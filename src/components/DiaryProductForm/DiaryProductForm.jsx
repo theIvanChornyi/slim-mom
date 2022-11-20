@@ -17,6 +17,7 @@ export default function DiaryProductForm({
   handleSubmit,
   reset,
   normalizedDate,
+  setEatenProducts,
 }) {
   const [querry, setQuerry] = useState('');
   const [products, setProducts] = useState([]);
@@ -28,6 +29,7 @@ export default function DiaryProductForm({
       reset();
       const newProduct = { weight, productId, date: normalizedDate };
       const { data } = await APIs.addEatenProductRequest(newProduct);
+      await setEatenProducts(prev => [...prev, data?.eatenProduct]);
     } else {
       window.alert('Обманщик');
     }
