@@ -35,10 +35,11 @@ export const App = () => {
   }, [dispatch]);
   return (
     <>
-      {isFetched && (
-        <Background isAuth={isAuth}>
-          <Header />
-          <Suspense fallback={<Loader />}>
+      <Background isAuth={isAuth}>
+        <Header />
+
+        <Suspense fallback={<Loader />}>
+          {isFetched && (
             <Routes>
               <Route
                 index
@@ -64,10 +65,11 @@ export const App = () => {
                 }
               />
             </Routes>
-          </Suspense>
-          <ToastContainer autoClose={5000} limit={1} />
-        </Background>
-      )}
+          )}
+        </Suspense>
+
+        <ToastContainer autoClose={5000} limit={1} />
+      </Background>
     </>
   );
 };
