@@ -29,7 +29,7 @@ export default function DiaryProductForm({
       reset();
       const newProduct = { weight, productId, date: normalizedDate };
       const { data } = await APIs.addEatenProductRequest(newProduct);
-      await setEatenProducts(prev => [...prev, data?.eatenProduct]);
+      setEatenProducts(prev => [...prev, data?.eatenProduct]);
     } else {
       window.alert('Обманщик');
     }

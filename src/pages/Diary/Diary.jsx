@@ -56,7 +56,6 @@ export default function Diary() {
     const dayId = dailyRate.id;
     try {
       const { data } = await APIs.deleteEatenProductRequest(dayId, deleteId);
-      console.log('data', data);
     } catch (error) {}
 
     setEatenProducts(prev => prev.filter(product => product.id !== deleteId));
