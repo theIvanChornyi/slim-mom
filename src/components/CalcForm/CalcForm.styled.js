@@ -11,8 +11,8 @@ export const Thumb = styled.div`
   padding-bottom: 40px;
 
   @media ${breakpoints.minTablet} {
+    height: 610px;
     padding-top: 100px;
-    padding-bottom: 50px;
   }
 
   @media ${breakpoints.desktop} {
@@ -36,9 +36,14 @@ export const FormStyled = styled.form`
   flex-direction: column;
 
   @media ${breakpoints.minTablet} {
+    margin-top: 28px;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 32px;
+  }
+
+  @media ${breakpoints.desktop} {
+    width: 520px;
   }
 `;
 
@@ -57,13 +62,17 @@ export const CurrenValue = styled.p`
 `;
 
 export const FormLabel = styled.label`
-  position: relative;
-  color: rgba(155, 159, 170, 1);
-  margin-top: 40px;
+  margin-top: 32px;
   width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
 
-  @media (max-width: 320px) {
-    margin-top: 32px 0 0;
+  color: #9b9faa;
+
+  @media ${breakpoints.minTablet} {
+    margin-top: 40px;
   }
 
   & .tooltiptext {
@@ -93,7 +102,6 @@ export const TextInp = styled.input`
   border: none;
   width: 100%;
   border-bottom: 1px solid rgb(224, 224, 224);
-  margin-top: 5px;
 
   &:hover,
   &:focus {
@@ -113,12 +121,16 @@ export const TextInp = styled.input`
 
 export const List = styled.ul`
   color: rgba(155, 159, 170, 1);
-  border-top: 1px solid rgba(224, 224, 224, 1);
-
-  padding: 8px 0 12px;
+  margin-top: 8px;
   display: inline-flex;
   width: 100%;
   flex-flow: row no-wrap;
+  gap: 24px;
+
+  @media ${breakpoints.minTablet} {
+    border-top: 1px solid rgba(224, 224, 224, 1);
+    padding-top: 8px;
+  }
 `;
 
 export const RadioInp = styled.input`
@@ -135,7 +147,6 @@ export const RadioInp = styled.input`
     display: inline-flex;
     align-items: center;
     user-select: none;
-    margin-left: 24px;
 
     &::before {
       content: '';
@@ -168,35 +179,46 @@ export const RadioInp = styled.input`
 `;
 
 export const ButtonCon = styled.div`
-  align-self: center;
+  @media ${breakpoints.desktop} {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
+
+export const Button = styled.button`
   margin-top: 40px;
+  align-self: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  width: 210px;
+  height: 43px;
+  background: #fc842d;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  border: 2px solid #fc842d;
+
+  font-family: 'Jost', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+
+  letter-spacing: 0.04em;
+
+  color: #ffffff;
+  cursor: pointer;
 
   @media ${breakpoints.minTablet} {
-    margin-top: 60px;
+    margin-top: 30px;
     align-self: flex-start;
   }
 
   @media ${breakpoints.desktop} {
     align-self: flex-end;
   }
-`;
-
-export const Button = styled.button`
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  width: 100%;
-  padding: 13px 25px;
-  background: #fc842d;
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  border-radius: 30px;
-  border: 2px solid #fc842d;
-  font-family: 'Jost', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.21;
-  letter-spacing: 0.04em;
-  cursor: pointer;
 
   &:hover,
   &:focus {
