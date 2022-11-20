@@ -11,6 +11,9 @@ export const DateContainer = styled.div`
   @media ${breakpoints.minTablet} {
     margin-top: 90px;
   }
+  @media ${breakpoints.desktop} {
+    margin-top: 220px;
+  }
 `;
 export const DateString = styled.p`
   font-family: 'Jost';

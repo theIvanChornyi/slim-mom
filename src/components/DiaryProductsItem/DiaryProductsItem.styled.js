@@ -4,19 +4,17 @@ import { breakpoints } from 'helpers/breakpoints';
 export const ItemProducts = styled.li`
   display: flex;
   gap: 8px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-
-  @media ${breakpoints.minTablet} {
-    /* padding-bottom: 20px; */
-  }
 `;
 
 export const ProductName = styled.p`
-  width: 130px;
+  width: 180px;
   min-height: 24px;
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 5px;
+
+  margin-right: -5px;
 
   font-family: 'Jost';
   font-weight: 400;
@@ -43,7 +41,7 @@ export const ProductName = styled.p`
 `;
 
 export const Weight = styled.span`
-  width: 50px;
+  min-width: 50px;
   height: 24px;
 
   padding: 0 1px;
@@ -88,7 +86,7 @@ export const Kcal = styled.span`
   @media ${breakpoints.minTablet} {
     width: 106px;
     height: 36px;
-    margin-right: 32px;
+    margin-right: 28px;
     text-align: right;
   }
   @media ${breakpoints.desktop} {
@@ -97,8 +95,18 @@ export const Kcal = styled.span`
 `;
 
 export const ButtonDelete = styled.button`
-  padding: 10px;
-  margin: 0 0 0 7px;
+  margin: 0 12px 0 7px;
   background: transparent;
   border: 0;
+
+  @media ${breakpoints.minTablet} {
+    padding-bottom: 15px;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      transform: rotate(135deg);
+      cursor: pointer;
+    }
+  }
 `;

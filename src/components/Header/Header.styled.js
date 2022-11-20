@@ -27,7 +27,8 @@ export const HeaderNavigation = styled.nav`
   justify-content: space-between;
 
   @media ${breakpoints.desktop} {
-    padding: 80px 0 0;
+    position: absolute;
+    padding: 50px 0 0 0;
     justify-content: start;
     align-items: flex-end;
     gap: 137px;
