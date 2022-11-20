@@ -6,10 +6,11 @@ export default function DiaryAddModal({
   register,
   handleSubmit,
   reset,
-  date,
-  newProduct,
-  setNewProduct,
+  normalizedDate,
+  setEatenProducts,
   watch,
+  products,
+  handleDeleteProduct,
 }) {
   return (
     <AddModal>
@@ -20,10 +21,10 @@ export default function DiaryAddModal({
             register,
             handleSubmit,
             reset,
-            date,
-            newProduct,
-            setNewProduct,
+            normalizedDate,
             watch,
+            setEatenProducts,
+            handleDeleteProduct,
           }}
         />
       </Container>

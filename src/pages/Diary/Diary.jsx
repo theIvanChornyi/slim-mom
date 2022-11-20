@@ -16,9 +16,20 @@ import {
 } from './Diary.styled';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
 import APIs from 'services/API/API';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { productSchema } from 'services/validation/productSchema';
 
 export default function Diary() {
-  const { register, handleSubmit, reset, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(productSchema),
+  });
+
   const [searchParams] = useSearchParams();
   const choosenDate = searchParams.get('date') || new Date();
   const { dailyRate } = useOutletContext();
@@ -29,6 +40,7 @@ export default function Diary() {
   const [eatenProducts, setEatenProducts] = useState([]);
 
   const normalizedDate = date.toLocaleDateString('en-CA').replaceAll('/', '-');
+
   useEffect(() => {
     setEatenProducts(userEatenProducts);
   }, [userEatenProducts]);
@@ -44,7 +56,6 @@ export default function Diary() {
     const dayId = dailyRate.id;
     try {
       const { data } = await APIs.deleteEatenProductRequest(dayId, deleteId);
-      console.log('data', data);
     } catch (error) {}
 
     setEatenProducts(prev => prev.filter(product => product.id !== deleteId));
@@ -86,11 +97,12 @@ export default function Diary() {
       {addModalOpen && (
         <DiaryAddModal
           handleClose={handleAddProductClose}
+          handleDeleteProduct={handleDeleteProduct}
           {...{
             register,
             handleSubmit,
             reset,
-            date,
+            normalizedDate,
             watch,
             setEatenProducts,
           }}

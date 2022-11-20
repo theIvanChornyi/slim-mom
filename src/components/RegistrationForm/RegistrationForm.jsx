@@ -15,10 +15,8 @@ import {
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { selectUserId } from 'redux/auth/selectors.auth';
 
 export default function RegistrationForm() {
-  const userId = useSelector(selectUserId);
   const navigate = useNavigate();
 
   const {
@@ -33,11 +31,11 @@ export default function RegistrationForm() {
   const dispatch = useDispatch();
   const onSubmit = async data => {
     try {
-      await dispatch(signUpThunk(data)).unwrap();
+      const { sid } = await dispatch(signUpThunk(data)).unwrap();
       reset();
       toast.dismiss();
 
-      await navigate(`/${userId}/calculator`);
+      await navigate(`/${sid}/calculator`);
     } catch (error) {}
   };
 
