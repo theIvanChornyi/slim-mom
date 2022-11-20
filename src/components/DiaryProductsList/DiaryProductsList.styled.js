@@ -39,6 +39,7 @@ export const ListProducts = styled.ul`
 `;
 
 export const Text = styled.p`
+  height: 242px;
   font-family: 'Jost';
   font-weight: 400;
   font-size: 14px;
