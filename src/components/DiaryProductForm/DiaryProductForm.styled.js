@@ -104,6 +104,13 @@ export const ProductAddBtn = styled.button`
   border-radius: 30px;
   border: none;
 
+  :disabled {
+    background-color: rgba(255, 99, 71, 0.8);
+    opacity: 0.5;
+    border: none;
+    box-shadow: none;
+  }
+
   @media ${breakpoints.minTablet} {
     margin: 0 auto;
   }

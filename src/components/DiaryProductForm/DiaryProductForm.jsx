@@ -101,7 +101,9 @@ export default function DiaryProductForm({
         placeholder="Grams"
       />
       <MobileBtn>
-        <ProductAddBtn type="submit">Add</ProductAddBtn>
+        <ProductAddBtn disabled={errorState} type="submit">
+          Add
+        </ProductAddBtn>
       </MobileBtn>
       <TabletBtn>
         <DiaryAddModalBtn errorState={errorState} state={state} />
