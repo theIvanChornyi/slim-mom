@@ -42,7 +42,7 @@ export const Text = styled.p`
   height: 242px;
   font-family: 'Jost';
   font-weight: 400;
-  font-size: 14px;
+  font-size: 28px;
   line-height: 17px;
   letter-spacing: 0.04em;
 
@@ -51,8 +51,8 @@ export const Text = styled.p`
   color: #212121;
 
   @media ${breakpoints.minTablet} {
-    width: 240px;
-    height: 36px;
+    width: 286px;
+    max-height: 610px;
     margin-right: 22px;
 
     line-height: 20px;
@@ -60,8 +60,6 @@ export const Text = styled.p`
     color: #212121;
   }
   @media ${breakpoints.desktop} {
-    width: 240px;
-    height: 40px;
-    margin-right: 48px;
+    height: 280px;
   }
 `;
