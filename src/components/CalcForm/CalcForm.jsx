@@ -5,7 +5,6 @@ import { useState } from 'react';
 import {
   Button,
   ButtonCon,
-  CurrenValue,
   FormLabel,
   FormStyled,
   LabelFirst,
@@ -30,13 +29,13 @@ export default function CalcForm() {
   const { userId } = useParams();
 
   const context = useOutletContext();
-  const currentValues = null || context?.userData;
+  // const currentValues = null || context?.userData;
 
   const {
     register,
     handleSubmit,
     reset,
-
+    // eslint-disable-next-line
     formState: { errors },
   } = useForm({
     resolver: yupResolver(calcSchema),
@@ -68,28 +67,28 @@ export default function CalcForm() {
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
         <LabelFirst>
           <FormLabel htmlFor="height">
-            'Height (100-250)*'
-            <CurrenValue>
+            Height *
+            {/* <CurrenValue>
               {currentValues && `Current ${currentValues?.height}`}
-            </CurrenValue>
+            </CurrenValue> */}
             <TextInp id={'height'} type="number" {...register('height')} />
             <span className="tooltiptext">min. 100, max. 250</span>
           </FormLabel>
 
           <FormLabel htmlFor="age">
-            'Age (18-100)*'
-            <CurrenValue>
+            Age *
+            {/* <CurrenValue>
               {currentValues && `Current ${currentValues?.age}`}
-            </CurrenValue>
+            </CurrenValue> */}
             <TextInp type="number" id={'age'} {...register('age')} />
             <span className="tooltiptext">min. 18, max. 100</span>
           </FormLabel>
 
           <FormLabel htmlFor="weight">
-            'Current weight (20-500)*'
-            <CurrenValue>
+            Current weight *
+            {/* <CurrenValue>
               {currentValues && `Current ${currentValues?.weight}`}
-            </CurrenValue>
+            </CurrenValue> */}
             <TextInp type="number" id={'weight'} {...register('weight')} />
             <span className="tooltiptext">min. 20, max. 500</span>
           </FormLabel>
@@ -97,10 +96,10 @@ export default function CalcForm() {
 
         <LabelFirst>
           <FormLabel htmlFor="desiredWeight">
-            'Desired weight (20-500)*'
-            <CurrenValue>
+            Desired weight *
+            {/* <CurrenValue>
               {currentValues && `Current ${currentValues?.desiredWeight}`}
-            </CurrenValue>
+            </CurrenValue> */}
             <TextInp
               type="number"
               id={'desiredWeight'}
@@ -110,7 +109,7 @@ export default function CalcForm() {
           </FormLabel>
 
           <FormLabel htmlFor="bloodType">
-            <p style={{ marginBottom: '20px' }}>Blood type*</p>
+            <p>Blood type*</p>
             <List>
               <li>
                 <RadioInp
