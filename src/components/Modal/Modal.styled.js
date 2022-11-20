@@ -86,7 +86,7 @@ export const Callories = styled.span`
 
   color: #264061;
 
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 
   @media (min-width: 768px) {
     width: 330px;
@@ -121,7 +121,7 @@ export const FoodTitle = styled.p`
 
   color: #212121;
 
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 
   @media (min-width: 768px) {
     width: 330px;
@@ -146,7 +146,7 @@ export const FoodText = styled.ol`
   color: #9b9faa;
   list-style: number;
 
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -189,5 +189,27 @@ export const RegisterBtn = styled(NavLink)`
   &:focus {
     color: #fc842d;
     background-color: #fff;
+  }
+`;
+
+export const FilterWrap = styled.div`
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 12px;
+    align-content: center;
+`;
+
+export const FilterInput = styled.input`
+    width: 250px;
+    padding: 3px;
+    font-size: 13px;
+    border-color: #264061;
+    outline: none;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #edf5ffb7;
+     @media (min-width: 768px) {
+    width: 300px;
   }
 `;

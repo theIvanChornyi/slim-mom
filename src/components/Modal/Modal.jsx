@@ -12,13 +12,20 @@ import {
   ModulCloseBtn,
   ModulLine,
   RegisterBtn,
+  FilterWrap,
+  FilterInput
 } from './Modal.styled';
 import UserMenu from 'components/UserMenu';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter } from 'redux/calorie/calorie.selectors';
+ import { changeFilter } from 'redux/calorie/calorie.slice';
+
 
 const modalRoot = document.getElementById('modal-root');
 
 export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
   const { dailyRate, notAllowedProducts } = dailyRateCalc;
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
@@ -31,6 +38,20 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+ const value = useSelector(getFilter);
+    const dispatch = useDispatch();
+    const onChangeFilter = event => {
+        dispatch(changeFilter(event.target.value));
+    };
+
+  const getFilteredProducts = () => (
+    notAllowedProducts.filter(item =>
+    item.toLowerCase().includes(value.toLowerCase()))
+  )
+  
+  const notAllowed = getFilteredProducts(notAllowedProducts);
+
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) setIsOpen(false);
   };
@@ -42,6 +63,7 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
   const handleKeyDown = event => {
     if (event.code === 'Escape') setIsOpen(false);
   };
+
 
   return createPortal(
     <>
@@ -69,11 +91,23 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
           </Callories>
           <ModulLine />
           <FoodTitle>Foods you should not eat</FoodTitle>
+          <FilterWrap>
+            <FilterInput
+                onChange={onChangeFilter}
+                type="text"
+                value={value}
+                name="name"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Name may contain only letters, apostrophe, dash and spaces."
+                required
+                placeholder="Search product"
+            />
+         </FilterWrap>
           <FoodText>
-            {notAllowedProducts.map(product => (
+            {notAllowed.map(product => (
               <li key={product}>{product}</li>
             ))}
-            ;
+            
           </FoodText>
           <RegisterBtn to="/registration">Start losing weight</RegisterBtn>
         </ModalWindow>

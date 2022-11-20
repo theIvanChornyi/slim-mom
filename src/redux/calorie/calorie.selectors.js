@@ -9,3 +9,9 @@ export const selectKcalConsumed = state => state.dailyRate.kcalConsumed;
 
 export const selectPercentsOfDailyRate = state =>
   state.dailyRate.percentsOfDailyRate;
+
+export const getFilter = state => state.filter.filter;
+
+
+
+

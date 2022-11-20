@@ -14,6 +14,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { dailyCalorieReducer } from './calorie/calorie.slice';
+import filterReducer from './calorie/calorie.slice';
 
 import { authReduser } from './auth/slice.auth';
 
@@ -34,10 +35,12 @@ const persistedDailyRate = persistReducer(
   dailyCalorieReducer
 );
 
+
 const store = configureStore({
   reducer: {
     auth: persistedAuth,
     dailyRate: persistedDailyRate,
+    filter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -6,4 +6,5 @@ export const dailyCalorie = {
   kcalLeft: null,
   kcalConsumed: null,
   percentsOfDailyRate: null,
+  filter: '',
 };
