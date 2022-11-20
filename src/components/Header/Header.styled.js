@@ -32,6 +32,7 @@ export const HeaderNavigation = styled.nav`
     justify-content: start;
     align-items: flex-end;
     gap: 137px;
+    z-index: 2;
   }
 `;
 export const HeaderList = styled.ul`

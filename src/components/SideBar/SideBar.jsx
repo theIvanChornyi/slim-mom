@@ -16,7 +16,7 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
   const getPercentsKcal = percent => {
     const total = dailyRate || daySummary?.dailyRate;
 
-    return (percent / 100) * total;
+    return Math.round((percent / 100) * total);
   };
 
   const normalLeft = Math.round(kcalLeft) || Math.round(daySummary?.kcalLeft);
@@ -26,8 +26,8 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
     Math.round(percentsOfDailyRate) ||
     Math.round(daySummary?.percentsOfDailyRate);
   const normalPercentsKcal =
-    getPercentsKcal(Math.round(percentsOfDailyRate)) ||
-    getPercentsKcal(Math.round(daySummary?.percentsOfDailyRate));
+    getPercentsKcal(percentsOfDailyRate) ||
+    getPercentsKcal(daySummary?.percentsOfDailyRate);
 
   return (
     <AsideBox>

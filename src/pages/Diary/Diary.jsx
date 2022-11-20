@@ -86,7 +86,8 @@ export default function Diary() {
               products={eatenProducts}
               handleDeleteProduct={handleDeleteProduct}
             />
-            <Gradient />
+            {eatenProducts?.length > 0 ? <Gradient /> : <></>}
+
             <DairyAddModalWrap>
               <DiaryAddModalBtn
                 type={'button'}
