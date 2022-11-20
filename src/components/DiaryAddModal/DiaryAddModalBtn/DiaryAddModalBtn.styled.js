@@ -1,7 +1,25 @@
 import { breakpoints } from 'helpers/breakpoints';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const animation = css`
+  ${rotate};
+`;
 
 export const AddBtn = styled.button`
+  animation-name: ${p => (p.state ? 'none' : animation)};
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +43,13 @@ export const AddBtn = styled.button`
     background-color: white;
     stroke: #fc842d;
     border: 1px solid #fc842d;
+    box-shadow: none;
+  }
+
+  :disabled {
+    background-color: rgba(255, 99, 71, 0.8);
+    opacity: 0.5;
+    border: none;
     box-shadow: none;
   }
   @media ${breakpoints.minTablet} {

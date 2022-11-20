@@ -1,6 +1,7 @@
 import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
 import debounce from 'lodash.debounce';
 import { Fragment, useState } from 'react';
+import { toast } from 'react-toastify';
 import APIs from 'services/API/API';
 import {
   MobileBtn,
@@ -21,30 +22,52 @@ export default function DiaryProductForm({
 }) {
   const [querry, setQuerry] = useState('');
   const [products, setProducts] = useState([]);
+  const [errorState, setErrorState] = useState(null);
+  const [state, setState] = useState('idle');
 
-  const onSubmit = async ({ title, weight, productId }) => {
-    const isDisabled = products.find(product => product.title.ru === title);
-    if (isDisabled) {
-      handleClose && handleClose();
-      reset();
-      setQuerry('');
-      const newProduct = { weight, productId, date: normalizedDate };
-      const { data } = await APIs.addEatenProductRequest(newProduct);
-      setEatenProducts(prev => [...prev, data?.eatenProduct]);
-    } else {
-      window.alert('Обманщик');
-    }
-  };
+  toast.warn(errorState);
 
   const handleChange = async e => {
-    console.log('querry', querry);
-    const search = e.target.value.trim();
+    const search = e.target.value;
     setQuerry(search);
+    setErrorState(null);
     if (search) {
       try {
         const { data } = await APIs.searchingProductRequest(search);
         setProducts(data);
-      } catch (error) {}
+        toast.dismiss();
+      } catch (error) {
+        const message = error?.response?.data?.message;
+        setErrorState(message);
+      }
+    }
+  };
+
+  const onSubmit = async ({ title, weight }) => {
+    const isDisabled = products.find(product => product.title.ru === title);
+    setState('pending');
+    setErrorState(null);
+    if (isDisabled) {
+      handleClose && handleClose();
+      reset();
+      const newProduct = {
+        weight,
+        productId: isDisabled._id,
+        date: normalizedDate,
+      };
+      try {
+        const { data } = await APIs.addEatenProductRequest(newProduct);
+        await setState('idle');
+        setEatenProducts(prev => [...prev, data?.eatenProduct]);
+        setProducts([]);
+        setQuerry('');
+      } catch (error) {
+        const message = error?.response?.data?.message;
+        setState('idle');
+        setErrorState(message);
+      }
+    } else {
+      toast.warn('Please use dropdowl list only!');
     }
   };
 
@@ -52,9 +75,10 @@ export default function DiaryProductForm({
   return (
     <ProductForm onSubmit={handleSubmit(onSubmit)}>
       <ProductNameInp
+        errorState={errorState}
         type="text"
         {...register('title')}
-        onInput={debounce(handleChange, 300)}
+        onInput={debounce(handleChange, 100)}
         placeholder="Enter product name"
         list="products"
       />
@@ -65,12 +89,6 @@ export default function DiaryProductForm({
             <option value={product.title.ru} product-id={product._id}>
               Caloricity: {product.calories} kKal / 100g
             </option>
-            <input
-              list="products"
-              {...register('productId')}
-              type="hidden"
-              value={product._id}
-            />
           </Fragment>
         ))}
       </datalist>
@@ -86,7 +104,7 @@ export default function DiaryProductForm({
         <ProductAddBtn type="submit">Add</ProductAddBtn>
       </MobileBtn>
       <TabletBtn>
-        <DiaryAddModalBtn />
+        <DiaryAddModalBtn errorState={errorState} state={state} />
       </TabletBtn>
     </ProductForm>
   );
