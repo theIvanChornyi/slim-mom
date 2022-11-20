@@ -5,7 +5,7 @@ import leavesBig from '../../helpers/images/leaves-desktop-aside.png';
 
 export const AsideBox = styled.aside`
   margin: 0 -20px;
-  background: #f0f1f3;
+  /* background: #f0f1f3; */
   padding: 40px 20px;
   min-width: 280px;
   min-height: 433px;
@@ -13,7 +13,7 @@ export const AsideBox = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+
   gap: 40px;
 
   @media ${breakpoints.minTablet} {
@@ -30,11 +30,14 @@ export const AsideBox = styled.aside`
   }
 
   @media ${breakpoints.desktop} {
+    margin: 0 -32px;
+    background: #f0f1f3;
+
     margin-left: auto;
     gap: 60px;
     padding: 0;
     width: 497px;
-    height: 100vh;
+    height: 850px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -98,4 +101,26 @@ export const Span = styled.span`
   letter-spacing: 0.04em;
 
   color: #9b9faa;
+`;
+
+export const ProductList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  gap: 20px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px; /* ширина всей полосы прокрутки */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #e2e2e2; /* цвет зоны отслеживания */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #264061; /* цвет бегунка */
+    /* border-radius: 20px; округлось бегунка */
+    /* border: 3px solid orange; отступ вокруг бегунка */
+  }
 `;

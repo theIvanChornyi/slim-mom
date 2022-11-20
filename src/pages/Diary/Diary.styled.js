@@ -5,6 +5,10 @@ export const DiaryBox = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media ${breakpoints.minTablet} {
+    padding: 0 60px;
+  }
+
   @media ${breakpoints.desktop} {
     flex-direction: row;
     justify-content: space-between;
@@ -15,19 +19,24 @@ export const ProductContainer = styled.div`
 `;
 export const Gradient = styled.div`
   display: none;
-  position: absolute;
-  left: 0;
-  bottom: 56px;
-  width: 653px;
-  height: 50px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    #ffffff 42.19%
-  );
+
+  @media ${breakpoints.minTablet} {
+    display: block;
+    position: absolute;
+
+    left: 0;
+    bottom: 35px;
+
+    width: 500px;
+    height: 50px;
+    display: block;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, #fff 50%);
+  }
 
   @media ${breakpoints.desktop} {
-    display: block;
+    bottom: 235px;
+    width: 653px;
+    height: 50px;
   }
 `;
 

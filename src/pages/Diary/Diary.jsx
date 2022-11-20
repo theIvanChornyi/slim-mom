@@ -12,6 +12,7 @@ import {
   DairyAddModalWrap,
   DairyAddProduct,
   DiaryBox,
+  Gradient,
   ProductContainer,
 } from './Diary.styled';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
@@ -85,6 +86,7 @@ export default function Diary() {
               products={eatenProducts}
               handleDeleteProduct={handleDeleteProduct}
             />
+            <Gradient />
             <DairyAddModalWrap>
               <DiaryAddModalBtn
                 type={'button'}
