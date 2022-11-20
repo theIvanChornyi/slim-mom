@@ -38,7 +38,7 @@ export const authSlice = createSlice({
     /*<----------------------------------------------->*/
 
     builder.addCase(refreshUserThunk.pending, state => {
-      state.isFetched = true;
+      state.isFetched = false;
     });
     builder.addCase(refreshUserThunk.fulfilled, (state, action) => {
       state.token = action.payload.newAccessToken;

@@ -32,40 +32,39 @@ export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUserThunk());
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuth]);
   return (
     <>
       <Background isAuth={isAuth}>
         <Header />
 
         <Suspense fallback={<Loader />}>
-          {isFetched && (
-            <Routes>
-              <Route
-                index
-                element={
-                  <Navigate to={isAuth ? `/${userId}/diary` : '/home'} />
-                }
-              />
-              <Route path="/" element={<PrivateRout />}>
+          <Routes>
+            <Route
+              index
+              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
+            />
+            <Route path="/" element={<PrivateRout />}>
+              {isFetched ? (
                 <Route path=":userId" element={<User />}>
                   <Route path="diary" element={<Diary />} />
                   <Route path="calculator" element={<Calculator />} />
                 </Route>
-              </Route>
-              <Route path="/" element={<PublicRoute />}>
-                <Route path="home" element={<Home />} />
-                <Route path="login" element={<Login />} />
-                <Route path="registration" element={<Registration />} />
-              </Route>
-              <Route
-                path="*"
-                element={
-                  <Navigate to={isAuth ? `/${userId}/diary` : '/home'} />
-                }
-              />
-            </Routes>
-          )}
+              ) : (
+                <Route path="*" element={<Loader />} />
+              )}
+            </Route>
+            <Route path="/" element={<PublicRoute />}>
+              <Route path="home" element={<Home />} />
+              <Route path="login" element={<Login />} />
+              <Route path="registration" element={<Registration />} />
+            </Route>
+            <Route
+              path="*"
+              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
+            />
+          </Routes>
         </Suspense>
 
         <ToastContainer autoClose={5000} limit={1} />
