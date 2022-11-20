@@ -16,10 +16,6 @@ const animation = css`
 `;
 
 export const AddBtn = styled.button`
-  animation-name: ${p => (p.state ? 'none' : animation)};
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,4 +51,11 @@ export const AddBtn = styled.button`
   @media ${breakpoints.minTablet} {
     margin: 0 0 0 90px;
   }
+`;
+
+export const Cross = styled.svg`
+  animation-name: ${p => (p.state === 'pending' ? animation : 'none')};
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const UserMenuHeader = styled.div`
   min-width: 320px;
 
-  position: ${p => (!p.isOpen ? 'absolute' : 'static')};
+  /* position: ${p => (p.isOpen ? 'absolute' : 'static')}; */
   top: 81px;
   left: 0;
   right: 0;

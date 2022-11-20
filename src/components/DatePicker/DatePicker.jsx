@@ -4,7 +4,6 @@ import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import APIs from 'services/API/API';
 
 export default function DatePicker({ date, setDate }) {
   const [showCalendar, setShowCalendar] = useState(false);
