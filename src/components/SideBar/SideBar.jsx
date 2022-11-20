@@ -14,20 +14,20 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
     dailyInfo;
 
   const getPercentsKcal = percent => {
-    const total = dailyRate || daySummary.dailyRate;
+    const total = dailyRate || daySummary?.dailyRate;
 
     return (percent / 100) * total;
   };
 
-  const normalLeft = Math.round(kcalLeft) || Math.round(daySummary.kcalLeft);
+  const normalLeft = Math.round(kcalLeft) || Math.round(daySummary?.kcalLeft);
   const normalConsumed =
-    Math.round(kcalConsumed) || Math.round(daySummary.kcalConsumed);
+    Math.round(kcalConsumed) || Math.round(daySummary?.kcalConsumed);
   const normalPercent =
     Math.round(percentsOfDailyRate) ||
-    Math.round(daySummary.percentsOfDailyRate);
+    Math.round(daySummary?.percentsOfDailyRate);
   const normalPercentsKcal =
     getPercentsKcal(Math.round(percentsOfDailyRate)) ||
-    getPercentsKcal(Math.round(daySummary.percentsOfDailyRate));
+    getPercentsKcal(Math.round(daySummary?.percentsOfDailyRate));
 
   return (
     <AsideBox>

@@ -30,10 +30,10 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const onSubmit = async data => {
     try {
-      const { sid } = await dispatch(logInThunk(data)).unwrap();
+      const { user } = await dispatch(logInThunk(data)).unwrap();
       reset();
       toast.dismiss();
-      navigate(`/${sid}/diary`);
+      navigate(`/${user.id}/diary`);
     } catch (error) {}
   };
 

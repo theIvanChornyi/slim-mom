@@ -31,11 +31,11 @@ export default function RegistrationForm() {
   const dispatch = useDispatch();
   const onSubmit = async data => {
     try {
-      const { sid } = await dispatch(signUpThunk(data)).unwrap();
+      const { user } = await dispatch(signUpThunk(data)).unwrap();
       reset();
       toast.dismiss();
 
-      await navigate(`/${sid}/calculator`);
+      await navigate(`/${user.id}/calculator`);
     } catch (error) {}
   };
 
