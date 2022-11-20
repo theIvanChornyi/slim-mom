@@ -52,6 +52,10 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
   
   const notAllowed = getFilteredProducts(notAllowedProducts);
 
+  if (!getFilteredProducts(notAllowedProducts)) {
+    return console.log ("it's okey, bon appetit!")
+  }
+
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) setIsOpen(false);
   };
@@ -109,6 +113,11 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
             ))}
             
           </FoodText>
+          {notAllowed.length === 0 && (
+            <FoodText>
+              This product is not listed. Enjoy your meal!
+            </FoodText>
+          )}
           <RegisterBtn to="/registration">Start losing weight</RegisterBtn>
         </ModalWindow>
       </Overlay>
