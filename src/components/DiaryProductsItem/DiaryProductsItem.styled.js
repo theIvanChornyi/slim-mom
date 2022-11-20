@@ -14,8 +14,9 @@ export const ItemProducts = styled.li`
 
 export const ProductName = styled.p`
   width: 130px;
-  height: 24px;
+  min-height: 24px;
   border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
 
   font-family: 'Jost';
   font-weight: 400;
@@ -27,7 +28,7 @@ export const ProductName = styled.p`
 
   @media ${breakpoints.minTablet} {
     width: 240px;
-    height: 36px;
+    min-height: 36px;
     margin-right: 22px;
 
     line-height: 20px;
@@ -36,7 +37,7 @@ export const ProductName = styled.p`
   }
   @media ${breakpoints.desktop} {
     width: 240px;
-    height: 40px;
+    min-height: 40px;
     margin-right: 48px;
   }
 `;
