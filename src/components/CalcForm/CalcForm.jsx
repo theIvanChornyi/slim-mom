@@ -1,8 +1,11 @@
 import { useForm } from 'react-hook-form';
+import { useOutletContext } from 'react-router-dom';
+
 import { useState } from 'react';
 import {
   Button,
   ButtonCon,
+  CurrenValue,
   FormLabel,
   FormStyled,
   LabelFirst,
@@ -18,24 +21,45 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { calcSchema } from 'services/validation/calcSchema';
 
 import APIs from 'services/API/API';
+import { useParams } from 'react-router-dom';
 
 export default function CalcForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [dailyRateCalc, setDailyRateCalc] = useState(null);
+  const usersParams = JSON.parse(window.localStorage.getItem('userParams'));
+  const { userId } = useParams();
+
+  const context = useOutletContext();
+  const currentValues = null || context?.userData;
+
   const {
     register,
     handleSubmit,
     reset,
+
     formState: { errors },
   } = useForm({
     resolver: yupResolver(calcSchema),
+    defaultValues: usersParams ?? {
+      height: null,
+      age: null,
+      weight: null,
+      desiredWeight: null,
+      bloodType: null,
+    },
   });
 
   const onSubmit = async params => {
-    const { data } = await APIs.calculateDaylyRequest(params);
-    setDailyRateCalc(data);
-    setIsOpen(true);
-    reset();
+    if (userId) {
+      const { data } = await APIs.calculateDaylyAuthRequest(userId, params);
+      context?.setNotAllowedProducts(data.notAllowedProducts);
+    } else {
+      window.localStorage.setItem('userParams', JSON.stringify(params));
+      const { data } = await APIs.calculateDaylyRequest(params);
+      setDailyRateCalc(data);
+      setIsOpen(true);
+      reset();
+    }
   };
 
   return (
@@ -44,19 +68,28 @@ export default function CalcForm() {
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
         <LabelFirst>
           <FormLabel htmlFor="height">
-            Height (100-250)*
+            'Height (100-250)*'
+            <CurrenValue>
+              {currentValues && `Current ${currentValues?.height}`}
+            </CurrenValue>
             <TextInp id={'height'} type="number" {...register('height')} />
             <span className="tooltiptext">min. 100, max. 250</span>
           </FormLabel>
 
           <FormLabel htmlFor="age">
-            Age (18-100)*
+            'Age (18-100)*'
+            <CurrenValue>
+              {currentValues && `Current ${currentValues?.age}`}
+            </CurrenValue>
             <TextInp type="number" id={'age'} {...register('age')} />
             <span className="tooltiptext">min. 18, max. 100</span>
           </FormLabel>
 
           <FormLabel htmlFor="weight">
-            Current weight (20-500)*
+            'Current weight (20-500)*'
+            <CurrenValue>
+              {currentValues && `Current ${currentValues?.weight}`}
+            </CurrenValue>
             <TextInp type="number" id={'weight'} {...register('weight')} />
             <span className="tooltiptext">min. 20, max. 500</span>
           </FormLabel>
@@ -64,7 +97,10 @@ export default function CalcForm() {
 
         <LabelFirst>
           <FormLabel htmlFor="desiredWeight">
-            Desired weight (20-500)*
+            'Desired weight (20-500)*'
+            <CurrenValue>
+              {currentValues && `Current ${currentValues?.desiredWeight}`}
+            </CurrenValue>
             <TextInp
               type="number"
               id={'desiredWeight'}

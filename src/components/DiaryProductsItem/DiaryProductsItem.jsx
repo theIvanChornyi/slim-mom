@@ -7,13 +7,23 @@ import {
   Weight,
 } from './DiaryProductsItem.styled';
 
-export default function DiaryProductsItem({ name, weight, kcal }) {
+export default function DiaryProductsItem({
+  name,
+  weight,
+  kcal,
+  id,
+  handleDeleteProduct,
+}) {
+  const onDeleteClick = () => {
+    handleDeleteProduct(id);
+  };
+
   return (
     <ItemProducts>
       <ProductName>{name}</ProductName>
       <Weight>{weight} g</Weight>
-      <Kcal>{kcal}kcal</Kcal>
-      <ButtonDelete type="button">
+      <Kcal>{Math.round(kcal)}kcal</Kcal>
+      <ButtonDelete type="button" onClick={onDeleteClick}>
         <svg
           width="14"
           height="14"

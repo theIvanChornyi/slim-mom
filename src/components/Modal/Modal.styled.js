@@ -1,4 +1,5 @@
 import { breakpoints } from 'helpers/breakpoints';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
@@ -148,17 +149,15 @@ export const FoodText = styled.ol`
   margin-bottom: 40px;
 
   &::-webkit-scrollbar {
-    width: 6px; /* ширина всей полосы прокрутки */
+    width: 6px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f0f1f3; /* цвет зоны отслеживания */
+    background: #f0f1f3;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #264061; /* цвет бегунка */
-    /* border-radius: 20px; округлось бегунка */
-    /* border: 3px solid orange; отступ вокруг бегунка */
+    background-color: #264061;
   }
 
   @media (min-width: 768px) {
@@ -166,9 +165,10 @@ export const FoodText = styled.ol`
   }
 `;
 
-export const RegisterBtn = styled.button`
-  margin-left: auto;
-  margin-right: auto;
+export const RegisterBtn = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 210px;
   height: 44px;
   font-family: 'Jost', sans-serif;
@@ -177,6 +177,8 @@ export const RegisterBtn = styled.button`
   line-height: 1.21;
   letter-spacing: 0.04em;
   color: #fff;
+  text-decoration: none;
+
   background-color: #fc842d;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border: none;
@@ -188,8 +190,4 @@ export const RegisterBtn = styled.button`
     color: #fc842d;
     background-color: #fff;
   }
-  /* @media screen and (min-width: 768px) { */
-  /* margin: 0; */
-  /* margin-left: 32px; */
-  /* } */
 `;

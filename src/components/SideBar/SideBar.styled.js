@@ -30,6 +30,7 @@ export const AsideBox = styled.aside`
   }
 
   @media ${breakpoints.desktop} {
+    margin-left: auto;
     gap: 60px;
     padding: 0;
     width: 497px;

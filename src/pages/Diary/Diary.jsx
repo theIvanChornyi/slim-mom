@@ -1,99 +1,37 @@
-import { Container } from 'components/Container';
 import DatePicker from 'components/DatePicker';
 import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
 import DiaryAddModal from 'components/DiaryAddModal';
 
 import DiaryProductsList from 'components/DiaryProductsList';
-import SideBar from 'components/SideBar';
 
-// import debounce from 'lodash.debounce';
 import { useForm } from 'react-hook-form';
 import DairyProductForm from 'components/DiaryProductForm';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import {
-  selectDailyRate,
-  selectKcalConsumed,
-  selectKcalLeft,
-  selectNotAllowedProducts,
-  selectPercentsOfDailyRate,
-} from 'redux/calorie/calorie.selectors';
-// import { privateApi } from 'services/API/http';
+import { useEffect, useState } from 'react';
+
 import {
   DairyAddModalWrap,
   DairyAddProduct,
   DiaryBox,
   ProductContainer,
 } from './Diary.styled';
+import { useOutletContext, useSearchParams } from 'react-router-dom';
+import APIs from 'services/API/API';
 
 export default function Diary() {
-  /*<-----------------------------> */
-  // For Form
   const { register, handleSubmit, reset, watch } = useForm();
-  // Modal in mobile version
+  const [searchParams] = useSearchParams();
+  const choosenDate = searchParams.get('date') || new Date();
+  const { dailyRate } = useOutletContext();
+  const userEatenProducts = dailyRate?.eatenProducts;
+
   const [addModalOpen, setAddModalOpen] = useState(false);
-  // State for Date from Calendar
-  const [date, setDate] = useState(new Date());
-  const [newProduct, setNewProduct] = useState(null);
-  const normalizedDate = date.toLocaleDateString('en-GB').replaceAll('/', '.');
-  /*<-----------------------------> */
-  // ! 1. для он чейнч в інпуті пошуку продукту додавати дебаунс, якщо так, на ск чекунд? - вже додала.
+  const [date, setDate] = useState(new Date(choosenDate));
+  const [eatenProducts, setEatenProducts] = useState([]);
 
-  // ! 2. нижче логіка для пошуку продукту по імені (там де випадає дроп даун). Потім по кнопці потрібно зробити логіку для додавання продукту
-
-  // ! 3. локальний стейт підправити
-
-  const daily = useSelector(selectDailyRate);
-  const notAllowed = useSelector(selectNotAllowedProducts);
-  const kcalLeft = useSelector(selectKcalLeft);
-  const kcalConsumed = useSelector(selectKcalConsumed);
-  const percentsKcal = useSelector(selectPercentsOfDailyRate);
-
-  const [left, setLeft] = useState(kcalLeft);
-  const [consumed, setConsumed] = useState(kcalConsumed);
-  const [dailyRate, setDailyRate] = useState(daily);
-  const [percent, setpPercent] = useState(percentsKcal);
-  const [notAllowedProducts, setNotAllowedProducts] = useState(notAllowed);
-  const [products, setProducts] = useState([]);
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [productId, setProductId] = useState(null);
-  const [value, setValue] = useState('');
-
-  // const getSearchedProducts = useMemo(
-  //   () =>
-  //     debounce(search => {
-  //       if (search.length < 1) {
-  //         return;
-  //       }
-
-  //       setIsLoading(true);
-  //       privateApi
-  //         .get('/product', { params: { search } })
-  //         .then(({ data }) => setProducts(data))
-  //         .finally(() => {
-  //           setIsLoading(false);
-  //         });
-  //     }, 500),
-  //   []
-  // );
-
-  // const handleChange = event => {
-  //   const { value } = event.target;
-  //   setValue(value);
-  //   getSearchedProducts(value.trim());
-
-  //   if (value.trim().length < 1) {
-  //     setProducts(null);
-  //   }
-  // };
-
-  // const handleSelectProduct = product => {
-  //   setValue(product.title.ua);
-  //   setProducts(null);
-  //   setProductId(product._id);
-  // };
+  const normalizedDate = date.toLocaleDateString('en-CA').replaceAll('/', '-');
+  useEffect(() => {
+    setEatenProducts(userEatenProducts);
+  }, [userEatenProducts]);
 
   const handleAddProductOpen = () => {
     setAddModalOpen(true);
@@ -102,46 +40,48 @@ export default function Diary() {
     setAddModalOpen(false);
   };
 
+  const handleDeleteProduct = async deleteId => {
+    const dayId = dailyRate.id;
+    try {
+      const { data } = await APIs.deleteEatenProductRequest(dayId, deleteId);
+      console.log('data', data);
+    } catch (error) {}
+
+    setEatenProducts(prev => prev.filter(product => product.id !== deleteId));
+  };
+
   return (
     <>
       {!addModalOpen && (
-        <Container>
-          <DiaryBox>
-            <ProductContainer>
-              <DatePicker date={date} setDate={setDate} />
+        <DiaryBox>
+          <ProductContainer>
+            <DatePicker date={date} setDate={setDate} />
 
-              <DairyAddProduct>
-                <DairyProductForm
-                  {...{
-                    register,
-                    handleSubmit,
-                    reset,
-                    date,
-                    newProduct,
-                    setNewProduct,
-                    watch,
-                  }}
-                />
-              </DairyAddProduct>
+            <DairyAddProduct>
+              <DairyProductForm
+                {...{
+                  register,
+                  handleSubmit,
+                  reset,
+                  normalizedDate,
+                  watch,
+                  setEatenProducts,
+                }}
+              />
+            </DairyAddProduct>
 
-              <DiaryProductsList products={products} />
-              <DairyAddModalWrap>
-                <DiaryAddModalBtn
-                  type={'button'}
-                  onClick={handleAddProductOpen}
-                />
-              </DairyAddModalWrap>
-            </ProductContainer>
-            <SideBar
-              date={normalizedDate}
-              left={left}
-              consumed={consumed}
-              dailyRate={dailyRate}
-              percent={percent}
-              notAllowedProducts={notAllowedProducts}
+            <DiaryProductsList
+              products={eatenProducts}
+              handleDeleteProduct={handleDeleteProduct}
             />
-          </DiaryBox>
-        </Container>
+            <DairyAddModalWrap>
+              <DiaryAddModalBtn
+                type={'button'}
+                onClick={handleAddProductOpen}
+              />
+            </DairyAddModalWrap>
+          </ProductContainer>
+        </DiaryBox>
       )}
       {addModalOpen && (
         <DiaryAddModal
@@ -151,9 +91,8 @@ export default function Diary() {
             handleSubmit,
             reset,
             date,
-            newProduct,
-            setNewProduct,
             watch,
+            setEatenProducts,
           }}
         />
       )}

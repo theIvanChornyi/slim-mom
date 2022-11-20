@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUpThunk } from 'redux/auth/thunk.auth';
 import { LoginLink } from './RegistrationForm.styled';
 import RegistrationBtn from 'components/RegistrationBtn';
@@ -15,9 +15,12 @@ import {
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { selectUserId } from 'redux/auth/selectors.auth';
 
 export default function RegistrationForm() {
+  const userId = useSelector(selectUserId);
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -33,7 +36,8 @@ export default function RegistrationForm() {
       await dispatch(signUpThunk(data)).unwrap();
       reset();
       toast.dismiss();
-      navigate('/calculator');
+
+      await navigate(`/${userId}/calculator`);
     } catch (error) {}
   };
 

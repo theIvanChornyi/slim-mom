@@ -1,7 +1,7 @@
 import LoginBtn from 'components/LoginBtn';
 import { ContainerBtn } from 'components/RegistrationForm/RegistrationForm.styled';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { logInThunk } from 'redux/auth/thunk.auth';
 import {
@@ -15,9 +15,11 @@ import { loginSchema } from 'services/validation/loginSchema';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { selectUserId } from 'redux/auth/selectors.auth';
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const userId = useSelector(selectUserId);
   const {
     register,
     handleSubmit,
@@ -33,7 +35,7 @@ export default function LoginForm() {
       await dispatch(logInThunk(data)).unwrap();
       reset();
       toast.dismiss();
-      navigate('/diary');
+      await navigate(`/${userId}/diary`);
     } catch (error) {}
   };
 
@@ -43,7 +45,6 @@ export default function LoginForm() {
   useEffect(() => {
     toast.error(errorMessage);
   }, [errorMessage]);
-
   return (
     <>
       <AuthForm onSubmit={handleSubmit(onSubmit)}>

@@ -27,6 +27,7 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,7 +75,7 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
             ))}
             ;
           </FoodText>
-          <RegisterBtn type="button">Start losing weight</RegisterBtn>
+          <RegisterBtn to="/registration">Start losing weight</RegisterBtn>
         </ModalWindow>
       </Overlay>
     </>,

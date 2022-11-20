@@ -40,7 +40,7 @@ const calculateDaylyAuthRequest = async (id, params) => {
 
 // Search and get a list of products by query
 const searchingProductRequest = async search => {
-  return await axios.get(`/daily-rate/?=${search}`);
+  return await axios.get(`/product/?search=${search}`);
 };
 
 // Post an eaten product
@@ -49,8 +49,10 @@ const addEatenProductRequest = async params => {
 };
 
 // Delete eaten product
-const deleteEatenProductRequest = async params => {
-  return await axios.delete('/day', params);
+const deleteEatenProductRequest = async (dayId, eatenProductId) => {
+  return await axios.delete('/day', {
+    data: { dayId, eatenProductId },
+  });
 };
 
 /*<----------------------------------------------->*/
@@ -61,8 +63,8 @@ const getInfoForDayRequest = async date => {
 };
 
 // Get user info
-const getUserInfoRequest = async date => {
-  return await axios.post('/user', date);
+const getUserInfoRequest = async () => {
+  return await axios.get('/user');
 };
 
 /*<----------------------------------------------->*/

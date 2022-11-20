@@ -3,10 +3,18 @@ import { DateContainer, DateString, MyCalendar } from './DatePicker.styled';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import APIs from 'services/API/API';
 
 export default function DatePicker({ date, setDate }) {
   const [showCalendar, setShowCalendar] = useState(false);
-  const normalizedDate = date.toLocaleDateString('en-GB').replaceAll('/', '.');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const initCalendarDay = new Date(searchParams.get('date') || date);
+
+  const normalizedDate = initCalendarDay
+    .toLocaleDateString('en-GB')
+    .replaceAll('/', '.');
 
   const handleToogleCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -22,9 +30,11 @@ export default function DatePicker({ date, setDate }) {
     };
   }, []);
 
-  const handleCalendar = newDate => {
-    setDate(new Date(newDate));
+  const handleCalendar = async newDate => {
+    const rawDate = new Date(newDate);
+    setDate(rawDate);
     setShowCalendar(false);
+    setSearchParams({ date: rawDate.toLocaleDateString('en-CA') });
   };
 
   return (

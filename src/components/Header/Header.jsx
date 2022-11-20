@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { selectIsAuth } from 'redux/auth/selectors.auth';
+import { selectIsAuth, selectUserId } from 'redux/auth/selectors.auth';
 import { logOutThunk } from 'redux/auth/thunk.auth';
 import BurgerBtn from './BurgerBtn';
 import BurgerMenu from './BurgerMenu';
@@ -21,6 +21,8 @@ import {
 
 export default function Header() {
   const isAuth = useSelector(selectIsAuth);
+  const userId = useSelector(selectUserId);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -50,6 +52,7 @@ export default function Header() {
             <Logo
               onClick={handleCloseBurger}
               isAuth={isAuth}
+              userId={userId}
               isOnHome={location.pathname}
             />
             <HeaderList isAuth={isAuth} isOnHome={location.pathname}>
@@ -68,10 +71,14 @@ export default function Header() {
                 <>
                   <HeaderListItem>
                     <div>
-                      <HeaderNavLink to="/diary">Diary</HeaderNavLink>
+                      <HeaderNavLink to={`/${userId}/diary`}>
+                        Diary
+                      </HeaderNavLink>
                     </div>
                     <div>
-                      <HeaderNavLink to="/calculator">Calculator</HeaderNavLink>
+                      <HeaderNavLink to={`/${userId}/calculator`}>
+                        Calculator
+                      </HeaderNavLink>
                     </div>
                   </HeaderListItem>
                   <TabletUserMenu handleLogout={memoizedLogout} />
@@ -83,7 +90,9 @@ export default function Header() {
         </HeaderWrapper>
       </Container>
       {isAuth && !burgerMenu && <UserMenu handleLogout={memoizedLogout} />}
-      {isAuth && burgerMenu && <BurgerMenu onClick={handleCloseBurger} />}
+      {isAuth && burgerMenu && (
+        <BurgerMenu userId={userId} onClick={handleCloseBurger} />
+      )}
     </PageHeader>
   );
 }
