@@ -28,7 +28,9 @@ export default function CalcForm() {
   const [dailyRateCalc, setDailyRateCalc] = useState(null);
   const usersParams = JSON.parse(window.localStorage.getItem('userParams'));
   const { userId } = useParams();
-  const { userData, setNotAllowedProducts } = useOutletContext();
+
+  const context = useOutletContext();
+  const currentValues = null || context?.userData;
 
   const {
     register,
@@ -50,7 +52,7 @@ export default function CalcForm() {
   const onSubmit = async params => {
     if (userId) {
       const { data } = await APIs.calculateDaylyAuthRequest(userId, params);
-      setNotAllowedProducts(data.notAllowedProducts);
+      context?.setNotAllowedProducts(data.notAllowedProducts);
     } else {
       window.localStorage.setItem('userParams', JSON.stringify(params));
       const { data } = await APIs.calculateDaylyRequest(params);
@@ -68,7 +70,7 @@ export default function CalcForm() {
           <FormLabel htmlFor="height">
             'Height (100-250)*'
             <CurrenValue>
-              {userData && `Current ${userData.height}`}
+              {currentValues && `Current ${currentValues?.height}`}
             </CurrenValue>
             <TextInp id={'height'} type="number" {...register('height')} />
             <span className="tooltiptext">min. 100, max. 250</span>
@@ -76,7 +78,9 @@ export default function CalcForm() {
 
           <FormLabel htmlFor="age">
             'Age (18-100)*'
-            <CurrenValue>{userData && `Current ${userData.age}`}</CurrenValue>
+            <CurrenValue>
+              {currentValues && `Current ${currentValues?.age}`}
+            </CurrenValue>
             <TextInp type="number" id={'age'} {...register('age')} />
             <span className="tooltiptext">min. 18, max. 100</span>
           </FormLabel>
@@ -84,7 +88,7 @@ export default function CalcForm() {
           <FormLabel htmlFor="weight">
             'Current weight (20-500)*'
             <CurrenValue>
-              {userData && `Current ${userData.weight}`}
+              {currentValues && `Current ${currentValues?.weight}`}
             </CurrenValue>
             <TextInp type="number" id={'weight'} {...register('weight')} />
             <span className="tooltiptext">min. 20, max. 500</span>
@@ -95,7 +99,7 @@ export default function CalcForm() {
           <FormLabel htmlFor="desiredWeight">
             'Desired weight (20-500)*'
             <CurrenValue>
-              {userData && `Current ${userData.desiredWeight}`}
+              {currentValues && `Current ${currentValues?.desiredWeight}`}
             </CurrenValue>
             <TextInp
               type="number"
