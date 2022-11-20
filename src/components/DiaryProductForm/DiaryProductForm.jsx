@@ -76,6 +76,7 @@ export default function DiaryProductForm({
       <ProductWeightInp
         disabled={!isDisabledWeight}
         type="number"
+        min="1"
         {...register('weight')}
         placeholder="Grams"
       />
