@@ -27,6 +27,7 @@ export default function DiaryProductForm({
     if (isDisabled) {
       handleClose && handleClose();
       reset();
+      setQuerry('');
       const newProduct = { weight, productId, date: normalizedDate };
       const { data } = await APIs.addEatenProductRequest(newProduct);
       setEatenProducts(prev => [...prev, data?.eatenProduct]);
@@ -36,6 +37,7 @@ export default function DiaryProductForm({
   };
 
   const handleChange = async e => {
+    console.log('querry', querry);
     const search = e.target.value.trim();
     setQuerry(search);
     if (search) {
