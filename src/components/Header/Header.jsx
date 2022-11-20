@@ -37,6 +37,14 @@ export default function Header() {
     setBurgerMenu(!burgerMenu);
   };
 
+  const handleGoBack = () => {
+    if (location.pathname.includes('/diary')) {
+      navigate(`/${userId}/calculator`);
+    } else {
+      navigate(`/${userId}/diary`);
+    }
+  };
+
   const memoizedLogout = useCallback(async () => {
     try {
       await dispatch(logOutThunk()).unwrap();
@@ -89,7 +97,12 @@ export default function Header() {
           </HeaderNavigation>
         </HeaderWrapper>
       </Container>
-      {isAuth && !burgerMenu && <UserMenu handleLogout={memoizedLogout} />}
+      {isAuth && !burgerMenu && (
+        <UserMenu
+          handleCloseClick={handleGoBack}
+          handleLogout={memoizedLogout}
+        />
+      )}
       {isAuth && burgerMenu && (
         <BurgerMenu userId={userId} onClick={handleCloseBurger} />
       )}

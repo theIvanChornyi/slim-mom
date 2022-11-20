@@ -17,7 +17,7 @@ export default function UserMenu({ handleLogout, handleCloseClick }) {
       <Container>
         <UserSideBar>
           <GoBackBtn handleCloseClick={handleCloseClick} />
-          <UserMenuWrapper {...name}>
+          <UserMenuWrapper name={name}>
             <UserName>{name}</UserName>
             <UserMenuButton onClick={handleLogout}>Exit</UserMenuButton>
           </UserMenuWrapper>
