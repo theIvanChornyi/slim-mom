@@ -52,7 +52,7 @@ export const ModalWindow = styled.div`
 `;
 
 export const ModulCloseBtn = styled.button`
-  display: none;
+ display: none;
 
   @media (min-width: 768px) {
     display: inline-flex;
@@ -67,7 +67,7 @@ export const ModulCloseBtn = styled.button`
 
 export const ModalTitle = styled.h2`
   min-width: 280px;
-  font-family: 'Verdana';
+  font-family: 'Jost', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -98,7 +98,7 @@ export const Callories = styled.span`
 
   color: #264061;
 
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 
   @media (min-width: 768px) {
     width: 330px;
@@ -133,7 +133,7 @@ export const FoodTitle = styled.p`
 
   color: #212121;
 
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 
   @media (min-width: 768px) {
     width: 330px;
@@ -141,7 +141,7 @@ export const FoodTitle = styled.p`
 `;
 
 export const FoodText = styled.ol`
-  width: 280px;
+ width: 280px;
   max-height: 112px;
   display: flex;
   flex-direction: column;
@@ -158,7 +158,7 @@ export const FoodText = styled.ol`
   color: #9b9faa;
   list-style: number;
 
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 
   &::-webkit-scrollbar {
     width: 6px;

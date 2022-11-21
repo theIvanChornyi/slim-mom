@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Overlay,
@@ -16,11 +17,15 @@ import {
 } from './Modal.styled';
 import { Container } from 'components/Container';
 import GoBackBtn from 'components/UserMenu/GoBackBtn';
+import Filter from 'components/Filter';
 
 const modalRoot = document.getElementById('modal-root');
 
 export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
+
   const { dailyRate, notAllowedProducts } = dailyRateCalc;
+  const [filter, setFilter] = useState('');
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
@@ -44,6 +49,12 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
   const handleKeyDown = event => {
     if (event.code === 'Escape') setIsOpen(false);
   };
+
+  const handleFilter = event => {
+    setFilter(event.target.value)
+  };
+
+const filteredProducts = notAllowedProducts.filter(item => item.toLowerCase().includes(filter.toLowerCase()));
 
   return createPortal(
     <>
@@ -75,16 +86,33 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
           </Callories>
           <ModulLine />
           <FoodTitle>Foods you should not eat</FoodTitle>
+            <Filter
+            onChangeFilter={handleFilter}
+            value={filter}
+            />
           <FoodText>
-            {notAllowedProducts.map(product => (
+            {filteredProducts.map(product => (
               <li key={product}>{product}</li>
             ))}
-            ;
           </FoodText>
+          {filteredProducts.length === 0 && (
+            <FoodText>
+              This product is not listed. Enjoy your meal!
+            </FoodText>
+          )}
           <RegisterBtn to="/registration">Start losing weight</RegisterBtn>
         </ModalWindow>
       </Overlay>
     </>,
     modalRoot
   );
-}
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
+  dailyRateCalc: PropTypes.shape({
+    dailyRate: PropTypes.number.isRequired,
+    notAllowedProducts: PropTypes.array.isRequired,
+  }),
+};
