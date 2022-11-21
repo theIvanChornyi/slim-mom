@@ -6,6 +6,9 @@ export const TabletUserMenuHeader = styled.div`
   @media ${breakpoints.minTablet} {
     display: block;
   }
+  @media ${breakpoints.desktop} {
+    margin-bottom: -10px;
+  }
 `;
 
 export const TabletUserSideBar = styled.div`

@@ -56,7 +56,7 @@ export default function Diary() {
   const handleDeleteProduct = async deleteId => {
     const dayId = dailyRate.id;
     try {
-      const { data } = await APIs.deleteEatenProductRequest(dayId, deleteId);
+      await APIs.deleteEatenProductRequest(dayId, deleteId);
     } catch (error) {}
 
     setEatenProducts(prev => prev.filter(product => product.id !== deleteId));
@@ -86,7 +86,7 @@ export default function Diary() {
               products={eatenProducts}
               handleDeleteProduct={handleDeleteProduct}
             />
-            {eatenProducts?.length > 0 ? <Gradient /> : <></>}
+            {eatenProducts?.length > 0 && <Gradient />}
 
             <DairyAddModalWrap>
               <DiaryAddModalBtn

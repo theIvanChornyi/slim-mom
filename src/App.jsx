@@ -17,6 +17,9 @@ import {
 } from 'redux/auth/selectors.auth';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
 import { selectSlimDaddy } from 'redux/slimDaddy/selectors.slimDaddy';
+import { ThemeProvider } from 'styled-components';
+import { momsTheme, daddyTheme } from 'services/theme/theme';
+
 const User = lazy(() => import('pages/User'));
 const Home = lazy(() => import('pages/Home'));
 const Diary = lazy(() => import('pages/Diary'));
@@ -42,38 +45,40 @@ export const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuth]);
   return (
-    <Background isAuth={isAuth}>
-      <Header />
+    <ThemeProvider theme={isDaddy ? daddyTheme : momsTheme}>
+      <Background isAuth={isAuth}>
+        <Header />
 
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route
-            index
-            element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
-          />
-          <Route path="/" element={<PrivateRout />}>
-            {isFetched ? (
-              <Route path=":userId" element={<User />}>
-                <Route path="diary" element={<Diary />} />
-                <Route path="calculator" element={<Calculator />} />
-              </Route>
-            ) : (
-              <Route path="*" element={<Loader />} />
-            )}
-          </Route>
-          <Route path="/" element={<PublicRoute />}>
-            <Route path="home" element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="registration" element={<Registration />} />
-          </Route>
-          <Route
-            path="*"
-            element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
-          />
-        </Routes>
-      </Suspense>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route
+              index
+              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
+            />
+            <Route path="/" element={<PrivateRout />}>
+              {isFetched ? (
+                <Route path=":userId" element={<User />}>
+                  <Route path="diary" element={<Diary />} />
+                  <Route path="calculator" element={<Calculator />} />
+                </Route>
+              ) : (
+                <Route path="*" element={<Loader />} />
+              )}
+            </Route>
+            <Route path="/" element={<PublicRoute />}>
+              <Route path="home" element={<Home />} />
+              <Route path="login" element={<Login />} />
+              <Route path="registration" element={<Registration />} />
+            </Route>
+            <Route
+              path="*"
+              element={<Navigate to={isAuth ? `/${userId}/diary` : '/home'} />}
+            />
+          </Routes>
+        </Suspense>
 
-      <ToastContainer autoClose={5000} limit={1} />
-    </Background>
+        <ToastContainer autoClose={5000} limit={1} />
+      </Background>
+    </ThemeProvider>
   );
 };

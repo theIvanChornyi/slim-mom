@@ -23,7 +23,7 @@ export const ProductNameInp = styled.input`
   letter-spacing: 0.04em;
 
   color: #212121;
-
+  background-color: transparent;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   outline: ${p =>
@@ -52,6 +52,7 @@ export const ProductWeightInp = styled.input`
   letter-spacing: 0.04em;
 
   color: #212121;
+  background-color: transparent;
 
   border: none;
   border-bottom: 1px solid #e0e0e0;

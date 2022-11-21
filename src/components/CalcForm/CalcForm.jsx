@@ -68,19 +68,19 @@ export default function CalcForm() {
         <LabelFirst>
           <FormLabel htmlFor="height">
             Height *
-            <TextInp id={'height'} type="number" {...register('height')} />
+            <TextInp id={'height'} {...register('height')} />
             <span className="tooltiptext">min. 100, max. 250</span>
           </FormLabel>
 
           <FormLabel htmlFor="age">
             Age *
-            <TextInp type="number" id={'age'} {...register('age')} />
+            <TextInp id={'age'} {...register('age')} />
             <span className="tooltiptext">min. 18, max. 100</span>
           </FormLabel>
 
           <FormLabel htmlFor="weight">
             Current weight *
-            <TextInp type="number" id={'weight'} {...register('weight')} />
+            <TextInp id={'weight'} {...register('weight')} />
             <span className="tooltiptext">min. 20, max. 500</span>
           </FormLabel>
         </LabelFirst>
@@ -88,11 +88,7 @@ export default function CalcForm() {
         <LabelFirst>
           <FormLabel htmlFor="desiredWeight">
             Desired weight *
-            <TextInp
-              type="number"
-              id={'desiredWeight'}
-              {...register('desiredWeight')}
-            />
+            <TextInp id={'desiredWeight'} {...register('desiredWeight')} />
             <span className="tooltiptext">min. 20, max. 500</span>
           </FormLabel>
 

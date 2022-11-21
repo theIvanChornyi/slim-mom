@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const ListProducts = styled.ul`
-  margin: 22px 0 60px;
+  margin: 22px 0 65px;
 
   display: flex;
   flex-direction: column;
@@ -12,24 +12,22 @@ export const ListProducts = styled.ul`
   overflow-y: auto;
 
   &::-webkit-scrollbar {
-    width: 6px; /* ширина всей полосы прокрутки */
+    width: 6px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f0f1f3; /* цвет зоны отслеживания */
+    background: #f0f1f3;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #264061; /* цвет бегунка */
-    /* border-radius: 20px; округлось бегунка */
-    /* border: 3px solid orange; отступ вокруг бегунка */
+    background-color: #264061;
   }
 
   @media ${breakpoints.minTablet} {
     gap: 22px;
     max-width: 610px;
     height: 286px;
-    margin: 0 0 55px;
+    margin: 0 0 85px;
     padding-right: 30px;
   }
   @media ${breakpoints.desktop} {
@@ -46,7 +44,7 @@ export const Text = styled.p`
   line-height: 17px;
   letter-spacing: 0.04em;
 
-  margin: 40px 0;
+  margin: 40px 0 50px;
 
   color: #212121;
 
@@ -54,6 +52,7 @@ export const Text = styled.p`
     width: 286px;
     max-height: 610px;
     margin-right: 22px;
+    margin-bottom: 130px;
 
     line-height: 20px;
 
@@ -61,5 +60,6 @@ export const Text = styled.p`
   }
   @media ${breakpoints.desktop} {
     height: 280px;
+    margin-bottom: 0;
   }
 `;

@@ -2,34 +2,38 @@ import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const UserPage = styled.section`
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(240, 241, 243, 1) 50%
-  );
+  min-width: 320px;
+  background: ${p =>
+    p.theme.gradient
+      ? `linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(240, 241, 243, 1) 50%
+      )`
+      : `linear-gradient(
+        180deg,
+        rgba(22,	81,	129, 0.3) 50%,
+        #165181 50%
+      )`};
 
   @media ${breakpoints.minTablet} {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 1) 63%,
-      rgba(240, 241, 243, 1) 63%
-    );
+    background: ${p =>
+      p.theme.gradient
+        ? `linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 63%,
+        rgba(240, 241, 243, 1) 63%
+      )`
+        : `linear-gradient(
+        180deg,
+        rgba(22,	81,	129, 0.3) 63%,
+        #165181 63%
+      )`};
   }
 
   @media ${breakpoints.desktop} {
-    margin-right: -16px;
     height: 100vh;
     background: transparent;
-    /* background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 1) 65%,
-      rgba(240, 241, 243, 1) 65%
-    ); */
-    /* background-image: url(${leavesBig});
-    background-repeat: no-repeat;
-    background-position: right -180; */
   }
 `;
 

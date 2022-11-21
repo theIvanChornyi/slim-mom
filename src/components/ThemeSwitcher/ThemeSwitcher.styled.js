@@ -4,12 +4,14 @@ export const Switcher = styled.div`
   padding: 40px 20px 20px;
   @media screen and (min-width: 1280px) {
     padding: 0;
+    margin-bottom: -4px;
     margin-left: auto;
     display: flex;
     justify-content: end;
   }
 `;
 export const ThemeLight = styled.span`
+  margin-right: 5px;
   font-family: ' Jost ', sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -19,6 +21,7 @@ export const ThemeLight = styled.span`
 `;
 export const ThemeDark = styled.span`
   font-family: ' Jost ', sans-serif;
+  margin-left: 5px;
 
   font-weight: 700;
   font-size: 18px;
