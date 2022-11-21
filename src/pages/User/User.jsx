@@ -2,10 +2,11 @@ import { Container } from 'components/Container';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import SideBar from 'components/SideBar';
 import { UserPage, UserWrapper } from './User.styled';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import APIs from 'services/API/API';
 import { toast } from 'react-toastify';
+import Loader from 'components/Loader';
 
 const TODAY = new Date().toLocaleDateString('en-CA');
 
@@ -31,6 +32,7 @@ export default function User() {
       setDailyRate,
       setErrorMessage,
       setNotAllowedProducts,
+      setUserData,
       date,
       userId,
       usersParams
@@ -41,19 +43,26 @@ export default function User() {
   useEffect(() => {
     getAllowedProducts(setUserData, setNotAllowedProducts, setErrorMessage);
   }, []);
-
   return (
     <UserPage>
       <Container>
-        <UserWrapper>
-          <Outlet context={{ userData, setNotAllowedProducts, dailyRate }} />
+        {userData?.notAllowedProducts ? (
+          <UserWrapper>
+            <Suspense fallback={<Loader />}>
+              <Outlet
+                context={{ userData, setNotAllowedProducts, dailyRate }}
+              />
+            </Suspense>
 
-          <SideBar
-            date={normalizedDate}
-            dailyInfo={dailyRate}
-            notAllowedProducts={notAllowedProducts}
-          />
-        </UserWrapper>
+            <SideBar
+              date={normalizedDate}
+              dailyInfo={dailyRate}
+              notAllowedProducts={notAllowedProducts}
+            />
+          </UserWrapper>
+        ) : (
+          <Loader />
+        )}
       </Container>
     </UserPage>
   );
@@ -76,6 +85,7 @@ async function getInfoSideBar(
   setDailyRate,
   setErrorMessage,
   setNotAllowedProducts,
+  setUserData,
   date,
   userId,
   usersParams
@@ -90,6 +100,7 @@ async function getInfoSideBar(
       usersParams
     ) {
       setErrorMessage(null);
+      setUserData(usersParams);
       getRequestWithSaved(
         userId,
         usersParams,

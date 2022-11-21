@@ -39,11 +39,11 @@ export default function CalcForm() {
   } = useForm({
     resolver: yupResolver(calcSchema),
     defaultValues: {
-      height: currentValues.height,
-      age: currentValues.age,
-      weight: null,
-      desiredWeight: null,
-      bloodType: null,
+      height: currentValues?.height || null,
+      age: currentValues?.age || null,
+      weight: currentValues?.weight || null,
+      desiredWeight: currentValues?.desiredWeight || null,
+      bloodType: currentValues?.bloodType || null,
     },
   });
 

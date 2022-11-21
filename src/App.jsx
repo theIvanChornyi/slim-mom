@@ -16,8 +16,8 @@ import {
   selectUserId,
 } from 'redux/auth/selectors.auth';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
-import User from 'pages/User';
-
+// import User from 'pages/User';
+const User = lazy(() => import('pages/User'));
 const Home = lazy(() => import('pages/Home'));
 const Diary = lazy(() => import('pages/Diary'));
 const Login = lazy(() => import('pages/Login'));
