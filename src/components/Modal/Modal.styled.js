@@ -18,6 +18,18 @@ export const Overlay = styled.div`
     top: 120px;
   }
 `;
+export const CloseLine = styled.div`
+  position: absolute;
+  left: 0px;
+  right: 0;
+  top: -38px;
+  height: 40px;
+
+  background: #eff1f3;
+  @media ${breakpoints.minTablet} {
+    display: none;
+  }
+`;
 
 export const ModalWindow = styled.div`
   position: relative;

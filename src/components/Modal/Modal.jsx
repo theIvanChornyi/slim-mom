@@ -12,8 +12,10 @@ import {
   ModulCloseBtn,
   ModulLine,
   RegisterBtn,
+  CloseLine,
 } from './Modal.styled';
-import UserMenu from 'components/UserMenu';
+import { Container } from 'components/Container';
+import GoBackBtn from 'components/UserMenu/GoBackBtn';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -45,8 +47,12 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
 
   return createPortal(
     <>
-      <UserMenu {...{ isOpen, handleCloseClick }} />
       <Overlay onClick={handleBackdropClick}>
+        <CloseLine>
+          <Container>
+            <GoBackBtn handleCloseClick={handleCloseClick}>close</GoBackBtn>
+          </Container>
+        </CloseLine>
         <ModalWindow>
           <ModulCloseBtn type="button" onClick={handleCloseClick}>
             <svg
