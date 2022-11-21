@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 export const AuthBtn = styled.button`
-  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
   width: 182px;
@@ -24,7 +23,6 @@ export const AuthBtn = styled.button`
   }
   @media screen and (min-width: 768px) {
     margin: 0;
-    /* margin-left: 7px; */
   }
   @media screen and (min-width: 1200px) {
     margin-left: 0;

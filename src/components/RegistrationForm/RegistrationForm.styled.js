@@ -4,6 +4,11 @@ export const RegisterForm = styled.form`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  padding-top: 40px;
+  margin-bottom: 20px;
+  @media screen and (min-width: 1200px) {
+    padding: 0;
+  }
 `;
 export const RegisterTitle = styled.h2`
   margin: 0;
@@ -48,11 +53,13 @@ export const RegisterInput = styled.input`
 export const ContainerBtn = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
   padding-bottom: 100px;
   margin-top: 20px;
   @media screen and (min-width: 768px) {
     flex-direction: row;
     padding-bottom: 420px;
+    gap: 0;
   }
   @media screen and (min-width: 1200px) {
     padding-bottom: 180px;

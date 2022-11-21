@@ -52,11 +52,13 @@ export const AuthInput = styled.input`
 export const ContainerBtn = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
   padding-bottom: 100px;
   margin-top: 20px;
   @media screen and (min-width: 768px) {
     flex-direction: row;
     padding-bottom: 495px;
+    gap: 0;
   }
   @media screen and (min-width: 1200px) {
     padding-bottom: 255px;
