@@ -8,6 +8,7 @@ import frame from '../../helpers/images/desktop.png';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const BackgroundStyled = styled.div`
+  background-color: ${p => (p.isDaddy ? '#165181af' : 'white')};
   position: relative;
   width: 100%;
   min-height: 850px;

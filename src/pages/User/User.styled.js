@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
-import leavesBig from '../../helpers/images/leaves-desktop-aside.png';
 
 export const UserPage = styled.section`
   background: rgb(255, 255, 255);
-  min-width: 320px;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 50%,

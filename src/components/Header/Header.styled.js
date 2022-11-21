@@ -2,7 +2,13 @@ import { breakpoints } from 'helpers/breakpoints';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderWrapper = styled.div``;
+export const HeaderWrapper = styled.div`
+  display: none;
+
+  @media ${breakpoints.desktop} {
+    display: block;
+  }
+`;
 
 export const PageHeader = styled.header`
   position: relative;

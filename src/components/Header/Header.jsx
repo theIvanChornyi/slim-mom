@@ -1,6 +1,7 @@
 import { Container } from 'components/Container';
 import Logo from 'components/Logo';
 import TabletUserMenu from 'components/TabletUserMenu';
+import ThemeSwitcher from 'components/ThemeSwitcher';
 import UserMenu from 'components/UserMenu';
 import { useState } from 'react';
 import { useCallback } from 'react';
@@ -55,7 +56,7 @@ export default function Header() {
   return (
     <PageHeader>
       <Container>
-        <HeaderWrapper>
+        <div>
           <HeaderNavigation>
             <Logo
               onClick={handleCloseBurger}
@@ -63,6 +64,7 @@ export default function Header() {
               userId={userId}
               isOnHome={location.pathname}
             />
+
             <HeaderList isAuth={isAuth} isOnHome={location.pathname}>
               {!isAuth ? (
                 <>
@@ -74,6 +76,9 @@ export default function Header() {
                       Registration
                     </HeaderNavLink>
                   </div>
+                  <HeaderWrapper>
+                    <ThemeSwitcher />
+                  </HeaderWrapper>
                 </>
               ) : (
                 <>
@@ -89,14 +94,21 @@ export default function Header() {
                       </HeaderNavLink>
                     </div>
                   </HeaderListItem>
-                  <TabletUserMenu handleLogout={memoizedLogout} />
+
+                  <div>
+                    <HeaderWrapper>
+                      <ThemeSwitcher />
+                    </HeaderWrapper>
+                    <TabletUserMenu handleLogout={memoizedLogout} />
+                  </div>
                   <BurgerBtn onClick={handTogleBurger} isOpen={burgerMenu} />
                 </>
               )}
             </HeaderList>
           </HeaderNavigation>
-        </HeaderWrapper>
+        </div>
       </Container>
+
       {isAuth && !burgerMenu && (
         <UserMenu
           handleCloseClick={handleGoBack}

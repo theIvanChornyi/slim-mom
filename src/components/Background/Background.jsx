@@ -1,5 +1,13 @@
+import { useSelector } from 'react-redux';
+import { selectSlimDaddy } from 'redux/slimDaddy/selectors.slimDaddy';
 import { BackgroundStyled } from './Background.styled';
 
 export const Background = ({ children, isAuth }) => {
-  return <BackgroundStyled isAuth={isAuth}>{children}</BackgroundStyled>;
+  const isDaddy = useSelector(selectSlimDaddy);
+
+  return (
+    <BackgroundStyled isDaddy={isDaddy} isAuth={isAuth}>
+      {children}
+    </BackgroundStyled>
+  );
 };
