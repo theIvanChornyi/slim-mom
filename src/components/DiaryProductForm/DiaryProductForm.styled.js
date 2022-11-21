@@ -32,7 +32,7 @@ export const ProductNameInp = styled.input`
 
   @media ${breakpoints.minTablet} {
     margin: 0;
-    max-width: 240px;
+    width: 240px;
   }
   ::placeholder {
     color: #9b9faa;
@@ -109,9 +109,5 @@ export const ProductAddBtn = styled.button`
     opacity: 0.5;
     border: none;
     box-shadow: none;
-  }
-
-  @media ${breakpoints.minTablet} {
-    margin: 0 auto;
   }
 `;
