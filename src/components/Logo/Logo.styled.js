@@ -51,7 +51,7 @@ export const LogoName = styled.div`
       height: 32px;
       width: 2px;
       background-color: #e0e0e0;
-      right: -20px;
+      right: ${p => (p.isDaddy ? '-4px' : '-20px')};
       visibility: ${p => {
         const rule = !p.isAuth && p.isOnHome !== '/home';
 

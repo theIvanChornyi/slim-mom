@@ -70,6 +70,7 @@ export const HeaderListItem = styled.li`
   @media ${breakpoints.desktop} {
     display: flex;
     gap: 16px;
+    padding-left: 0;
   }
 `;
 

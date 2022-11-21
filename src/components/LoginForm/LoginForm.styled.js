@@ -93,4 +93,6 @@ export const RegisterLink = styled(Link)`
     margin: 0;
     margin-left: 32px;
   }
+
+  ${p => console.log(p)}
 `;

@@ -9,6 +9,8 @@ import { breakpoints } from 'helpers/breakpoints';
 
 export const BackgroundStyled = styled.div`
   background-color: ${p => (p.isDaddy ? '#165181af' : 'white')};
+
+  min-width: 320px;
   position: relative;
   width: 100%;
   min-height: 850px;

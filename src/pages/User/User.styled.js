@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
 
 export const UserPage = styled.section`
+  min-width: 320px;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
@@ -22,14 +23,6 @@ export const UserPage = styled.section`
     margin-right: -16px;
     height: 100vh;
     background: transparent;
-    /* background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 1) 65%,
-      rgba(240, 241, 243, 1) 65%
-    ); */
-    /* background-image: url(${leavesBig});
-    background-repeat: no-repeat;
-    background-position: right -180; */
   }
 `;
 

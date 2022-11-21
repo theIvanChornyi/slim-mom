@@ -38,7 +38,7 @@ export default function Logo({ onClick, isAuth, isOnHome, userId }) {
           />
         </picture>
       </ImageThumb>
-      <LogoName isAuth={isAuth} isOnHome={isOnHome}>
+      <LogoName isDaddy={isDaddy} isAuth={isAuth} isOnHome={isOnHome}>
         <LogoNameText>Slim</LogoNameText>
         <LogoNameAcent>{isDaddy ? 'Daddy' : 'Mom'}</LogoNameAcent>
       </LogoName>

@@ -4,6 +4,7 @@ export const Switcher = styled.div`
   padding: 40px 20px 20px;
   @media screen and (min-width: 1280px) {
     padding: 0;
+    margin-bottom: -4px;
     margin-left: auto;
     display: flex;
     justify-content: end;

@@ -1,6 +1,7 @@
 import CalcForm from 'components/CalcForm';
 import { Container } from 'components/Container';
-import { MainGrid } from './Home.styled';
+import ThemeSwitcher from 'components/ThemeSwitcher';
+import { MainGrid, ThemeSwitcherBox } from './Home.styled';
 
 export default function Home() {
   return (
@@ -8,6 +9,9 @@ export default function Home() {
       <MainGrid>
         <CalcForm />
       </MainGrid>
+      <ThemeSwitcherBox>
+        <ThemeSwitcher />
+      </ThemeSwitcherBox>
     </Container>
   );
 }
