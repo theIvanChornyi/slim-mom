@@ -5,7 +5,7 @@ import leavesBig from '../../helpers/images/leaves-desktop-aside.png';
 
 export const AsideBox = styled.aside`
   margin: 0 -20px;
-  /* background: #f0f1f3; */
+  background: ${p => p.theme.sideBarColor};
   padding: 40px 20px;
   min-width: 280px;
   min-height: 433px;
@@ -31,7 +31,7 @@ export const AsideBox = styled.aside`
 
   @media ${breakpoints.desktop} {
     margin: 0 -32px;
-    background: #f0f1f3;
+    background: ${p => p.theme.sideBarColor};
 
     margin-left: auto;
     gap: 60px;
@@ -112,16 +112,14 @@ export const ProductList = styled.ul`
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 6px; /* ширина всей полосы прокрутки */
+    width: 6px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #e2e2e2; /* цвет зоны отслеживания */
+    background: #e2e2e2;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #264061; /* цвет бегунка */
-    /* border-radius: 20px; округлось бегунка */
-    /* border: 3px solid orange; отступ вокруг бегунка */
+    background-color: #264061;
   }
 `;

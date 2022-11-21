@@ -43,7 +43,13 @@ export default function DatePicker({ date, setDate }) {
         showCalendar={showCalendar}
         onClick={handleToogleCalendar}
       />
-      {showCalendar && <MyCalendar onClickDay={handleCalendar} value={date} />}
+      {showCalendar && (
+        <MyCalendar
+          maxDate={new Date()}
+          onClickDay={handleCalendar}
+          value={date}
+        />
+      )}
     </DateContainer>
   );
 }

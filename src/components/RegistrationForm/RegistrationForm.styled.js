@@ -41,6 +41,7 @@ export const RegisterLabel = styled.label`
   color: #9b9faa;
 `;
 export const RegisterInput = styled.input`
+  background: transparent;
   outline: none;
   border: none;
   border-bottom: 1px solid #e0e0e0;
@@ -79,7 +80,7 @@ export const LoginLink = styled(Link)`
   line-height: 1.21;
   letter-spacing: 0.04em;
   color: #fc842d;
-  background-color: #fff;
+  background-color: transparent;
   border: 2px solid #fc842d;
   border-radius: 30px;
   cursor: pointer;

@@ -5,7 +5,7 @@ export const AddModal = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: white;
+  background-color: ${p => p.theme.modalColor};
 `;
 
 export const ModalLine = styled.div`

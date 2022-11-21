@@ -1,7 +1,7 @@
 import LoginBtn from 'components/LoginBtn';
 import { ContainerBtn } from 'components/RegistrationForm/RegistrationForm.styled';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { logInThunk } from 'redux/auth/thunk.auth';
 import {
@@ -15,10 +15,8 @@ import { loginSchema } from 'services/validation/loginSchema';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { selectSlimDaddy } from 'redux/slimDaddy/selectors.slimDaddy';
 
 export default function LoginForm() {
-  const isDaddy = useSelector(selectSlimDaddy);
   const navigate = useNavigate();
   const {
     register,

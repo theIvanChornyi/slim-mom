@@ -70,6 +70,7 @@ export default function DiaryProductForm({
       }
     } else {
       toast.warn('Please use dropdowl list only!');
+      setState('idle');
     }
   };
 

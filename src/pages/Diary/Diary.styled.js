@@ -30,7 +30,14 @@ export const Gradient = styled.div`
     width: 500px;
     height: 50px;
     display: block;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, #fff 50%);
+    background: ${p =>
+      p.theme.gradient
+        ? `linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        #fff 50%
+      )`
+        : 'transparent'};
   }
 
   @media ${breakpoints.desktop} {
@@ -53,21 +60,3 @@ export const DairyAddModalWrap = styled.div`
     display: none;
   }
 `;
-
-// @media ${breakpoints.desktop} {
-//     ::after {
-//       content: '';
-//       position: absolute;
-
-//       left: 0px;
-//       right: 0;
-//       height: 50px;
-//       bottom: 400px;
-//       /* background: linear-gradient(
-//         180deg,
-//         rgba(255, 255, 255, 0.5) 0%,
-//         #ffffff 42.19%
-//       ); */
-//       background-color: red;
-//     }
-//   }

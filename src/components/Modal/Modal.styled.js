@@ -41,7 +41,7 @@ export const ModalWindow = styled.div`
   height: 100%;
 
   padding: 40px 20px 119px;
-  background-color: #ffffff;
+  background-color: ${p => p.theme.modalColor};
   box-shadow: 0px 22px 40px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 768px) {
@@ -52,7 +52,7 @@ export const ModalWindow = styled.div`
 `;
 
 export const ModulCloseBtn = styled.button`
- display: none;
+  display: none;
 
   @media (min-width: 768px) {
     display: inline-flex;
@@ -96,7 +96,7 @@ export const Callories = styled.span`
   text-align: center;
   letter-spacing: 0.04em;
 
-  color: #264061;
+  color: ${p => p.theme.modalTextColor};
 
   margin-bottom: 20px;
 
@@ -141,7 +141,7 @@ export const FoodTitle = styled.p`
 `;
 
 export const FoodText = styled.ol`
- width: 280px;
+  width: 280px;
   max-height: 112px;
   display: flex;
   flex-direction: column;

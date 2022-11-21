@@ -40,6 +40,7 @@ export const AuthLabel = styled.label`
   color: #9b9faa;
 `;
 export const AuthInput = styled.input`
+  background-color: transparent;
   outline: none;
   border: none;
   border-bottom: 1px solid #e0e0e0;
@@ -78,7 +79,7 @@ export const RegisterLink = styled(Link)`
   line-height: 1.21;
   letter-spacing: 0.04em;
   color: #fc842d;
-  background-color: #fff;
+  background-color: transparent;
   border: 2px solid #fc842d;
   border-radius: 30px;
   cursor: pointer;
@@ -93,6 +94,4 @@ export const RegisterLink = styled(Link)`
     margin: 0;
     margin-left: 32px;
   }
-
-  ${p => console.log(p)}
 `;

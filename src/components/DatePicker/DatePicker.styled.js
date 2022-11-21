@@ -37,4 +37,15 @@ export const MyCalendar = styled(Calendar)`
   left: 0;
   right: 0;
   transform: translateY(25%);
+
+  &.react-calendar {
+    background: ${p => p.theme.modalColor};
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  & button:disabled,
+  & button:disabled.react-calendar__navigation__arrow {
+    background: ${p => p.theme.calendarColor};
+  }
 `;

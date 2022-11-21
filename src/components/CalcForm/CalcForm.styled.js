@@ -8,16 +8,18 @@ export const Thumb = styled.div`
   max-width: 610px;
 
   padding-top: 42px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 
   @media ${breakpoints.minTablet} {
     height: 610px;
     padding-top: 100px;
+    margin-bottom: 65px;
   }
 
   @media ${breakpoints.desktop} {
     padding-top: 220px;
     margin-left: 0;
+    margin-bottom: 0;
   }
 `;
 
@@ -98,6 +100,7 @@ export const FormLabel = styled.label`
 `;
 
 export const TextInp = styled.input`
+  background-color: transparent;
   display: block;
   border: none;
   width: 100%;

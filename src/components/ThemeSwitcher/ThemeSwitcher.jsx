@@ -17,12 +17,12 @@ export default function ThemeSwitcher() {
   };
   return (
     <Switcher>
-      <ThemeLight>SlimMom </ThemeLight>
+      <ThemeLight>SlimMom</ThemeLight>
       <LabelSwitcher>
         <InputSwitcher onChange={switchTheme} type="checkbox" />
         <ThemeCheckbox></ThemeCheckbox>
       </LabelSwitcher>
-      <ThemeDark> SlimDaddy</ThemeDark>
+      <ThemeDark>SlimDaddy</ThemeDark>
     </Switcher>
   );
 }

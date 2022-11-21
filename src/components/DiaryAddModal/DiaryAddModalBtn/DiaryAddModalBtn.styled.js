@@ -36,9 +36,9 @@ export const AddBtn = styled.button`
     border linear 250ms, box-shadow linear 250ms;
   :hover,
   :focus {
-    background-color: white;
-    stroke: #fc842d;
-    border: 1px solid #fc842d;
+    background-color: ${p => p.theme.color};
+    stroke: ${p => p.theme.modalBorderColor};
+    border: 1px solid ${p => p.theme.modalBorderColor};
     box-shadow: none;
   }
 
