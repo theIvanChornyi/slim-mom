@@ -31,7 +31,7 @@ export default function DiaryProductForm({
     const search = e.target.value;
     setQuerry(search);
     setErrorState(null);
-    if (search) {
+    if (search && search.length < 30) {
       try {
         const { data } = await APIs.searchingProductRequest(search);
         setProducts(data);
@@ -69,7 +69,7 @@ export default function DiaryProductForm({
         setErrorState(message);
       }
     } else {
-      toast.warn('Please use dropdowl list only!');
+      toast.warn('Please use dropdown list only!');
       setState('idle');
     }
   };

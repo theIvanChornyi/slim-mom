@@ -4,6 +4,7 @@ import leaves from '../../helpers/images/leaves-aside-tablet.png';
 import leavesBig from '../../helpers/images/leaves-desktop-aside.png';
 
 export const AsideBox = styled.aside`
+  position: relative;
   margin: 0 -20px;
   background: ${p => p.theme.sideBarColor};
   padding: 40px 20px;
