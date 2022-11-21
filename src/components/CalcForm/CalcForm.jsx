@@ -29,6 +29,7 @@ export default function CalcForm() {
 
   const context = useOutletContext();
   const currentValues = null || context?.userData;
+  const savedValues = JSON.parse(window.localStorage.getItem('userParams'));
 
   const {
     register,
@@ -38,7 +39,7 @@ export default function CalcForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(calcSchema),
-    defaultValues: {
+    defaultValues: savedValues || {
       height: currentValues?.height || null,
       age: currentValues?.age || null,
       weight: currentValues?.weight || null,

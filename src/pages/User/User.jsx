@@ -74,6 +74,7 @@ async function getAllowedProducts(
   setErrorMessage
 ) {
   try {
+    window.localStorage.removeItem('userParams');
     const { data } = await APIs.getUserInfoRequest();
     setErrorMessage(null);
     setUserData(data.userData);
