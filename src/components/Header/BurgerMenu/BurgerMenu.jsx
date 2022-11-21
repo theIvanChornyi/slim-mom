@@ -1,3 +1,4 @@
+import ThemeSwitcher from 'components/ThemeSwitcher';
 import {
   BurgerItem,
   BurgerLink,
@@ -9,6 +10,10 @@ export default function BurgerMenu({ onClick, userId }) {
   return (
     <BurgerOverlay>
       <BurgerList>
+        <BurgerItem>
+          <ThemeSwitcher />
+        </BurgerItem>
+
         <BurgerItem>
           <BurgerLink onClick={onClick} to={`/${userId}/diary`}>
             Diary

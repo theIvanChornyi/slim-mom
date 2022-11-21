@@ -1,30 +1,30 @@
 import styled from 'styled-components';
 
 export const Switcher = styled.div`
-  display: none;
-  @media screen and (min-width: 768px) {
+  padding: 40px 20px 20px;
+  @media screen and (min-width: 1280px) {
+    padding: 0;
+    margin-left: auto;
     display: flex;
-    align-items: flex-end;
-    gap: 10px;
+    justify-content: end;
   }
 `;
 export const ThemeLight = styled.span`
-  font-family: 'Raleway';
+  font-family: ' Jost ', sans-serif;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 1.14;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 26px;
+  text-transform: capitalize;
   color: #fc842d;
 `;
 export const ThemeDark = styled.span`
-  font-family: 'Raleway';
+  font-family: ' Jost ', sans-serif;
+
   font-weight: 700;
-  font-size: 14px;
-  line-height: 1.14;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: black;
+  font-size: 18px;
+  line-height: 26px;
+  text-transform: capitalize;
+  color: #9b9faa;
 `;
 export const LabelSwitcher = styled.label`
   display: inline-block;
@@ -64,7 +64,7 @@ export const InputSwitcher = styled.input`
 
   &:checked + ${ThemeCheckbox}::before {
     transform: translateX(20px);
-    background-color: black;
+    background-color: #9b9faa;
   }
   &:not(:disabled) + ${ThemeCheckbox} {
     border-color: #fd5103;
