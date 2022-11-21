@@ -21,8 +21,7 @@ import Filter from 'components/Filter';
 
 const modalRoot = document.getElementById('modal-root');
 
-export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
-
+export default function Modal({ setIsOpen, dailyRateCalc }) {
   const { dailyRate, notAllowedProducts } = dailyRateCalc;
   const [filter, setFilter] = useState('');
 
@@ -51,10 +50,12 @@ export default function Modal({ isOpen, setIsOpen, dailyRateCalc }) {
   };
 
   const handleFilter = event => {
-    setFilter(event.target.value)
+    setFilter(event.target.value);
   };
 
-const filteredProducts = notAllowedProducts.filter(item => item.toLowerCase().includes(filter.toLowerCase()));
+  const filteredProducts = notAllowedProducts.filter(item =>
+    item.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return createPortal(
     <>
@@ -86,19 +87,14 @@ const filteredProducts = notAllowedProducts.filter(item => item.toLowerCase().in
           </Callories>
           <ModulLine />
           <FoodTitle>Foods you should not eat</FoodTitle>
-            <Filter
-            onChangeFilter={handleFilter}
-            value={filter}
-            />
+          <Filter onChangeFilter={handleFilter} value={filter} />
           <FoodText>
             {filteredProducts.map(product => (
               <li key={product}>{product}</li>
             ))}
           </FoodText>
           {filteredProducts.length === 0 && (
-            <FoodText>
-              This product is not listed. Enjoy your meal!
-            </FoodText>
+            <FoodText>This product is not listed. Enjoy your meal!</FoodText>
           )}
           <RegisterBtn to="/registration">Start losing weight</RegisterBtn>
         </ModalWindow>
@@ -106,10 +102,9 @@ const filteredProducts = notAllowedProducts.filter(item => item.toLowerCase().in
     </>,
     modalRoot
   );
-};
+}
 
 Modal.propTypes = {
-  isOpen: PropTypes.bool,
   setIsOpen: PropTypes.func,
   dailyRateCalc: PropTypes.shape({
     dailyRate: PropTypes.number.isRequired,
