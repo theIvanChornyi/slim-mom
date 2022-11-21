@@ -25,7 +25,7 @@ export const ProductName = styled.p`
   color: #212121;
 
   @media ${breakpoints.minTablet} {
-    width: 240px;
+    min-width: 240px;
     min-height: 36px;
     margin-right: 22px;
 
@@ -34,9 +34,8 @@ export const ProductName = styled.p`
     color: #212121;
   }
   @media ${breakpoints.desktop} {
-    width: 240px;
     min-height: 40px;
-    margin-right: 48px;
+    margin-right: 22px;
   }
 `;
 
@@ -100,7 +99,11 @@ export const ButtonDelete = styled.button`
   border: 0;
 
   @media ${breakpoints.minTablet} {
-    padding-bottom: 15px;
+    display: flex;
+    margin-bottom: 6px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,

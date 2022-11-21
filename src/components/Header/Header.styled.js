@@ -26,6 +26,10 @@ export const HeaderNavigation = styled.nav`
   display: flex;
   justify-content: space-between;
 
+  @media ${breakpoints.minTablet} {
+    padding: 20px 37px 16px 37px;
+  }
+
   @media ${breakpoints.desktop} {
     position: absolute;
     padding: 50px 0 0 0;
