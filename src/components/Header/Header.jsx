@@ -1,6 +1,7 @@
 import { Container } from 'components/Container';
 import Logo from 'components/Logo';
 import TabletUserMenu from 'components/TabletUserMenu';
+import ThemeSwitcher from 'components/ThemeSwitcher';
 import UserMenu from 'components/UserMenu';
 import { useState } from 'react';
 import { useCallback } from 'react';
@@ -93,10 +94,12 @@ export default function Header() {
                   <BurgerBtn onClick={handTogleBurger} isOpen={burgerMenu} />
                 </>
               )}
+              <ThemeSwitcher />
             </HeaderList>
           </HeaderNavigation>
         </HeaderWrapper>
       </Container>
+
       {isAuth && !burgerMenu && (
         <UserMenu
           handleCloseClick={handleGoBack}

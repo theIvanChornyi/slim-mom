@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import APIs from 'services/API/API';
 import { toast } from 'react-toastify';
 import Loader from 'components/Loader';
+import { useSelector } from 'react-redux';
+import { selectSlimDaddy } from 'redux/slimDaddy/selectors.slimDaddy';
 
 const TODAY = new Date().toLocaleDateString('en-CA');
 
@@ -18,6 +20,8 @@ export default function User() {
     .replaceAll('/', '.');
 
   const { userId } = useParams();
+  const isDaddy = useSelector(selectSlimDaddy);
+
   const usersParams = JSON.parse(window.localStorage.getItem('userParams'));
 
   const [dailyRate, setDailyRate] = useState({});
@@ -44,7 +48,7 @@ export default function User() {
     getAllowedProducts(setUserData, setNotAllowedProducts, setErrorMessage);
   }, []);
   return (
-    <UserPage>
+    <UserPage isDaddy={isDaddy}>
       <Container>
         {userData?.notAllowedProducts ? (
           <UserWrapper>
