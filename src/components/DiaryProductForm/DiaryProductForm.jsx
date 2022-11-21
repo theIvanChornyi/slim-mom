@@ -58,7 +58,9 @@ export default function DiaryProductForm({
       try {
         const { data } = await APIs.addEatenProductRequest(newProduct);
         await setState('idle');
-        setEatenProducts(prev => [...prev, data?.eatenProduct]);
+        setEatenProducts(prev =>
+          prev ? [...prev, data?.eatenProduct] : [data?.eatenProduct]
+        );
         setProducts([]);
         setQuerry('');
       } catch (error) {

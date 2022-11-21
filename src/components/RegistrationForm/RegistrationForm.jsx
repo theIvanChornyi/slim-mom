@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signUpThunk } from 'redux/auth/thunk.auth';
 import { LoginLink } from './RegistrationForm.styled';
 import RegistrationBtn from 'components/RegistrationBtn';
