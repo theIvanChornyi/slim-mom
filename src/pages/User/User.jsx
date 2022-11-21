@@ -54,7 +54,12 @@ export default function User() {
           <UserWrapper>
             <Suspense fallback={<Loader />}>
               <Outlet
-                context={{ userData, setNotAllowedProducts, dailyRate }}
+                context={{
+                  userData,
+                  setNotAllowedProducts,
+                  dailyRate,
+                  setDailyRate,
+                }}
               />
             </Suspense>
 

@@ -34,9 +34,11 @@ export default function RegistrationForm() {
       const { user } = await dispatch(signUpThunk(data)).unwrap();
       reset();
       toast.dismiss();
-
       await navigate(`/${user.id}/calculator`);
-    } catch (error) {}
+    } catch (error) {
+      // const message = error?.response?;
+      console.log({ ...error.request });
+    }
   };
 
   const { username, email, password } = errors;
