@@ -63,6 +63,10 @@ export const CurrenValue = styled.p`
   color: black;
 `;
 
+export const BloodTitle = styled.p`
+  margin-bottom: 10px;
+`;
+
 export const FormLabel = styled.label`
   margin-top: 32px;
   width: 100%;
@@ -75,6 +79,9 @@ export const FormLabel = styled.label`
 
   @media ${breakpoints.minTablet} {
     margin-top: 40px;
+    &:last-child {
+      margin-top: 40px;
+    }
   }
 
   & .tooltiptext {

@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import {
+  BloodTitle,
   Button,
   ButtonCon,
   FormLabel,
@@ -122,7 +123,7 @@ export default function CalcForm() {
           </FormLabel>
 
           <FormLabel htmlFor="bloodType">
-            <p>Blood type*</p>
+            <BloodTitle>Blood type*</BloodTitle>
             <List>
               <li>
                 <RadioInp

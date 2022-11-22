@@ -63,6 +63,7 @@ export default function DiaryProductForm({
         productId: isDisabled._id,
         date: normalizedDate,
       };
+      toast.dismiss();
       try {
         const { data } = await APIs.addEatenProductRequest(newProduct);
         await setState('idle');
@@ -73,6 +74,7 @@ export default function DiaryProductForm({
           ...prev,
           daySummary: data?.daySummary || data?.newSummary,
           kcalLeft: data?.daySummary?.kcalLeft || data?.newSummary?.kcalLeft,
+          id: data?.day?.id || data?.newDay?.id,
         }));
         setProducts([]);
         setQuerry('');

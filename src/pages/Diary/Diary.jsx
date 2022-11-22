@@ -53,14 +53,12 @@ export default function Diary() {
   useEffect(() => {
     setEatenProducts(userEatenProducts);
   }, [userEatenProducts]);
-
   const handleAddProductOpen = () => {
     setAddModalOpen(true);
   };
   const handleAddProductClose = () => {
     setAddModalOpen(false);
   };
-
   const handleDeleteProduct = async deleteId => {
     const dayId = dailyRate.id;
     setIsDeliting(deleteId);

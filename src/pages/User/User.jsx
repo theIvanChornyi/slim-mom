@@ -94,12 +94,12 @@ async function getAllowedProducts(
 ) {
   try {
     setState('pending');
-    window.localStorage.removeItem('userParams');
     const { data } = await APIs.getUserInfoRequest();
     setErrorMessage(null);
     setUserData(data.userData);
     setNotAllowedProducts(data.userData.notAllowedProducts);
     setState('idle');
+    if (data.userData.height > 90) window.localStorage.removeItem('userParams');
   } catch (error) {
     const message = error?.response?.data?.message;
     setErrorMessage(message);
