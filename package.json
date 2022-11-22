@@ -2,7 +2,7 @@
   "name": "slim-mom",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://theivanchornyi.github.io/Slim-Mom/",
+  "homepage": "https://theivanchornyi.github.io/slim-mom/",
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@reduxjs/toolkit": "^1.9.0",
