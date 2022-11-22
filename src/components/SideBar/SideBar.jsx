@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   AsideBox,
   Div,
@@ -88,3 +89,29 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
     </AsideBox>
   );
 }
+
+SideBar.propTypes = {
+  date: PropTypes.string,
+  dailyInfo: PropTypes.shape({
+    date: PropTypes.string,
+    daySummary: PropTypes.shape({
+      dailyRate: PropTypes.number,
+      date: PropTypes.string,
+      id: PropTypes.string,
+      kcalConsumed: PropTypes.number,
+      kcalLeft: PropTypes.number,
+      percentsOfDailyRate: PropTypes.number,
+      userId: PropTypes.string,
+    }),
+    eatenProducts: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        kcal: PropTypes.number,
+        title: PropTypes.string,
+        weight: PropTypes.number,
+      })
+    ),
+    id: PropTypes.string,
+  }),
+  notAllowedProducts: PropTypes.arrayOf(PropTypes.string),
+};

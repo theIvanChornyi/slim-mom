@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import LogoMobImage from 'helpers/logo/logoMobile.png';
 import LogoMobImageX from 'helpers/logo/logoMobile@2x.png';
 import LogoDeskImage from 'helpers/logo/logoDesk.png';
@@ -45,3 +46,10 @@ export default function Logo({ onClick, isAuth, isOnHome, userId }) {
     </LogoLink>
   );
 }
+
+Logo.propTypes = {
+  onClick: PropTypes.func,
+  isAuth: PropTypes.bool,
+  isOnHome: PropTypes.string,
+  userId: PropTypes.string,
+};

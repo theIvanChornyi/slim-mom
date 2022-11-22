@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ButtonDelete,
   ItemProducts,
@@ -38,3 +39,11 @@ export default function DiaryProductsItem({
     </ItemProducts>
   );
 }
+
+DiaryProductsItem.propTypes = {
+  name: PropTypes.string,
+  weight: PropTypes.number,
+  kcal: PropTypes.number,
+  id: PropTypes.string,
+  handleDeleteProduct: PropTypes.func,
+};

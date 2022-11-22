@@ -1,6 +1,8 @@
 import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
+import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import { Fragment, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import APIs from 'services/API/API';
 import {
@@ -20,11 +22,12 @@ export default function DiaryProductForm({
   normalizedDate,
   setEatenProducts,
 }) {
+  const { setDailyRate } = useOutletContext();
+
   const [querry, setQuerry] = useState('');
   const [products, setProducts] = useState([]);
   const [errorState, setErrorState] = useState(null);
   const [state, setState] = useState('idle');
-
   toast.warn(errorState);
 
   const handleChange = async e => {
@@ -61,6 +64,11 @@ export default function DiaryProductForm({
         setEatenProducts(prev =>
           prev ? [...prev, data?.eatenProduct] : [data?.eatenProduct]
         );
+        setDailyRate(prev => ({
+          ...prev,
+          daySummary: data?.daySummary || data?.newSummary,
+          kcalLeft: data?.daySummary?.kcalLeft || data?.newSummary?.kcalLeft,
+        }));
         setProducts([]);
         setQuerry('');
       } catch (error) {
@@ -69,7 +77,7 @@ export default function DiaryProductForm({
         setErrorState(message);
       }
     } else {
-      toast.warn('Please use dropdown list only!');
+      toast.info('Please use dropdown list only!');
       setState('idle');
     }
   };
@@ -114,3 +122,12 @@ export default function DiaryProductForm({
     </ProductForm>
   );
 }
+
+DiaryProductForm.propTypes = {
+  handleClose: PropTypes.func,
+  register: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  reset: PropTypes.func,
+  normalizedDate: PropTypes.string,
+  setEatenProducts: PropTypes.func,
+};

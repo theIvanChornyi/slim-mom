@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Container } from 'components/Container';
 import { useSelector } from 'react-redux';
 import { selectUserName } from 'redux/auth/selectors.auth';
@@ -26,3 +27,7 @@ export default function UserMenu({ handleLogout, handleCloseClick }) {
     </UserMenuHeader>
   );
 }
+UserMenu.propTypes = {
+  handleLogout: PropTypes.func,
+  handleCloseClick: PropTypes.func,
+};

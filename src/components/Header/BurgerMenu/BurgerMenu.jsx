@@ -1,4 +1,5 @@
 import ThemeSwitcher from 'components/ThemeSwitcher';
+import PropTypes from 'prop-types';
 import {
   BurgerItem,
   BurgerLink,
@@ -28,3 +29,4 @@ export default function BurgerMenu({ onClick, userId }) {
     </BurgerOverlay>
   );
 }
+BurgerMenu.propTypes = { onClick: PropTypes.func, userId: PropTypes.string };

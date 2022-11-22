@@ -54,7 +54,12 @@ export default function User() {
           <UserWrapper>
             <Suspense fallback={<Loader />}>
               <Outlet
-                context={{ userData, setNotAllowedProducts, dailyRate }}
+                context={{
+                  userData,
+                  setNotAllowedProducts,
+                  dailyRate,
+                  setDailyRate,
+                }}
               />
             </Suspense>
 
@@ -83,7 +88,10 @@ async function getAllowedProducts(
     setErrorMessage(null);
     setUserData(data.userData);
     setNotAllowedProducts(data.userData.notAllowedProducts);
-  } catch (error) {}
+  } catch (error) {
+    const message = error?.response?.data?.message;
+    setErrorMessage(message);
+  }
 }
 
 async function getInfoSideBar(
@@ -132,5 +140,8 @@ async function getRequestWithSaved(
     setNotAllowedProducts(data.notAllowedProducts);
     setErrorMessage(null);
     window.localStorage.removeItem('userParams');
-  } catch (error) {}
+  } catch (error) {
+    const message = error?.response?.data?.message;
+    setErrorMessage(message);
+  }
 }

@@ -1,4 +1,5 @@
 import { MobileMenuBtn } from './BurgerBtn.styled';
+import PropTypes from 'prop-types';
 
 export default function BurgerBtn({ onClick, isOpen }) {
   return (
@@ -31,3 +32,4 @@ export default function BurgerBtn({ onClick, isOpen }) {
     </MobileMenuBtn>
   );
 }
+BurgerBtn.propTypes = { onClick: PropTypes.func, isOpen: PropTypes.bool };

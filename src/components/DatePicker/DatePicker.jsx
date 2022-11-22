@@ -4,11 +4,11 @@ import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function DatePicker({ date, setDate }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-
   const initCalendarDay = new Date(searchParams.get('date') || date);
 
   const normalizedDate = initCalendarDay
@@ -53,3 +53,7 @@ export default function DatePicker({ date, setDate }) {
     </DateContainer>
   );
 }
+DatePicker.propTypes = {
+  date: PropTypes.object,
+  setDate: PropTypes.func,
+};

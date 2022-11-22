@@ -42,7 +42,8 @@ export const LogoName = styled.div`
 
   @media ${breakpoints.desktop} {
     position: absolute;
-    left: 60px;
+    left: ${p => (p.isDaddy ? '42px' : '60px')};
+
     bottom: -2px;
 
     ::after {
@@ -51,7 +52,8 @@ export const LogoName = styled.div`
       height: 32px;
       width: 2px;
       background-color: #e0e0e0;
-      right: ${p => (p.isDaddy ? '-4px' : '-20px')};
+      right: -20px;
+
       visibility: ${p => {
         const rule = !p.isAuth && p.isOnHome !== '/home';
 

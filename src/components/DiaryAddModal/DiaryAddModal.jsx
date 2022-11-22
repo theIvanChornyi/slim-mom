@@ -1,5 +1,6 @@
 import { Container } from 'components/Container';
 import DairyProductForm from 'components/DiaryProductForm';
+import PropTypes from 'prop-types';
 
 import { AddModal, ModalArrowBtn, ModalLine } from './DiaryAddModal.styled';
 export default function DiaryAddModal({
@@ -49,3 +50,5 @@ export default function DiaryAddModal({
     </AddModal>
   );
 }
+
+DiaryAddModal.propTypes = { handleClose: PropTypes.func };

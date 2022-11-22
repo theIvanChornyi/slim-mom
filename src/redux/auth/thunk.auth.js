@@ -24,7 +24,7 @@ export const signUpThunk = createAsyncThunk(
       token.set(data.accessToken);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error?.response?.data?.message);
     }
   }
 );
@@ -37,7 +37,7 @@ export const logInThunk = createAsyncThunk(
       token.set(data.accessToken);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error?.response?.data?.message);
     }
   }
 );
@@ -59,7 +59,7 @@ export const refreshUserThunk = createAsyncThunk(
       token.set(data.newAccessToken);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error?.response?.data?.message);
     }
   }
 );
@@ -71,7 +71,7 @@ export const logOutThunk = createAsyncThunk(
       await AuthApi.logOutRequest();
       token.unSet();
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error?.response?.data?.message);
     }
   }
 );
