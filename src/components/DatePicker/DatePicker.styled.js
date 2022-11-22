@@ -1,6 +1,12 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Calendar from 'react-calendar';
 import { breakpoints } from 'helpers/breakpoints';
+
+const animation = keyframes`
+  50% {
+    color: rgb(252, 132, 45);
+  }
+`;
 
 export const DateContainer = styled.div`
   position: relative;
@@ -30,6 +36,11 @@ export const DateString = styled.p`
   }
 
   color: #212121;
+
+  animation-name: ${p => (p.state === 'pending' ? animation : 'none')};
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 `;
 
 export const MyCalendar = styled(Calendar)`

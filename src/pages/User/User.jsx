@@ -67,6 +67,7 @@ export default function User() {
                   setNotAllowedProducts,
                   dailyRate,
                   setDailyRate,
+                  state,
                 }}
               />
             </Suspense>
@@ -81,7 +82,6 @@ export default function User() {
           <Loader />
         )}
       </Container>
-      {state === 'pending' && <Loader />}
     </UserPage>
   );
 }

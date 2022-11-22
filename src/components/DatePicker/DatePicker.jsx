@@ -3,13 +3,14 @@ import { DateContainer, DateString, MyCalendar } from './DatePicker.styled';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useOutletContext, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function DatePicker({ date, setDate }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const initCalendarDay = new Date(searchParams.get('date') || date);
+  const { state } = useOutletContext();
 
   const normalizedDate = initCalendarDay
     .toLocaleDateString('en-GB')
@@ -38,7 +39,7 @@ export default function DatePicker({ date, setDate }) {
 
   return (
     <DateContainer>
-      <DateString>{normalizedDate}</DateString>
+      <DateString state={state}>{normalizedDate}</DateString>
       <CalendarButton
         showCalendar={showCalendar}
         onClick={handleToogleCalendar}
