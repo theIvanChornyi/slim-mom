@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: fixed;
+  min-width: 320px;
   top: 0;
   left: 0;
   width: 100vw;
@@ -179,6 +180,7 @@ export const FoodText = styled.ol`
 
 export const RegisterBtn = styled(NavLink)`
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   width: 210px;

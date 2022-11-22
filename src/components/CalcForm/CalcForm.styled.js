@@ -182,6 +182,12 @@ export const RadioInp = styled.input`
 `;
 
 export const ButtonCon = styled.div`
+  margin: 0 auto;
+
+  @media ${breakpoints.tablet} {
+    margin: 0;
+  }
+
   @media ${breakpoints.desktop} {
     width: 100%;
     display: flex;

@@ -70,7 +70,6 @@ export default function Diary() {
       setIsDeliting(null);
     } catch (error) {}
   };
-
   return (
     <>
       {!addModalOpen && (
@@ -96,6 +95,7 @@ export default function Diary() {
               handleDeleteProduct={handleDeleteProduct}
               isDeliting={isDeliting}
             />
+
             {eatenProducts?.length > 0 && <Gradient />}
 
             <DairyAddModalWrap>

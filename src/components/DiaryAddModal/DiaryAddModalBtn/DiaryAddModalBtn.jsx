@@ -27,6 +27,5 @@ export default function DiaryAddModalBtn({
 DiaryAddModalBtn.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.string,
-  errorState: PropTypes.object,
   state: PropTypes.string,
 };

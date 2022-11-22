@@ -7,13 +7,13 @@ export const UserPage = styled.section`
     p.theme.gradient
       ? `linear-gradient(
         180deg,
-        rgba(255, 255, 255, 1) 50%,
-        rgba(240, 241, 243, 1) 50%
+        rgba(255, 255, 255, 1) 48%,
+        rgba(240, 241, 243, 1) 48%
       )`
       : `linear-gradient(
         180deg,
-        rgba(22,	81,	129, 0.3) 50%,
-        #165181 50%
+        rgba(22,	81,	129, 0.3) 48%,
+        #165181 48%
       )`};
 
   @media ${breakpoints.minTablet} {
@@ -21,13 +21,13 @@ export const UserPage = styled.section`
       p.theme.gradient
         ? `linear-gradient(
         180deg,
-        rgba(255, 255, 255, 1) 63%,
-        rgba(240, 241, 243, 1) 63%
+        rgba(255, 255, 255, 1) 60%,
+        rgba(240, 241, 243, 1) 60%
       )`
         : `linear-gradient(
         180deg,
-        rgba(22,	81,	129, 0.3) 63%,
-        #165181 63%
+        rgba(22,	81,	129, 0.3) 60%,
+        #165181 60%
       )`};
   }
 

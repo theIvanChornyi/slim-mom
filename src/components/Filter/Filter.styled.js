@@ -8,7 +8,7 @@ export const FilterWrap = styled.div`
 `;
 
 export const FilterInput = styled.input`
-  width: 280px;
+  width: ${p => (p.isAuth ? '260px' : '280px')};
   padding: 3px;
   font-size: 13px;
   border-color: #264061;
@@ -33,6 +33,6 @@ export const FilterInput = styled.input`
   margin-left: auto;
   margin-right: auto;
   @media (min-width: 768px) {
-    width: 330px;
+    width: ${p => (p.isAuth ? '270px' : '330px')};
   }
 `;

@@ -25,6 +25,8 @@ export default function User() {
   const usersParams = JSON.parse(window.localStorage.getItem('userParams'));
 
   const [dailyRate, setDailyRate] = useState({});
+  const [state, setState] = useState('idle');
+
   const [notAllowedProducts, setNotAllowedProducts] = useState([]);
   const [userData, setUserData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
@@ -39,13 +41,19 @@ export default function User() {
       setUserData,
       date,
       userId,
-      usersParams
+      usersParams,
+      setState
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, userId]);
 
   useEffect(() => {
-    getAllowedProducts(setUserData, setNotAllowedProducts, setErrorMessage);
+    getAllowedProducts(
+      setUserData,
+      setNotAllowedProducts,
+      setErrorMessage,
+      setState
+    );
   }, []);
   return (
     <UserPage isDaddy={isDaddy}>
@@ -73,6 +81,7 @@ export default function User() {
           <Loader />
         )}
       </Container>
+      {state === 'pending' && <Loader />}
     </UserPage>
   );
 }
@@ -80,17 +89,21 @@ export default function User() {
 async function getAllowedProducts(
   setUserData,
   setNotAllowedProducts,
-  setErrorMessage
+  setErrorMessage,
+  setState
 ) {
   try {
+    setState('pending');
     window.localStorage.removeItem('userParams');
     const { data } = await APIs.getUserInfoRequest();
     setErrorMessage(null);
     setUserData(data.userData);
     setNotAllowedProducts(data.userData.notAllowedProducts);
+    setState('idle');
   } catch (error) {
     const message = error?.response?.data?.message;
     setErrorMessage(message);
+    setState('idle');
   }
 }
 
@@ -101,13 +114,17 @@ async function getInfoSideBar(
   setUserData,
   date,
   userId,
-  usersParams
+  usersParams,
+  setState
 ) {
   try {
+    setState('pending');
     const { data } = await APIs.getInfoForDayRequest({ date });
     setDailyRate(data);
     setErrorMessage(null);
+    setState('idle');
   } catch (error) {
+    setState('idle');
     if (
       error.response.data.message === 'Please, count your daily rate first' &&
       usersParams
@@ -119,7 +136,8 @@ async function getInfoSideBar(
         usersParams,
         setDailyRate,
         setNotAllowedProducts,
-        setErrorMessage
+        setErrorMessage,
+        setState
       );
     } else {
       setErrorMessage(error.response.data.message);
@@ -132,16 +150,21 @@ async function getRequestWithSaved(
   usersParams,
   setDailyRate,
   setNotAllowedProducts,
-  setErrorMessage
+  setErrorMessage,
+  setState
 ) {
   try {
+    setState('pending');
+
     const { data } = await APIs.calculateDaylyAuthRequest(userId, usersParams);
     setDailyRate({ dailyRate: data.dailyRate, kcalLeft: data.dailyRate });
     setNotAllowedProducts(data.notAllowedProducts);
     setErrorMessage(null);
     window.localStorage.removeItem('userParams');
+    setState('idle');
   } catch (error) {
     const message = error?.response?.data?.message;
     setErrorMessage(message);
+    setState('idle');
   }
 }

@@ -107,7 +107,7 @@ export const Span = styled.span`
 export const ProductList = styled.ul`
   display: flex;
   flex-direction: column;
-  max-height: 200px;
+  height: 200px;
   gap: 20px;
   overflow-y: scroll;
 

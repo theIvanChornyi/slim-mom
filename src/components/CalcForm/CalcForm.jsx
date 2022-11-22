@@ -22,9 +22,12 @@ import { calcSchema } from 'services/validation/calcSchema';
 import APIs from 'services/API/API';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loader from 'components/Loader';
 
 export default function CalcForm() {
   const [isOpen, setIsOpen] = useState(false);
+  const [state, setState] = useState('idle');
+
   const [dailyRateCalc, setDailyRateCalc] = useState(null);
   const { userId } = useParams();
 
@@ -53,6 +56,7 @@ export default function CalcForm() {
   const onSubmit = async params => {
     if (userId) {
       toast.dismiss();
+      setState('pending');
       const { data } = await APIs.calculateDaylyAuthRequest(userId, params);
       context?.setNotAllowedProducts(data.notAllowedProducts);
       setDailyRate(prev => ({
@@ -62,10 +66,13 @@ export default function CalcForm() {
         kcalLeft: data?.summaries[0]?.kcalLeft || data?.dailyRate,
         percentsOfDailyRate: data?.summaries[0]?.percentsOfDailyRate,
       }));
+      setState('idle');
     } else {
+      setState('pending');
       window.localStorage.setItem('userParams', JSON.stringify(params));
       const { data } = await APIs.calculateDaylyRequest(params);
       setDailyRateCalc(data);
+      setState('idle');
       setIsOpen(true);
     }
   };
@@ -167,6 +174,8 @@ export default function CalcForm() {
       {isOpen && dailyRateCalc && (
         <Modal {...{ setIsOpen, dailyRateCalc, isOpen }} />
       )}
+
+      {state === 'pending' && <Loader />}
     </Thumb>
   );
 }

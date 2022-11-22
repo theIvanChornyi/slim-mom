@@ -1,4 +1,8 @@
+import Filter from 'components/Filter';
 import PropTypes from 'prop-types';
+import { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectIsAuth } from 'redux/auth/selectors.auth';
 import {
   AsideBox,
   Div,
@@ -13,6 +17,23 @@ import {
 export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
   const { dailyRate, kcalConsumed, kcalLeft, percentsOfDailyRate, daySummary } =
     dailyInfo;
+
+  const isAuth = useSelector(selectIsAuth);
+  const [filterRequest, setFilterRequest] = useState('');
+
+  const getUserFilterRequest = e => {
+    setFilterRequest(e.target.value);
+  };
+
+  const filtredNotAllowedProducts = useMemo(
+    () =>
+      notAllowedProducts
+        .filter(product =>
+          product.toLowerCase().includes(filterRequest.toLowerCase())
+        )
+        .sort((prev, post) => prev.localeCompare(post)),
+    [filterRequest, notAllowedProducts]
+  );
 
   const getPercentsKcal = percent => {
     const total = dailyRate || daySummary?.dailyRate;
@@ -72,13 +93,20 @@ export default function SideBar({ date, dailyInfo, notAllowedProducts }) {
       </Div>
       <Div>
         <Title>Food not recommended</Title>
+        <Filter
+          isAuth={isAuth}
+          onChangeFilter={getUserFilterRequest}
+          value={filterRequest}
+        />
         <ProductList>
-          {notAllowedProducts ? (
-            notAllowedProducts?.map(product => (
-              <KcalItem key={product}>
-                <Text>{product}</Text>
-              </KcalItem>
-            ))
+          {filtredNotAllowedProducts ? (
+            <>
+              {filtredNotAllowedProducts?.map(product => (
+                <KcalItem key={product}>
+                  <Text>{product}</Text>
+                </KcalItem>
+              ))}
+            </>
           ) : (
             <KcalItem>
               <Text>Your diet will be displayed here</Text>

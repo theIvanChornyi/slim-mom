@@ -1,5 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { breakpoints } from 'helpers/breakpoints';
+
+const animation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const ItemProducts = styled.li`
   display: flex;
@@ -108,7 +118,7 @@ export const ButtonDelete = styled.button`
 
     &:hover,
     &:focus {
-      transform: rotate(135deg);
+      /* transform: rotate(135deg); */
       cursor: pointer;
     }
   }
@@ -118,5 +128,9 @@ export const ButtonDelete = styled.button`
 
   &:disabled svg {
     stroke: tomato;
+    animation-name: ${animation};
+    animation-duration: 400ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 `;

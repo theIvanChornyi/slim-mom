@@ -7,6 +7,7 @@ export const HeaderWrapper = styled.div`
 
   @media ${breakpoints.desktop} {
     display: block;
+    margin-left: ${p => (p.isAuth ? '0' : '300px')};
   }
 `;
 

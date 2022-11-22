@@ -9,7 +9,7 @@ export default function DiaryProductsList({
 }) {
   return (
     <>
-      {products?.length > 0 ? (
+      {products?.length > 0 && products ? (
         <ListProducts>
           {products.map(product => (
             <DiaryProductsItem

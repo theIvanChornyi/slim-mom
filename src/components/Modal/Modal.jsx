@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -53,8 +53,12 @@ export default function Modal({ setIsOpen, dailyRateCalc }) {
     setFilter(event.target.value);
   };
 
-  const filteredProducts = notAllowedProducts.filter(item =>
-    item.toLowerCase().includes(filter.toLowerCase())
+  const filteredProducts = useMemo(
+    () =>
+      notAllowedProducts
+        .filter(product => product.toLowerCase().includes(filter.toLowerCase()))
+        .sort((prev, post) => prev.localeCompare(post)),
+    [filter, notAllowedProducts]
   );
 
   return createPortal(

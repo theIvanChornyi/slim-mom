@@ -96,7 +96,7 @@ export default function Header() {
                   </HeaderListItem>
 
                   <div>
-                    <HeaderWrapper>
+                    <HeaderWrapper isAuth={isAuth}>
                       <ThemeSwitcher />
                     </HeaderWrapper>
                     <TabletUserMenu handleLogout={memoizedLogout} />

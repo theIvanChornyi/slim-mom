@@ -1,7 +1,7 @@
 import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import APIs from 'services/API/API';
@@ -32,14 +32,19 @@ export default function DiaryProductForm({
 
   const handleChange = async e => {
     const search = e.target.value;
+    const isAlreadyHere = products?.find(p => p.title.ru === search);
     setQuerry(search);
     setErrorState(null);
-    if (search && search.length < 30) {
+
+    if (search && search.length < 30 && !isAlreadyHere) {
       try {
+        setState('pending');
         const { data } = await APIs.searchingProductRequest(search);
         setProducts(data);
         toast.dismiss();
+        setState('idle');
       } catch (error) {
+        setState('idle');
         const message = error?.response?.data?.message;
         setErrorState(message);
       }
@@ -96,11 +101,13 @@ export default function DiaryProductForm({
 
       <datalist id="products">
         {products.map(product => (
-          <Fragment key={product._id}>
-            <option value={product.title.ru} product-id={product._id}>
-              Caloricity: {product.calories} kKal / 100g
-            </option>
-          </Fragment>
+          <option
+            key={product._id}
+            value={product.title.ru}
+            product-id={product._id}
+          >
+            Caloricity: {product.calories} kKal / 100g
+          </option>
         ))}
       </datalist>
 
