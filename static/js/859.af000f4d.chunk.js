@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkslim_mom=self.webpackChunkslim_mom||[]).push([[859],{859:function(n,u,e){function s(){}e.r(u),e.d(u,{default:function(){return s}})}}]);
-//# sourceMappingURL=859.af000f4d.chunk.js.map
