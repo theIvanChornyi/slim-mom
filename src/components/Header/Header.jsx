@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { selectIsAuth, selectUserId } from 'redux/auth/selectors.auth';
 import { logOutThunk } from 'redux/auth/thunk.auth';
 import BurgerBtn from './BurgerBtn';
