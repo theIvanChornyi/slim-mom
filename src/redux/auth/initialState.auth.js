@@ -3,4 +3,7 @@ export const initialState = {
   isAuth: false,
   isFetched: true,
   token: '',
+  refreshToken: '',
+  sid: '',
+  error: '',
 };

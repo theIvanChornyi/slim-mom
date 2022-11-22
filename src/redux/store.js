@@ -14,18 +14,27 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { authReduser } from './auth/slice.auth';
+import { slimDaddyReduser } from './slimDaddy/slice.slimDaddy';
 
 const persistConfigAuth = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'isAuth', 'user'],
+  whitelist: ['refreshToken', 'isAuth', 'user', 'sid'],
 };
 
 const persistedAuth = persistReducer(persistConfigAuth, authReduser);
 
+const persistSlimDaddy = {
+  key: 'slimDaddy',
+  storage,
+};
+
+const persistedSlimDaddy = persistReducer(persistSlimDaddy, slimDaddyReduser);
+
 const store = configureStore({
   reducer: {
     auth: persistedAuth,
+    slimDaddy: persistedSlimDaddy,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
