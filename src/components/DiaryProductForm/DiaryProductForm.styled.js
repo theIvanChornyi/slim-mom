@@ -22,7 +22,7 @@ export const ProductNameInp = styled.input`
   line-height: 20px;
   letter-spacing: 0.04em;
 
-  color: #212121;
+  color: ${p => p.theme.modalTextColor};
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #e0e0e0;
@@ -51,7 +51,7 @@ export const ProductWeightInp = styled.input`
   line-height: 20px;
   letter-spacing: 0.04em;
 
-  color: #212121;
+  color: ${p => p.theme.modalTextColor};
   background-color: transparent;
 
   border: none;

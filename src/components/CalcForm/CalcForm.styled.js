@@ -105,6 +105,7 @@ export const TextInp = styled.input`
   border: none;
   width: 100%;
   border-bottom: 1px solid rgb(224, 224, 224);
+  color: ${p => p.theme.modalTextColor};
 
   &:hover,
   &:focus {

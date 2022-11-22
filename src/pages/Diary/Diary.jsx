@@ -31,7 +31,12 @@ export default function Diary() {
   } = useForm({
     resolver: yupResolver(productSchema),
   });
-  errors && toast.error(errors);
+
+  useEffect(() => {
+    toast.dismiss();
+    toast.info(errors.weight?.message);
+  }, [errors.weight?.message]);
+
   const [searchParams] = useSearchParams();
   const choosenDate = searchParams.get('date') || new Date();
   const { dailyRate, setDailyRate } = useOutletContext();

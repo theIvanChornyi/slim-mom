@@ -46,6 +46,7 @@ export const AuthInput = styled.input`
   border-bottom: 1px solid #e0e0e0;
   padding: 0;
   margin-bottom: 40px;
+  color: ${p => p.theme.modalTextColor};
   @media screen and (min-width: 768px) {
     width: 240px;
   }

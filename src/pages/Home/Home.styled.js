@@ -9,11 +9,6 @@ export const MainGrid = styled.div`
 
 export const ThemeSwitcherBox = styled.div`
   text-align: center;
-
-  @media ${breakpoints.tablet} {
-    text-align: start;
-  }
-
   @media ${breakpoints.desktop} {
     display: none;
   }
