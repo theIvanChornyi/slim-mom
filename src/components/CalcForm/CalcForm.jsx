@@ -30,6 +30,7 @@ export default function CalcForm() {
 
   const context = useOutletContext();
   const currentValues = null || context?.userData;
+  const setDailyRate = context?.setDailyRate;
   const savedValues = JSON.parse(window.localStorage.getItem('userParams'));
 
   const {
@@ -51,12 +52,21 @@ export default function CalcForm() {
 
   const onSubmit = async params => {
     if (userId) {
+      toast.dismiss();
       const { data } = await APIs.calculateDaylyAuthRequest(userId, params);
       context?.setNotAllowedProducts(data.notAllowedProducts);
+      setDailyRate(prev => ({
+        ...prev,
+        dailyRate: data?.dailyRate || data?.summaries[0]?.dailyRate,
+        kcalConsumed: data?.summaries[0]?.kcalConsumed,
+        kcalLeft: data?.summaries[0]?.kcalLeft || data?.dailyRate,
+        percentsOfDailyRate: data?.summaries[0]?.percentsOfDailyRate,
+      }));
     } else {
       window.localStorage.setItem('userParams', JSON.stringify(params));
       const { data } = await APIs.calculateDaylyRequest(params);
       setDailyRateCalc(data);
+
       setIsOpen(true);
       reset();
     }
@@ -70,6 +80,7 @@ export default function CalcForm() {
     desiredWeight?.message ||
     bloodType?.message;
   useEffect(() => {
+    toast.dismiss();
     toast.info(errorMessage);
   }, [errorMessage]);
 
