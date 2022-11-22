@@ -32,12 +32,12 @@ export default function CalcForm() {
   const currentValues = null || context?.userData;
   const setDailyRate = context?.setDailyRate;
   const savedValues = JSON.parse(window.localStorage.getItem('userParams'));
+  const checkedBloodType = currentValues?.bloodType;
 
   const {
     register,
     handleSubmit,
-    reset,
-
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(calcSchema),
@@ -66,9 +66,7 @@ export default function CalcForm() {
       window.localStorage.setItem('userParams', JSON.stringify(params));
       const { data } = await APIs.calculateDaylyRequest(params);
       setDailyRateCalc(data);
-
       setIsOpen(true);
-      reset();
     }
   };
 
@@ -79,6 +77,7 @@ export default function CalcForm() {
     weight?.message ||
     desiredWeight?.message ||
     bloodType?.message;
+
   useEffect(() => {
     toast.dismiss();
     toast.info(errorMessage);
@@ -124,6 +123,7 @@ export default function CalcForm() {
                   id="blood-inp-1"
                   type="radio"
                   value={1}
+                  checked={1 === +(watch('bloodType') ?? checkedBloodType)}
                 />
                 <label htmlFor="blood-inp-1">1</label>
               </li>
@@ -133,6 +133,7 @@ export default function CalcForm() {
                   id="blood-inp-2"
                   type="radio"
                   value={2}
+                  checked={2 === +(watch('bloodType') ?? checkedBloodType)}
                 />
                 <label htmlFor="blood-inp-2">2</label>
               </li>
@@ -142,6 +143,7 @@ export default function CalcForm() {
                   id="blood-inp-3"
                   type="radio"
                   value={3}
+                  checked={3 === +(watch('bloodType') ?? checkedBloodType)}
                 />
                 <label htmlFor="blood-inp-3">3</label>
               </li>
@@ -151,6 +153,7 @@ export default function CalcForm() {
                   id="blood-inp-4"
                   type="radio"
                   value={4}
+                  checked={4 === +(watch('bloodType') ?? checkedBloodType)}
                 />
                 <label htmlFor="blood-inp-4">4</label>
               </li>
