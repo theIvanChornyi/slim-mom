@@ -7,6 +7,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #e2e2e2;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #264061;
 }
 
 * {

@@ -77,7 +77,7 @@ export default function DiaryProductForm({
         setErrorState(message);
       }
     } else {
-      toast.warn('Please use dropdown list only!');
+      toast.info('Please use dropdown list only!');
       setState('idle');
     }
   };

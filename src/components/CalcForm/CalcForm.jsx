@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useOutletContext } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Button,
   ButtonCon,
@@ -21,6 +21,7 @@ import { calcSchema } from 'services/validation/calcSchema';
 
 import APIs from 'services/API/API';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function CalcForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,6 +61,17 @@ export default function CalcForm() {
       reset();
     }
   };
+
+  const { height, age, weight, desiredWeight, bloodType } = errors;
+  const errorMessage =
+    height?.message ||
+    age?.message ||
+    weight?.message ||
+    desiredWeight?.message ||
+    bloodType?.message;
+  useEffect(() => {
+    toast.info(errorMessage);
+  }, [errorMessage]);
 
   return (
     <Thumb>
