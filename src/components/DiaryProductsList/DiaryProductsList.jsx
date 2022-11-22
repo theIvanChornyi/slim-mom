@@ -2,7 +2,11 @@ import DiaryProductsItem from 'components/DiaryProductsItem';
 import PropTypes from 'prop-types';
 import { ListProducts, Text } from './DiaryProductsList.styled';
 
-export default function DiaryProductsList({ products, handleDeleteProduct }) {
+export default function DiaryProductsList({
+  products,
+  handleDeleteProduct,
+  isDeliting,
+}) {
   return (
     <>
       {products?.length > 0 ? (
@@ -15,6 +19,7 @@ export default function DiaryProductsList({ products, handleDeleteProduct }) {
               name={product.title}
               weight={product.weight}
               kcal={product.kcal}
+              isDeliting={isDeliting === product.id}
             />
           ))}
         </ListProducts>

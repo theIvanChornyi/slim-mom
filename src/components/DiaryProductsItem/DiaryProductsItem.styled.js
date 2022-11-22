@@ -112,4 +112,11 @@ export const ButtonDelete = styled.button`
       cursor: pointer;
     }
   }
+  & svg {
+    stroke: #9b9faa;
+  }
+
+  &:disabled svg {
+    stroke: tomato;
+  }
 `;

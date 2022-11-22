@@ -89,7 +89,7 @@ export default function DiaryProductForm({
         errorState={errorState}
         type="text"
         {...register('title')}
-        onInput={debounce(handleChange, 100)}
+        onInput={debounce(handleChange, 200)}
         placeholder="Enter product name"
         list="products"
       />

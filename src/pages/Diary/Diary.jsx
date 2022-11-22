@@ -41,6 +41,7 @@ export default function Diary() {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [date, setDate] = useState(new Date(choosenDate));
   const [eatenProducts, setEatenProducts] = useState([]);
+  const [isDeliting, setIsDeliting] = useState(null);
 
   const normalizedDate = date.toLocaleDateString('en-CA').replaceAll('/', '-');
 
@@ -57,6 +58,7 @@ export default function Diary() {
 
   const handleDeleteProduct = async deleteId => {
     const dayId = dailyRate.id;
+    setIsDeliting(deleteId);
     try {
       const { data } = await APIs.deleteEatenProductRequest(dayId, deleteId);
       setDailyRate(prev => ({
@@ -65,6 +67,7 @@ export default function Diary() {
         kcalLeft: data?.newDaySummary?.kcalLeft,
       }));
       setEatenProducts(prev => prev.filter(product => product.id !== deleteId));
+      setIsDeliting(null);
     } catch (error) {}
   };
 
@@ -91,6 +94,7 @@ export default function Diary() {
             <DiaryProductsList
               products={eatenProducts}
               handleDeleteProduct={handleDeleteProduct}
+              isDeliting={isDeliting}
             />
             {eatenProducts?.length > 0 && <Gradient />}
 
