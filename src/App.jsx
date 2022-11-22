@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import Loader from 'components/Loader';
 import PrivateRout from 'components/PrivateRout';
@@ -11,6 +11,7 @@ import { refreshUserThunk } from 'redux/auth/thunk.auth';
 import Header from 'components/Header';
 import 'react-toastify/dist/ReactToastify.css';
 import {
+  selectError,
   selectIsAuth,
   selectIsFetched,
   selectUserId,
@@ -30,10 +31,12 @@ const Registration = lazy(() => import('pages/Registration'));
 export const App = () => {
   const isAuth = useSelector(selectIsAuth);
   const userId = useSelector(selectUserId);
+  const errorMesage = useSelector(selectError);
   const isFetched = useSelector(selectIsFetched);
   const isDaddy = useSelector(selectSlimDaddy);
 
   const dispatch = useDispatch();
+  errorMesage && toast.warn(errorMesage);
 
   useEffect(() => {
     document.title = isDaddy ? 'Slim Daddy' : 'Slim Mom';

@@ -35,10 +35,7 @@ export default function RegistrationForm() {
       reset();
       toast.dismiss();
       await navigate(`/${user.id}/calculator`);
-    } catch (error) {
-      // const message = error?.response?;
-      console.log({ ...error.request });
-    }
+    } catch (error) {}
   };
 
   const { username, email, password } = errors;

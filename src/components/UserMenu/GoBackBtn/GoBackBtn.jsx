@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { SideBarBtn } from './GoBackBtn.styled';
 
 export default function GoBackBtn({ handleCloseClick }) {
@@ -19,3 +20,5 @@ export default function GoBackBtn({ handleCloseClick }) {
     </SideBarBtn>
   );
 }
+
+GoBackBtn.propTypes = { handleCloseClick: PropTypes.func };

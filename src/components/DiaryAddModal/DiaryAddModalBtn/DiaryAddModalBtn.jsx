@@ -1,4 +1,5 @@
 import { AddBtn, Cross } from './DiaryAddModalBtn.styled';
+import PropTypes from 'prop-types';
 
 export default function DiaryAddModalBtn({
   onClick,
@@ -23,3 +24,9 @@ export default function DiaryAddModalBtn({
     </AddBtn>
   );
 }
+DiaryAddModalBtn.propTypes = {
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+  errorState: PropTypes.object,
+  state: PropTypes.string,
+};

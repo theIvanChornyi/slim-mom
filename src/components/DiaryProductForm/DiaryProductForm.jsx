@@ -1,4 +1,5 @@
 import DiaryAddModalBtn from 'components/DiaryAddModal/DiaryAddModalBtn';
+import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import { Fragment, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
@@ -121,3 +122,12 @@ export default function DiaryProductForm({
     </ProductForm>
   );
 }
+
+DiaryProductForm.propTypes = {
+  handleClose: PropTypes.func,
+  register: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  reset: PropTypes.func,
+  normalizedDate: PropTypes.string,
+  setEatenProducts: PropTypes.func,
+};

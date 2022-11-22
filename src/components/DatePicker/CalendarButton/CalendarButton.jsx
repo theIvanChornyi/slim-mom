@@ -1,4 +1,5 @@
 import { CalendarStyledBtn, Cross } from './CalendarButton.styled';
+import PropTypes from 'prop-types';
 
 export default function CalendarButton({ onClick, showCalendar }) {
   return (
@@ -36,3 +37,8 @@ export default function CalendarButton({ onClick, showCalendar }) {
     </CalendarStyledBtn>
   );
 }
+
+CalendarButton.propTypes = {
+  onClick: PropTypes.func,
+  showCalendar: PropTypes.bool,
+};

@@ -5,4 +5,5 @@ export const initialState = {
   token: '',
   refreshToken: '',
   sid: '',
+  error: '',
 };
